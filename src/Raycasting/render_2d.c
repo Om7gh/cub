@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_2d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/14 17:27:22 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/14 18:58:40 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@ void    my_mlx_put_pixel(unsigned int x, unsigned int y, int color, t_cub3D *cub
         mlx_put_pixel(cub->__img, x, y, color);
 }
 
-void	find_horizontal_intersections(t_cub3D *map, double angle)
+void	find_horizontal_intersections(t_cub3D *map, double angle, t_vect *check)
 {
 	t_vect	step;
 	t_vect	intersx;
-	t_vect	check;
 	t_vect	next_touch;
 
 	angle = remainder(angle, 2 * M_PI);
@@ -41,25 +40,24 @@ void	find_horizontal_intersections(t_cub3D *map, double angle)
 		step.x *= -1;
 	next_touch.x = intersx.x;
 	next_touch.y = intersx.y;
-	while (next_touch.x >= 0 && next_touch.x < map->screen_width && next_touch.y >= 0 && next_touch.y < map->screen_height)
+	while (next_touch.x >= 0 && next_touch.x < map->screen_width \
+		&& next_touch.y >= 0 && next_touch.y < map->screen_height)
 	{
-		check.x = next_touch.x;
-		check.y = next_touch.y;
+		check->x = next_touch.x;
+		check->y = next_touch.y;
 		if (!(angle > 0 && angle < M_PI))
-			check.y--;
-		if (wall(map , check.x, check.y))
+			check->y--;
+		if (wall(map , check->x, check->y))
 			break;
 		next_touch.x += step.x;
 		next_touch.y += step.y;
 	}
-	map->h_ray = &check;
 }
 
-void	find_vertical_intersections(t_cub3D *map, double angle)
+void	find_vertical_intersections(t_cub3D *map, double angle, t_vect *check)
 {
 	t_vect	step;
 	t_vect	intersx;
-	t_vect	check;
 	t_vect	next_touch;
 
 	angle = remainder(angle, 2 * M_PI);
@@ -77,18 +75,18 @@ void	find_vertical_intersections(t_cub3D *map, double angle)
 		step.y *= -1;
 	next_touch.x = intersx.x;
 	next_touch.y = intersx.y;
-	while (next_touch.x >= 0 && next_touch.x < map->screen_width && next_touch.y >= 0 && next_touch.y < map->screen_height)
+	while (next_touch.x >= 0 && next_touch.x < map->screen_width \
+		&& next_touch.y >= 0 && next_touch.y < map->screen_height)
 	{
-		check.x = next_touch.x;
-		check.y = next_touch.y;
+		check->x = next_touch.x;
+		check->y = next_touch.y;
 		if ((angle > M_PI / 2 && angle < M_PI * 1.5))
-			check.x--;
-		if (wall(map, check.x, check.y))
+			check->x--;
+		if (wall(map, check->x, check->y))
 			break;
 		next_touch.x += step.x;
 		next_touch.y += step.y;
 	}
-	map->v_ray = &check;
 }
 
 void    calcule_close_ray(t_cub3D *cub)
@@ -110,6 +108,8 @@ void    render_2d(t_cub3D *cub)
         unsigned int     x;
         unsigned int     y;
         double rays;
+	t_vect	check1 ;
+	t_vect	check2 ;
 
         y = 0;
          cub->__img = mlx_new_image(cub->__mlx, cub->screen_width, cub->screen_height);
@@ -135,12 +135,14 @@ void    render_2d(t_cub3D *cub)
         rays = -0.45;
         while (rays < 0.45)
         {
-                find_vertical_intersections(cub, cub->player->angle + rays);
-                find_horizontal_intersections(cub, cub->player->angle + rays);
+                find_vertical_intersections(cub, cub->player->angle + rays, &check1);
+		cub->v_ray = &check1;
+                find_horizontal_intersections(cub, cub->player->angle + rays, &check2);
+		cub->h_ray = &check2;
                 calcule_close_ray(cub);
                 // printf("x = %f || y = %f\n", cub->v_ray->x, cub->v_ray->y);
                 bresenhams(cub->player->pos.x, cub->player->pos.y, cub->v_ray->x, cub->v_ray->y, cub, WHITE);
                 rays += 0.005;
         }
-        printf("x_h = %p || x_v = %p\n", cub->h_ray, cub->v_ray);
+	printf("vh %p\t h %p\n", cub->v_ray, cub->h_ray);
 }

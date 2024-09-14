@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/14 10:13:44 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/09/14 15:12:00 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ struct s_cub
 	t_parser		*parser;
 	t_map_render		*map;
 	t_player		*player;
+	t_vect			*h_ray;
+	t_vect			*v_ray;
 	unsigned int		max_width;
 	unsigned int		max_height;
 	unsigned int			screen_width;

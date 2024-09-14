@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/14 11:07:11 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/09/14 12:43:49 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ void    arrow_handler(keys_t key, t_cub3D *cub)
                 cub->player->pos.x -= xpos[0];
                 cub->player->pos.y -= ypos[0]; 
         }
-        else if (key == MLX_KEY_A && !wall(cub, cub->player->pos.x + xpos[1], cub->player->pos.y + ypos[1]))
-        {
-                cub->player->pos.x += xpos[1];
-                cub->player->pos.y += ypos[1]; 
-        }
-        else if (key == MLX_KEY_D && !wall(cub, cub->player->pos.x - xpos[1], cub->player->pos.y - ypos[1]))
+        else if (key == MLX_KEY_A && !wall(cub, cub->player->pos.x - xpos[1], cub->player->pos.y - ypos[1]))
         {
                 cub->player->pos.x -= xpos[1];
                 cub->player->pos.y -= ypos[1]; 
+        }
+        else if (key == MLX_KEY_D && !wall(cub, cub->player->pos.x + xpos[1], cub->player->pos.y + ypos[1]))
+        {
+                cub->player->pos.x += xpos[1];
+                cub->player->pos.y += ypos[1]; 
         }
         else if (key == MLX_KEY_LEFT)
                 cub->player->angle -= 0.1;

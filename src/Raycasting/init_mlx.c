@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/14 15:21:23 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/15 15:47:54 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void    set_player_pos(t_cub3D *cub)
                         if (player_character(cub->map->map[y / TILE_SIZE][x / TILE_SIZE]))
                         {
                                 cub->player->pos.x = (double)x + (TILE_SIZE / 2);
-                                cub->player->pos.y = (double)y + (TILE_SIZE / 2);
+                                cub->player->pos.y = (double)y - (TILE_SIZE / 2);
                         }
                         x++;
                 }

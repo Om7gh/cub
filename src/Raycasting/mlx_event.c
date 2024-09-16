@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/14 12:43:49 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/15 22:17:22 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 
 
-int     wall(t_cub3D *cub, int x, int y)
+int     wall(t_cub3D *cub, unsigned int x, unsigned int y)
 {
-        if (cub->map->map[y / TILE_SIZE][x / TILE_SIZE] == 1)
+        if (cub->map->map[y / TILE_SIZE][x / TILE_SIZE] == 1 \
+        || x < 0 || x > cub->screen_width || y < 0 || y > cub->screen_height)
                 return (1);
         return (0);
 }

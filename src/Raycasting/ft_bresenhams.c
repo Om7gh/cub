@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:40:50 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/14 14:37:12 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/15 19:02:40 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void bresenhams(int from_x, int from_y, int to_x, int to_y, t_cub3D *cub, uint32
 
     while (pos[0] != to_x || pos[1] != to_y)
     {
-        if (pos[0] >= (int)cub->screen_width || pos[1] >= (int)cub->screen_height || pos[0] < 0 || pos[1] < 0)
-            break;
         my_mlx_put_pixel(pos[0], pos[1], color, cub);
         error[1] = 2 * error[0];
         if (error[1] > -diff[1]) {

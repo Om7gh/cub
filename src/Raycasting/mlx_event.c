@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/17 18:47:45 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/20 13:00:46 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int     wall(t_cub3D *cub, unsigned int x, unsigned int y)
+int     wall(t_cub3D *cub, int x, int y)
 {
     if (x < 0)
         x = 0;

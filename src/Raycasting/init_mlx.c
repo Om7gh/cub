@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/18 17:33:22 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/23 16:18:21 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void    init_mlx(t_cub3D *cub)
 {
         mlx_set_setting(MLX_STRETCH_IMAGE, true);
         // mlx_set_setting(MLX_FULLSCREEN, true);
-        cub->screen_height = cub->max_height * TILE_SIZE;
+        cub->screen_height = cub->max_height * TILE_SIZE * 2;
         cub->screen_width = cub->max_width * TILE_SIZE;
         cub->__mlx = mlx_init(cub->screen_width, cub->screen_height, "cub3D", false);
         if (!cub->__mlx)
@@ -28,19 +28,19 @@ void    init_mlx(t_cub3D *cub)
 
 void    set_player_pos(t_cub3D *cub)
 {
-        unsigned int x;
-        unsigned int y;
+        int x;
+        int y;
 
         y = 0;
-        while (y < cub->screen_height)
+        while (y < cub->max_height)
         {
                 x = 0;
-                while (x < cub->screen_width)
+                while (x < cub->max_width)
                 {
-                        if (player_character(cub->map->map[y / TILE_SIZE][x / TILE_SIZE]))
+                        if (player_character(cub->map->map[y][x]))
                         {
-                                cub->player->pos.x = (double)x + (TILE_SIZE / 2);
-                                cub->player->pos.y = (double)y - (TILE_SIZE / 2);
+                                cub->player->pos.x = (double)x * TILE_SIZE + (TILE_SIZE / 2);
+                                cub->player->pos.y = (double)y * TILE_SIZE - (TILE_SIZE / 2);
                         }
                         x++;
                 }

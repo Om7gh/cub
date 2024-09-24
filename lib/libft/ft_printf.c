@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 08:48:43 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/03/29 21:35:33 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/09/20 13:00:46 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ static int	check_format(char format, va_list args)
 	if (format == 'd' || format == 'i')
 		return (ft_putnbr_base(va_arg(args, int), 10, 0));
 	else if (format == 'u')
-		return (ft_putnbr_base(va_arg(args, unsigned int), 10, 0));
+		return (ft_putnbr_base(va_arg(args, int), 10, 0));
 	else if (format == 'x')
-		return (ft_putnbr_base((long)va_arg(args, unsigned int), 16, 0));
+		return (ft_putnbr_base((long)va_arg(args, int), 16, 0));
 	else if (format == 'X')
-		return (ft_putnbr_base((long)va_arg(args, unsigned int), 16, 1));
+		return (ft_putnbr_base((long)va_arg(args, int), 16, 1));
 	else if (format == 'c')
 		return (ft_putchar_fd(va_arg(args, int), 1), 1);
 	else if (format == '%')

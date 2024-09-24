@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bresenhams.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:40:50 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/15 19:02:40 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/20 13:15:47 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int     get_sign(int a, int b)
+int     get_sign(long a, long b)
 {
         if (a < b)
                 return (1);
         return (-1);
 }
 
-void bresenhams(int from_x, int from_y, int to_x, int to_y, t_cub3D *cub, uint32_t color)
+void bresenhams(long from_x, long from_y, long to_x, long to_y, t_cub3D *cub, uint32_t color)
 {
-    int diff[2], step[2], error[2], pos[2];
+    long diff[2], step[2], error[2], pos[2];
 
-    diff[0] = abs(to_x - from_x);
-    diff[1] = abs(to_y - from_y);
+    diff[0] = labs(to_x - from_x);
+    diff[1] = labs(to_y - from_y);
     step[0] = get_sign(from_x, to_x);
     step[1] = get_sign(from_y, to_y);
     error[0] = diff[0] - diff[1];
@@ -35,12 +35,13 @@ void bresenhams(int from_x, int from_y, int to_x, int to_y, t_cub3D *cub, uint32
     {
         my_mlx_put_pixel(pos[0], pos[1], color, cub);
         error[1] = 2 * error[0];
-        if (error[1] > -diff[1]) {
+        if (error[1] > -diff[1])
+        {
             error[0] -= diff[1];
             pos[0] += step[0];
         }
-
-        if (error[1] < diff[0]) {
+        if (error[1] < diff[0])
+        {
             error[0] += diff[0];
             pos[1] += step[1];
         }

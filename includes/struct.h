@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/14 15:12:00 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/20 20:26:55 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define SCREEN_WIDTH	1024
 # define SCREEN_HEIGHT	720
-# define TILE_SIZE	32
+# define TILE_SIZE	50
 # define ORANGE	0xFFA500FF
 # define BLACK	0x000000FF
 # define WHITE	0xFFFFFFFF
@@ -90,10 +90,10 @@ struct s_cub
 	t_player		*player;
 	t_vect			*h_ray;
 	t_vect			*v_ray;
-	unsigned int		max_width;
-	unsigned int		max_height;
-	unsigned int			screen_width;
-	unsigned int			screen_height;
+	int		max_width;
+	int		max_height;
+	int			screen_width;
+	int			screen_height;
 } ;
 
 #endif

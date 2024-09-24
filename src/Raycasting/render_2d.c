@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   render_2d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/18 16:36:37 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/23 16:50:19 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void    my_mlx_put_pixel(unsigned int x, unsigned int y, int color, t_cub3D *cub)
+void    my_mlx_put_pixel(double x, double y, int color, t_cub3D *cub)
 {
         if ((x < 0 || x >= cub->screen_height) && (y < 0 || y >= cub->screen_width))
                 return ;
@@ -52,7 +52,6 @@ void	find_horizontal_intersections(t_cub3D *map, double angle, t_vect *check)
 		next_touch.y += step.y;
 	}
 }
-
 void	find_vertical_intersections(t_cub3D *cub, double angle, t_vect *check)
 {
 	t_vect	step;
@@ -88,7 +87,7 @@ void	find_vertical_intersections(t_cub3D *cub, double angle, t_vect *check)
 	printf("->>>>> %f\n", angle * 180 / M_PI);
 }
 
-void    calcule_close_ray(t_cub3D *cub)
+int    calcule_close_ray(t_cub3D *cub)
 {
         double     v_distance;
         double     h_distance;
@@ -96,36 +95,58 @@ void    calcule_close_ray(t_cub3D *cub)
         h_distance = sqrt(pow(cub->h_ray->x - cub->player->pos.x, 2) + pow(cub->h_ray->y - cub->player->pos.y, 2));
         v_distance = sqrt(pow(cub->v_ray->x - cub->player->pos.x, 2) + pow(cub->v_ray->y  - cub->player->pos.y, 2));
         if (v_distance > h_distance)
-            bresenhams(cub->player->pos.x, cub->player->pos.y, cub->h_ray->x, cub->h_ray->y, cub, WHITE), printf("---->(%f, %f)\n", cub->h_ray->x/TILE_SIZE, cub->h_ray->y/TILE_SIZE);
-		else
-            bresenhams(cub->player->pos.x, cub->player->pos.y, cub->v_ray->x, cub->v_ray->y, cub, WHITE), printf("---->(%f, %f)\n", cub->v_ray->x/TILE_SIZE, cub->v_ray->y/TILE_SIZE);
-			
+	{
+        	bresenhams(cub->player->pos.x, cub->player->pos.y, cub->h_ray->x, cub->h_ray->y, cub, WHITE);
+		return (h_distance);
+	}
+	else
+            bresenhams(cub->player->pos.x, cub->player->pos.y, cub->v_ray->x, cub->v_ray->y, cub, WHITE);
+	return (v_distance);
+}
+
+void	draw_wall(int x, int distance, t_cub3D *cub, double rays)
+{
+	int calcule;
+	int distance_rem;
+	int from_y;
+	int to_y;
+	(void)rays;
+	
+	distance_rem = distance;
+	calcule = cub->screen_height / 2;
+	calcule = calcule / distance;
+	from_y = cub->screen_height / 2 - calcule;
+	from_y = from_y / 2;
+	to_y = from_y + calcule;
+	printf("-------------->> (%d)\n", calcule);
+	bresenhams(x, from_y, x, to_y, cub, WHITE);
 }
 
 void    render_2d(t_cub3D *cub)
 {
-    unsigned int	x;
-    unsigned int	y;
-    double			rays;
+    	double			x;
+    	double			y;
+    	double			rays;
+	int distance;
 	t_vect	check1;
 	t_vect	check2;
 
         y = 0;
-         cub->__img = mlx_new_image(cub->__mlx, cub->screen_width, cub->screen_height);
+        cub->__img = mlx_new_image(cub->__mlx, cub->screen_width, cub->screen_height);
         if (!cub->__img)
         {
                 printf("%s\n", mlx_strerror(MLX_INVIMG));
                 exit(1);
         }
         mlx_image_to_window(cub->__mlx, cub->__img, 0, 0);
-        while (y < cub->screen_height)
+        while (y < cub->screen_height / 2)
         {
                 x = 0;
                 while (x < cub->screen_width)
                 {
-						if (x % TILE_SIZE == 0 || y % TILE_SIZE == 0)
-							my_mlx_put_pixel(x, y, 654684, cub);
-                        else if (cub->map->map[y / TILE_SIZE][x / TILE_SIZE] == 1)
+			if (remainder(x, TILE_SIZE) == 0 || remainder(y, TILE_SIZE) == 0)
+				my_mlx_put_pixel(x, y, 654684, cub);
+                        else if (cub->map->map[(int)y / TILE_SIZE][(int)x / TILE_SIZE] == 1)
                                 my_mlx_put_pixel(x, y, ORANGE, cub);
                         else
                                 my_mlx_put_pixel(x, y, BLACK, cub);
@@ -134,14 +155,15 @@ void    render_2d(t_cub3D *cub)
                 y++;
         }
         rays = -0.45;
-        while (rays < 0.45)
-        {
-            find_vertical_intersections(cub, cub->player->angle + rays, &check1);
-			cub->v_ray = &check1;
-            find_horizontal_intersections(cub, cub->player->angle + rays, &check2);
-			cub->h_ray = &check2;
-            calcule_close_ray(cub);
-            rays += 0.005;
-        }
-	// printf("vh %p\t h %p\n", cub->v_ray, cub->h_ray);
+	x = -1;
+	while (++x < cub->screen_width)
+	{
+		find_vertical_intersections(cub, cub->player->angle + rays, &check1);
+		cub->v_ray = &check1;
+		find_horizontal_intersections(cub, cub->player->angle + rays, &check2);
+		cub->h_ray = &check2;	
+        	distance = calcule_close_ray(cub);
+		draw_wall(x, distance, cub, rays);
+	}
+        	rays += 0.005;
 }

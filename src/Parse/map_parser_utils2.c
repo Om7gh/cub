@@ -6,13 +6,13 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:18:31 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/11 18:26:54 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/09/20 13:00:46 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	fill_row(t_parser *tmp, t_cub3D *cub, int i, unsigned int *j)
+void	fill_row(t_parser *tmp, t_cub3D *cub, int i, int *j)
 {
 	if (tmp->line[*j] == '1')
 		cub->map->map[i][*j] = 1;
@@ -26,8 +26,8 @@ void	fill_row(t_parser *tmp, t_cub3D *cub, int i, unsigned int *j)
 void	map_before_and_after(t_cub3D *cub)
 {
 	t_parser			*tmp;
-	unsigned int		i;
-	unsigned int		j;
+	int		i;
+	int		j;
 
 	tmp = cub->parser;
 	i = -1;

@@ -6,12 +6,11 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 18:17:44 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/30 21:56:12 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
 
 void    my_mlx_put_pixel(double x, double y, int color, t_cub3D *cub)
 {
@@ -103,54 +102,10 @@ void	find_vertical_intersections(t_cub3D *cub, double angle, t_vect *check, int 
 	// [(int)floor(check->x / TILE_SIZE)];
 }
 
-void    calcule_close_ray(t_cub3D *cub, t_vect vcheck, t_vect hcheck, int x)
-{
-    double     v_distance;
-    double     h_distance;
-
-    h_distance = sqrt(pow(hcheck.x - cub->player->pos.x, 2) + pow(hcheck.y - cub->player->pos.y, 2));
-    v_distance = sqrt(pow(vcheck.x - cub->player->pos.x, 2) + pow(vcheck.y  - cub->player->pos.y, 2));
-    if (v_distance > h_distance)
-	{
-		bresenhams(cub->player->pos.x / 5, cub->player->pos.y / 5 , hcheck.x / 5, hcheck.y / 5, cub, WHITE);
-		cub->rays[x].distance = h_distance;
-		cub->rays[x].wall_hit = hcheck;
-	}
-	else
-	{
-		bresenhams(cub->player->pos.x / 5, cub->player->pos.y / 5 , vcheck.x / 5, vcheck.y / 5, cub, WHITE);
-		cub->rays[x].distance = v_distance;
-		cub->rays[x].wall_hit = vcheck;
-	}
-}
-
-void	draw_wall(int x, t_cub3D *cub)
-{
-	double	distance_plane;
-	double	distance_rem;
-	double	wall_height;
-	int		from_y;
-	int		to_y;
-	
-	distance_rem = cub->rays[x].distance * cos(cub->rays[x].rayAngle - cub->player->angle);
-	distance_plane = (SCREEN_WIDTH / 2) / tan(FOV_ANGLE / 2);
-	wall_height = (TILE_SIZE / distance_rem) * distance_plane;
-	from_y = SCREEN_HEIGHT / 2 - (int)wall_height / 2;
-	to_y = SCREEN_HEIGHT / 2 + (int)wall_height / 2;
-	if (from_y < 0)
-		from_y = 0;
-	if (to_y >= SCREEN_HEIGHT)
-		to_y = SCREEN_HEIGHT;
-	bresenhams(x, from_y, x, to_y, cub, WHITE);
-}
-
-void    render_2d(t_cub3D *cub)
+void    mini_map(t_cub3D *cub)
 {
     int			x;
-    double			y;
-    double			rays;
-	t_vect	vcheck;
-	t_vect	hcheck;
+    int			y;
 
     y = 0;
     cub->__img = mlx_new_image(cub->__mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -175,15 +130,4 @@ void    render_2d(t_cub3D *cub)
             }
             y++;
     }
-    rays = cub->player->angle - (FOV_ANGLE / 2);
-	x = -1;
-	while (++x < cub->screen_width)
-	{
-		cub->rays[x].rayAngle = rays;
-		find_vertical_intersections(cub, rays, &vcheck, x);
-		find_horizontal_intersections(cub, rays, &hcheck, x);
-        calcule_close_ray(cub, vcheck, hcheck, x);
-        rays += FOV_ANGLE / cub->screen_width;
-		draw_wall(x, cub);
-	}
 }

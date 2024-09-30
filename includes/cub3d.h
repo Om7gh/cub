@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:13:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 10:34:37 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/30 21:55:34 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		insert_last(t_parser **parser_list, t_parser *new_node);
 void		check_file_extension(char *file);
 void		ft_error(char *str);
 t_parser	*new_parser_node(char *line, int min, int max);
-void    render_2d(t_cub3D *cub);
+void    mini_map(t_cub3D *cub);
 void    init_settings(t_cub3D *cub);
 void    bresenhams(long from_x, long from_y, long to_x, long to_y, t_cub3D *cub, uint32_t color);
 void    my_mlx_put_pixel(double x, double y, int color, t_cub3D *cub);
@@ -52,5 +52,8 @@ void    key_handler(mlx_key_data_t key, void* param);
 
 /* FUNCTIONS */
 int     wall(t_cub3D *cub, double x, double y);
+void    render_3d(t_cub3D *cub);
+void	find_vertical_intersections(t_cub3D *cub, double angle, t_vect *check, int x);
+void	find_horizontal_intersections(t_cub3D *map, double angle, t_vect *check, int x);
 
 #endif

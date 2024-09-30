@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 16:22:40 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/30 21:48:51 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define BLACK	0x000000FF
 # define WHITE	0xFFFFFFFF
 # define RED	0xFF0000FF
-# define SPEED 2
+# define SPEED 3
 # define NORD 3 * M_PI / 2
 # define SOUTH M_PI / 2
 # define EAST 0
@@ -84,11 +84,11 @@ struct	s_player
 
 /***********  PROJECT GOLABL STRUCT  **********/
 struct s_Ray {
-    double	rayAngle;
-	t_vect	wall_hit;
-    double	distance;
-    int		hit_ver;
-    int		wall_content;
+    double		rayAngle;
+	t_vect		wall_hit;
+    double		distance;
+    bool		hit_ver;
+    int			wall_content;
 };
 
 struct s_cub

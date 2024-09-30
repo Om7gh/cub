@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 21:53:11 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/30 22:07:19 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void    arrow_handler(keys_t key, t_cub3D *cub)
         else
                 return ;
         mlx_delete_image(cub->__mlx, cub->__img);
-        mini_map(cub);
+        render_3d(cub);
 }
 
 void    key_handler(mlx_key_data_t key, void* param)

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 21:56:12 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/30 22:13:21 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,6 @@ void    mini_map(t_cub3D *cub)
     int			y;
 
     y = 0;
-    cub->__img = mlx_new_image(cub->__mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-    if (!cub->__img)
-    {
-            printf("%s\n", mlx_strerror(MLX_INVIMG));
-            exit(1);
-    }
-    mlx_image_to_window(cub->__mlx, cub->__img, 0, 0);
     while (y < cub->screen_height / 5)
     {
             x = 0;
@@ -126,6 +119,13 @@ void    mini_map(t_cub3D *cub)
                         my_mlx_put_pixel(x, y, ORANGE, cub);
                 else
                         my_mlx_put_pixel(x, y, BLACK, cub);
+				if (x < SCREEN_WIDTH)
+				{
+					// if (cub->rays[x].hit_ver)
+						bresenhams(cub->player->pos.x / 5, cub->player->pos.y / 5, cub->rays[x].wall_hit.x / 5, cub->rays[x].wall_hit.y / 5, cub, WHITE);
+					// else
+					// 	bresenhams(cub->player->pos.x / 5, cub->player->pos.y / 5, cub->rays[x].wall_hit.x / 5, cub->rays[x].wall_hit.y / 5, cub, WHITE);
+				}
                 x++;
             }
             y++;

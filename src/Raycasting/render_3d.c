@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/09/30 21:58:34 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/30 22:28:58 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void    calcule_close_ray(t_cub3D *cub, t_vect vcheck, t_vect hcheck, int x)
 	{
 		cub->rays[x].distance = h_distance;
 		cub->rays[x].wall_hit = hcheck;
-		cub->rays->hit_ver = false;
+		cub->rays[x].hit_ver = false;
 	}
 	else
 	{
 		cub->rays[x].distance = v_distance;
 		cub->rays[x].wall_hit = vcheck;
-		cub->rays->hit_ver = true;
+		cub->rays[x].hit_ver = true;
 	}
 }
 
@@ -50,9 +50,10 @@ void	draw_wall(int x, t_cub3D *cub)
 		from_y = 0;
 	if (to_y >= SCREEN_HEIGHT)
 		to_y = SCREEN_HEIGHT;
-	printf("from_y = %d, to_y = %d\n", from_y, to_y);
-	printf("screen_height = %d || wall_height = %d\n", SCREEN_HEIGHT, SCREEN_WIDTH);
-	bresenhams(x, from_y, x, to_y, cub, WHITE);
+	if (cub->rays[x].hit_ver)
+		bresenhams(x, from_y, x, to_y, cub, 0xCCCCCCFF);
+	else
+		bresenhams(x, from_y, x, to_y, cub, WHITE);
 }
 
 void    render_3d(t_cub3D *cub)
@@ -62,6 +63,13 @@ void    render_3d(t_cub3D *cub)
 	t_vect		vcheck;
 	t_vect		hcheck;
 	
+	cub->__img = mlx_new_image(cub->__mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+    if (!cub->__img)
+    {
+            printf("%s\n", mlx_strerror(MLX_INVIMG));
+            exit(1);
+    }
+    mlx_image_to_window(cub->__mlx, cub->__img, 0, 0);
 	rays = cub->player->angle - (FOV_ANGLE / 2);
 	x = -1;
 	while (++x < SCREEN_WIDTH)
@@ -73,4 +81,5 @@ void    render_3d(t_cub3D *cub)
 		draw_wall(x, cub);
 		rays += FOV_ANGLE / SCREEN_WIDTH;
 	}
+	mini_map(cub);
 }

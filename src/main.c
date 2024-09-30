@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 21:52:25 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/30 22:07:05 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	main(int argc, char **argv)
 	cub3d->player = &player;
 	init_settings(cub3d);
 	render_3d(cub3d);
-	mini_map(cub3d);
 	mlx_key_hook(cub3d->__mlx, key_handler, cub3d);
 	mlx_loop(cub3d->__mlx);
 	return (0);

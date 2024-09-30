@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 10:24:40 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/30 16:22:40 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # define SCREEN_WIDTH	1024
 # define SCREEN_HEIGHT	720
-# define TILE_SIZE	50
+# define FOV_ANGLE (60 * (M_PI / 180))
+# define TILE_SIZE	40
 # define ORANGE	0xFFA500FF
 # define BLACK	0x000000FF
 # define WHITE	0xFFFFFFFF
@@ -34,16 +35,17 @@ typedef struct s_map		t_map_render;
 typedef struct s_vect		t_vect;
 typedef struct s_player 	t_player;
 typedef struct s_cub		t_cub3D;
+typedef struct s_Ray		t_Ray;
 
 /***********  STRUCT PARSING  **********/
 struct s_parser
 {
-	char		*line;
-	int		min;
-	int		max;
-	t_map_info	*map_info;
-	struct s_parser *next;
-	struct s_parser *prev;
+	char			*line;
+	int				min;
+	int				max;
+	t_map_info		*map_info;
+	struct s_parser	*next;
+	struct s_parser	*prev;
 } ;
 
 /***********  HOLD MAP DATA  **********/
@@ -60,7 +62,7 @@ struct s_map_info
 /***********  DRAWING MAP  **********/
 struct	s_map
 {
-	int	       **map;
+	int			**map;
 	t_map_info	*map_info;
 	t_parser	*parser;
 } ;
@@ -76,24 +78,33 @@ struct	s_vect
 struct	s_player
 {
 	t_vect		pos;
-	short int		rot_speed;
+	short int	rot_speed;
 	double		angle;
 } ;
 
 /***********  PROJECT GOLABL STRUCT  **********/
+struct s_Ray {
+    double	rayAngle;
+	t_vect	wall_hit;
+    double	distance;
+    int		hit_ver;
+    int		wall_content;
+};
+
 struct s_cub
 {
 	mlx_t			*__mlx;
 	mlx_image_t		*__img;
 	t_parser		*parser;
-	t_map_render		*map;
+	t_map_render	*map;
 	t_player		*player;
 	t_vect			*h_ray;
 	t_vect			*v_ray;
-	int		max_width;
-	int		max_height;
-	int			screen_width;
-	int			screen_height;
+	t_Ray			*rays;
+	int				max_width;
+	int				max_height;
+	int				screen_width;
+	int				screen_height;
 } ;
 
 #endif

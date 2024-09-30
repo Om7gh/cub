@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 14:47:34 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/30 16:23:07 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void    my_mlx_put_pixel(double x, double y, int color, t_cub3D *cub)
         mlx_put_pixel(cub->__img, x, y, color);
 }
 
-void	find_horizontal_intersections(t_cub3D *map, double angle, t_vect *check)
+void	find_horizontal_intersections(t_cub3D *map, double angle, t_vect *check, int x)
 {
 	t_vect	step;
 	t_vect	intersx;
 	t_vect	next_touch;
-
+	(void)x;
 	angle = remainder(angle, 2 * M_PI);
 	if (angle < 0)
 		angle += 2 * M_PI;
@@ -41,8 +41,7 @@ void	find_horizontal_intersections(t_cub3D *map, double angle, t_vect *check)
 		step.x *= -1;
 	if (step.x < 0 && !(angle > (M_PI / 2) && angle < (1.5 * M_PI)))
 		step.x *= -1;
-	next_touch.x = intersx.x;
-	next_touch.y = intersx.y;
+	next_touch = intersx;
 	while (next_touch.x >= 0 && next_touch.x < map->screen_width \
 		&& next_touch.y >= 0 && next_touch.y < map->screen_height)
 	{
@@ -58,15 +57,18 @@ void	find_horizontal_intersections(t_cub3D *map, double angle, t_vect *check)
 		next_touch.x += step.x;
 		next_touch.y += step.y;
 	}
-				check->x = next_touch.x;
-			check->y = next_touch.y;
+	check->x = next_touch.x;
+	check->y = next_touch.y;
+	// map->rays[x].wall_content = map->map->map[(int)floor(check->y / TILE_SIZE)]\
+	// [(int)floor(check->x / TILE_SIZE)];
 }
-void	find_vertical_intersections(t_cub3D *cub, double angle, t_vect *check)
+void	find_vertical_intersections(t_cub3D *cub, double angle, t_vect *check, int x)
 {
 	t_vect	step;
 	t_vect	intersx;
 	t_vect	next_touch;
 
+	(void)x;
 	angle = remainder(angle, 2 * M_PI);
 	if (angle < 0)
 		angle += 2 * M_PI;
@@ -82,8 +84,7 @@ void	find_vertical_intersections(t_cub3D *cub, double angle, t_vect *check)
 		step.y *= -1;
 	if (step.y < 0 && (angle > 0 && angle < M_PI))
 		step.y *= -1;
-	next_touch.x = intersx.x;
-	next_touch.y = intersx.y;
+	next_touch = intersx;
 	while (next_touch.x >= 0 && next_touch.x < cub->screen_width \
 		&& next_touch.y >= 0 && next_touch.y < cub->screen_height)
 	{
@@ -98,23 +99,29 @@ void	find_vertical_intersections(t_cub3D *cub, double angle, t_vect *check)
 	}
 	check->x = next_touch.x;
 	check->y = next_touch.y;
+	// cub->rays[x].wall_content = cub->map->map[(int)floor(check->y / TILE_SIZE)]\
+	// [(int)floor(check->x / TILE_SIZE)];
 }
 
-double    calcule_close_ray(t_cub3D *cub)
+void    calcule_close_ray(t_cub3D *cub, t_vect vcheck, t_vect hcheck, int x)
 {
     double     v_distance;
     double     h_distance;
 
-    h_distance = sqrt(pow(cub->h_ray->x - cub->player->pos.x, 2) + pow(cub->h_ray->y - cub->player->pos.y, 2));
-    v_distance = sqrt(pow(cub->v_ray->x - cub->player->pos.x, 2) + pow(cub->v_ray->y  - cub->player->pos.y, 2));
+    h_distance = sqrt(pow(hcheck.x - cub->player->pos.x, 2) + pow(hcheck.y - cub->player->pos.y, 2));
+    v_distance = sqrt(pow(vcheck.x - cub->player->pos.x, 2) + pow(vcheck.y  - cub->player->pos.y, 2));
     if (v_distance > h_distance)
 	{
-        bresenhams(cub->player->pos.x, cub->player->pos.y, cub->h_ray->x, cub->h_ray->y, cub, WHITE);
-		return (h_distance);
+        // bresenhams(cub->player->pos.x, cub->player->pos.y, cub->h_ray->x, cub->h_ray->y, cub, WHITE);
+		cub->rays[x].distance = h_distance;
+		cub->rays[x].wall_hit = hcheck;
 	}
 	else
-        bresenhams(cub->player->pos.x, cub->player->pos.y, cub->v_ray->x, cub->v_ray->y, cub, WHITE);
-	return (h_distance);
+	{
+		cub->rays[x].distance = v_distance;
+		cub->rays[x].wall_hit = vcheck;
+	}
+        // bresenhams(cub->player->pos.x, cub->player->pos.y, cub->v_ray->x, cub->v_ray->y, cub, WHITE);
 }
 
 // void	draw_wall(int x, int distance, t_cub3D *cub, double rays)
@@ -137,12 +144,11 @@ double    calcule_close_ray(t_cub3D *cub)
 
 void    render_2d(t_cub3D *cub)
 {
-    double			x;
+    int			x;
     double			y;
     double			rays;
-	double distance;
-	t_vect	check1;
-	t_vect	check2;
+	t_vect	vcheck;
+	t_vect	hcheck;
 
     y = 0;
     cub->__img = mlx_new_image(cub->__mlx, cub->screen_width, cub->screen_height);
@@ -167,16 +173,18 @@ void    render_2d(t_cub3D *cub)
             }
             y++;
     }
-    rays = -0.45;
+    rays = cub->player->angle - (FOV_ANGLE / 2);
 	x = -1;
-	while (++x < cub->screen_width && rays < 0.45)
+	while (++x < cub->screen_width)
 	{
-		find_vertical_intersections(cub, cub->player->angle + rays, &check1);
-		cub->v_ray = &check1;
-		find_horizontal_intersections(cub, cub->player->angle + rays, &check2);
-		cub->h_ray = &check2;	
-        distance = calcule_close_ray(cub);
-		// draw_wall(x, distance, cub, rays);
-        rays += 0.005;
+		printf("x = %d\n", x);
+		find_vertical_intersections(cub, rays, &vcheck, x);
+		find_horizontal_intersections(cub, rays, &hcheck, x);	
+        calcule_close_ray(cub, vcheck, hcheck, x);
+        rays += FOV_ANGLE / cub->screen_width;
+	}
+	for (int i = 0; i < cub->screen_width; i++)
+	{
+		bresenhams(cub->player->pos.x, cub->player->pos.y, cub->rays[i].wall_hit.x, cub->rays[i].wall_hit.y, cub, WHITE);
 	}
 }

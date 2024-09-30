@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 12:43:26 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/30 14:47:34 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ void    render_2d(t_cub3D *cub)
             while (x < cub->screen_width)
             {
 		if (remainder(x, TILE_SIZE) == 0 || remainder(y, TILE_SIZE) == 0)
-			my_mlx_put_pixel(x, y, 654684, cub);
+			my_mlx_put_pixel(x, y, BLACK, cub);
                     else if (cub->map->map[(int)y / TILE_SIZE][(int)x / TILE_SIZE] == 1)
                             my_mlx_put_pixel(x, y, ORANGE, cub);
                     else

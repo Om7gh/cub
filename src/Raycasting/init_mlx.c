@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 16:19:01 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/09/30 18:22:37 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void    init_mlx(t_cub3D *cub)
 	// mlx_set_setting(MLX_FULLSCREEN, true);
 	cub->screen_height = cub->max_height * TILE_SIZE;
 	cub->screen_width = cub->max_width * TILE_SIZE;
-	cub->__mlx = mlx_init(cub->screen_width, cub->screen_height, "cub3D", false);
+	cub->__mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D", false);
 	cub->rays = malloc(sizeof(t_Ray) * cub->screen_width);
 	if (!cub->__mlx || !cub->rays)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:13:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/20 13:15:33 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/09/30 10:34:37 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ void    key_handler(mlx_key_data_t key, void* param);
 
 
 /* FUNCTIONS */
-int     wall(t_cub3D *cub, int x, int y);
+int     wall(t_cub3D *cub, double x, double y);
 
 #endif

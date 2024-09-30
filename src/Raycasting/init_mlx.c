@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/23 16:18:21 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/09/28 18:51:12 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void    init_mlx(t_cub3D *cub)
 {
         mlx_set_setting(MLX_STRETCH_IMAGE, true);
         // mlx_set_setting(MLX_FULLSCREEN, true);
-        cub->screen_height = cub->max_height * TILE_SIZE * 2;
+        cub->screen_height = cub->max_height * TILE_SIZE;
         cub->screen_width = cub->max_width * TILE_SIZE;
         cub->__mlx = mlx_init(cub->screen_width, cub->screen_height, "cub3D", false);
         if (!cub->__mlx)
@@ -40,7 +40,7 @@ void    set_player_pos(t_cub3D *cub)
                         if (player_character(cub->map->map[y][x]))
                         {
                                 cub->player->pos.x = (double)x * TILE_SIZE + (TILE_SIZE / 2);
-                                cub->player->pos.y = (double)y * TILE_SIZE - (TILE_SIZE / 2);
+                                cub->player->pos.y = (double)y * TILE_SIZE + (TILE_SIZE / 2);
                         }
                         x++;
                 }

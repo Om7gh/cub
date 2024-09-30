@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/20 20:26:55 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/09/30 10:24:40 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define SOUTH M_PI / 2
 # define EAST 0
 # define WEAST M_PI
-
+#define TWO_PI 6.28318530717958647692528676655900576
 
 /***********  STRUCT TYPEDEF  **********/
 typedef struct s_parser 	t_parser;

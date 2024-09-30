@@ -1,0 +1,18 @@
+
+
+NO = ./texture_no.xpm
+SO = ./texture_so.xpm
+WE = ./texture_we.xpm
+EA = ./texture_ea.xpm
+
+
+F = 200,150,255
+C = 200,200,200
+
+
+11111
+10001
+10101
+10001
+10N01
+11111

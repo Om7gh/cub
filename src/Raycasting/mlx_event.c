@@ -3,22 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/20 13:00:46 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/09/30 12:01:02 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int     wall(t_cub3D *cub, int x, int y)
+int     wall(t_cub3D *cub, double x, double y)
 {
-    if (x < 0)
-        x = 0;
-    if (y < 0)
-        y = 0;
-    if (x >= cub->screen_width || y >= cub->screen_height)
+    if (x < 0 || x >= cub->screen_width || y < 0 || y >= cub->screen_height)
         return (1);
     return (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 1);
 }

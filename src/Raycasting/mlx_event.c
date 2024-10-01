@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 22:07:19 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/01 10:19:47 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void    arrow_handler(keys_t key, t_cub3D *cub)
                 cub->player->pos.y += ypos[1]; 
         }
         else if (key == MLX_KEY_LEFT)
-                cub->player->angle -= 0.1;
+                cub->player->angle -= 0.005 * ROTATION_SPEED;
         else if (key == MLX_KEY_RIGHT)
-                cub->player->angle += 0.1;
+                cub->player->angle += 0.005 * ROTATION_SPEED;
         else
                 return ;
         mlx_delete_image(cub->__mlx, cub->__img);

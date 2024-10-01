@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/09/30 22:28:58 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/01 10:43:50 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_wall(int x, t_cub3D *cub)
 	int		from_y;
 	int		to_y;
 	
-	distance_rem = cub->rays[x].distance * cos(cub->rays[x].rayAngle - cub->player->angle);
+	distance_rem = cub->rays[x].distance * cos(cub->player->angle - cub->rays[x].rayAngle);
 	distance_plane = (SCREEN_WIDTH / 2) / tan(FOV_ANGLE / 2);
 	wall_height = (TILE_SIZE / distance_rem) * distance_plane;
 	from_y = SCREEN_HEIGHT / 2 - (int)wall_height / 2;

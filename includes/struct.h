@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 21:48:51 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/01 10:20:02 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define WHITE	0xFFFFFFFF
 # define RED	0xFF0000FF
 # define SPEED 3
+# define ROTATION_SPEED 15
 # define NORD 3 * M_PI / 2
 # define SOUTH M_PI / 2
 # define EAST 0

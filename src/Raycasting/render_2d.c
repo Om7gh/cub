@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 22:13:21 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/01 10:18:01 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,15 +119,11 @@ void    mini_map(t_cub3D *cub)
                         my_mlx_put_pixel(x, y, ORANGE, cub);
                 else
                         my_mlx_put_pixel(x, y, BLACK, cub);
-				if (x < SCREEN_WIDTH)
-				{
-					// if (cub->rays[x].hit_ver)
-						bresenhams(cub->player->pos.x / 5, cub->player->pos.y / 5, cub->rays[x].wall_hit.x / 5, cub->rays[x].wall_hit.y / 5, cub, WHITE);
-					// else
-					// 	bresenhams(cub->player->pos.x / 5, cub->player->pos.y / 5, cub->rays[x].wall_hit.x / 5, cub->rays[x].wall_hit.y / 5, cub, WHITE);
-				}
                 x++;
             }
             y++;
     }
+	x = -1;
+	while (++x < SCREEN_WIDTH)
+		bresenhams(cub->player->pos.x / 5, cub->player->pos.y / 5, cub->rays[x].wall_hit.x / 5 , cub->rays[x].wall_hit.y / 5, cub, WHITE);
 }

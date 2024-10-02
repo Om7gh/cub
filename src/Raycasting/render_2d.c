@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/01 10:18:01 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/02 19:20:57 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,7 @@ void	find_horizontal_intersections(t_cub3D *map, double angle, t_vect *check, in
 		if (!(angle > 0 && angle < M_PI))
 			check->y--;
 		if (wall(map , check->x, check->y))
-		{
-
 			break;
-		}
 		next_touch.x += step.x;
 		next_touch.y += step.y;
 	}

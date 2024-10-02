@@ -4,6 +4,8 @@
         "mlx42.h": "c",
         "libft.h": "c",
         "unistd.h": "c",
-        "constants.h": "c"
+        "constants.h": "c",
+        "__hash_table": "c",
+        "__node_handle": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/30 22:07:05 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/02 19:37:33 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ int	main(int argc, char **argv)
 	parser = NULL;
 	map_analyzer(&parser, map_info, argv[1]);
 	parse_map(parser, cub3d);
+	cub3d->map->map_info = map_info;
 	cub3d->player = &player;
 	init_settings(cub3d);
 	render_3d(cub3d);
 	mlx_key_hook(cub3d->__mlx, key_handler, cub3d);
+	mlx_cursor_hook(cub3d->__mlx, mouse_handler, cub3d);
 	mlx_loop(cub3d->__mlx);
 	return (0);
 }

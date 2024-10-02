@@ -6,28 +6,27 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/01 10:20:02 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/02 19:31:48 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# define SCREEN_WIDTH	1024
-# define SCREEN_HEIGHT	720
+# define SCREEN_WIDTH	720
+# define SCREEN_HEIGHT	500
 # define FOV_ANGLE (60 * (M_PI / 180))
 # define TILE_SIZE	40
 # define ORANGE	0xFFA500FF
 # define BLACK	0x000000FF
 # define WHITE	0xFFFFFFFF
 # define RED	0xFF0000FF
-# define SPEED 3
+# define SPEED 10
 # define ROTATION_SPEED 15
 # define NORD 3 * M_PI / 2
 # define SOUTH M_PI / 2
 # define EAST 0
 # define WEAST M_PI
-#define TWO_PI 6.28318530717958647692528676655900576
 
 /***********  STRUCT TYPEDEF  **********/
 typedef struct s_parser 	t_parser;
@@ -79,6 +78,7 @@ struct	s_vect
 struct	s_player
 {
 	t_vect		pos;
+	int			prev_x;
 	short int	rot_speed;
 	double		angle;
 } ;
@@ -102,6 +102,7 @@ struct s_cub
 	t_vect			*h_ray;
 	t_vect			*v_ray;
 	t_Ray			*rays;
+	double			delta_time;
 	int				max_width;
 	int				max_height;
 	int				screen_width;

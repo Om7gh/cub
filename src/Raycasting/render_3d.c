@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/02 13:22:57 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/03 12:10:09 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void    calcule_close_ray(t_cub3D *cub, t_vect vcheck, t_vect hcheck, int x)
 {
-    double     v_distance;
-    double     h_distance;
+    	double     v_distance;
+    	double     h_distance;
 
-    h_distance = sqrt(pow(hcheck.x - cub->player->pos.x, 2) + pow(hcheck.y - cub->player->pos.y, 2));
-    v_distance = sqrt(pow(vcheck.x - cub->player->pos.x, 2) + pow(vcheck.y  - cub->player->pos.y, 2));
-    if (v_distance > h_distance)
+    	h_distance = sqrt(pow(hcheck.x - cub->player->pos.x, 2) + pow(hcheck.y - cub->player->pos.y, 2));
+    	v_distance = sqrt(pow(vcheck.x - cub->player->pos.x, 2) + pow(vcheck.y  - cub->player->pos.y, 2));
+    	if (v_distance > h_distance)
 	{
 		cub->rays[x].distance = h_distance;
 		cub->rays[x].wall_hit = hcheck;
@@ -33,7 +33,7 @@ void    calcule_close_ray(t_cub3D *cub, t_vect vcheck, t_vect hcheck, int x)
 	}
 }
 
-int		get_color(t_map_info *map, char c)
+int	get_color(t_map_info *map, char c)
 {
 	if (c == 'c')
 	{
@@ -77,12 +77,12 @@ void    render_3d(t_cub3D *cub)
 	t_vect		hcheck;
 	
 	cub->__img = mlx_new_image(cub->__mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-    if (!cub->__img)
-    {
-            printf("%s\n", mlx_strerror(MLX_INVIMG));
-            exit(1);
-    }
-    mlx_image_to_window(cub->__mlx, cub->__img, 0, 0);
+    	if (!cub->__img)
+    	{
+    	        printf("%s\n", mlx_strerror(MLX_INVIMG));
+    	        exit(1);
+    	}
+    	mlx_image_to_window(cub->__mlx, cub->__img, 0, 0);
 	rays = cub->player->angle - (FOV_ANGLE / 2);
 	x = -1;
 	while (++x < SCREEN_WIDTH)

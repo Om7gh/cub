@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/02 18:41:41 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/03 14:28:07 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,21 @@ void	key_checker(mlx_key_data_t key, void* param)
 void    key_handler(mlx_key_data_t key, void* param)
 {
 	t_cub3D *cub;
-	
+	int	is_active;
+
 	cub = (t_cub3D *)param;
+	is_active = 0;
+	if (key.key == MLX_KEY_SPACE)
+	{
+		if (is_active == 0)
+			is_active = 1;
+		else if (is_active == 1)
+			is_active = 0;
+	}
+	if (is_active)
+		mlx_set_cursor_mode(cub->__mlx, MLX_MOUSE_HIDDEN);
+	else
+		mlx_set_cursor_mode(cub->__mlx, MLX_MOUSE_DISABLED);
 	if (key.action != MLX_RELEASE)
 	{
 		if (key.key == MLX_KEY_ESCAPE)
@@ -97,14 +110,16 @@ void    key_handler(mlx_key_data_t key, void* param)
 
 void mouse_handler(double xpos, double ypos, void* param)
 {
-    t_cub3D *cub;
+    	t_cub3D *cub;
 	(void)ypos;
 
 	cub = (t_cub3D *)param;
+	mlx_set_cursor_mode(cub->__mlx, MLX_MOUSE_HIDDEN);
+	cub = (t_cub3D *)param;
 	if (cub->player->prev_x > xpos)
-		cub->player->angle -= fabs(cub->player->prev_x - xpos) * 0.005;
+		cub->player->angle -= fabs(cub->player->prev_x - xpos) * 0.004;
 	else if (cub->player->prev_x < xpos)
-		cub->player->angle += fabs(cub->player->prev_x - xpos) * 0.005;
+		cub->player->angle += fabs(cub->player->prev_x - xpos) * 0.004;
 	cub->player->prev_x = xpos;
 	mlx_delete_image(cub->__mlx, cub->__img);
 	render_3d(cub);

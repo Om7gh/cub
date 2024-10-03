@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:35:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/02 19:38:23 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/03 12:09:30 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ double get_current_time()
 void  get_delta_time(double *last_time, t_cub3D *cub)
 {
 	double  current_time;
-	double  delta_time;
+	// double  delta_time;
 
 	current_time = get_current_time();
 	cub->delta_time = current_time - *last_time;

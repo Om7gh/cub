@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/02 19:31:48 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/03 15:26:47 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# define SCREEN_WIDTH	720
-# define SCREEN_HEIGHT	500
+# define SCREEN_WIDTH	1080
+# define SCREEN_HEIGHT	720
 # define FOV_ANGLE (60 * (M_PI / 180))
-# define TILE_SIZE	40
+# define TILE_SIZE	32
 # define ORANGE	0xFFA500FF
 # define BLACK	0x000000FF
 # define WHITE	0xFFFFFFFF

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/02 19:27:45 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/03 15:31:03 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 void    init_mlx(t_cub3D *cub)
 {
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-	// mlx_set_setting(MLX_FULLSCREEN, true);
 	cub->screen_height = cub->max_height * TILE_SIZE;
 	cub->screen_width = cub->max_width * TILE_SIZE;
 	cub->__mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D", true);
-	cub->rays = malloc(sizeof(t_Ray) * cub->screen_width);
+	cub->rays = malloc(sizeof(t_Ray) * SCREEN_WIDTH);
 	if (!cub->__mlx || !cub->rays)
 	{
 		printf("%s\n", mlx_strerror(MLX_WINFAIL));

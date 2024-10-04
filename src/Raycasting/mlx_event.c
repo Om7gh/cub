@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/03 16:37:16 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/04 12:57:37 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void    arrow_handler(keys_t key, t_cub3D *cub)
 		cub->player->angle += 0.005 * ROTATION_SPEED;
 	else
 		return ;
-	mlx_delete_image(cub->__mlx, cub->__img);
-	render_3d(cub);
+	// mlx_delete_image(cub->__mlx, cub->__img);
+	// render_3d(cub);
 }
 
 void	key_checker(mlx_key_data_t key, void* param)
@@ -115,6 +115,5 @@ void mouse_handler(double xpos, double ypos, void* param)
 	else if (cub->cursor_hidden && cub->player->prev_x < xpos)
 		cub->player->angle += fabs(cub->player->prev_x - xpos) * 0.004;
 	cub->player->prev_x = xpos;
-	mlx_delete_image(cub->__mlx, cub->__img);
 	render_3d(cub);
 }

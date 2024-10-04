@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/03 16:40:46 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/04 12:55:34 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,14 @@ void    calcule_close_ray(t_cub3D *cub, t_vect vcheck, t_vect hcheck, int x)
 		cub->rays[x].wall_hit = vcheck;
 		cub->rays[x].hit_ver = true;
 	}
+	// printf("horizontal %f\n", h_distance);
+	// printf("vertical %f\n", v_distance);
 }
 
-int	get_color(t_map_info *map, char c)
+int	get_color(t_map_info *map, char c, t_cub3D *cub, int x)
 {
+	(void)x;
+	(void)cub;
 	if (c == 'c')
 	{
 		return ((map->ceiling_color[0] << 24) + \
@@ -44,29 +48,44 @@ int	get_color(t_map_info *map, char c)
 	(map->floor_color[1] << 16) + (map->floor_color[2] << 8) + 255);
 }
 
-void	draw_wall(int x, t_cub3D *cub)
+void    apply_shadow(uint32_t *color, double distance, double max_distance)
 {
-	double	plane_distance;
-	double	distance;
-	double	wall_height;
-	int		from_y;
-	int		to_y;
-	
-	distance = cub->rays[x].distance * cos(cub->player->angle - cub->rays[x].rayAngle);
-	plane_distance = (SCREEN_WIDTH / 2) / tan(FOV_ANGLE / 2);
-	wall_height = (TILE_SIZE / distance) * plane_distance;
-	from_y = SCREEN_HEIGHT / 2 - (int)wall_height / 2;
-	to_y = SCREEN_HEIGHT / 2 + (int)wall_height / 2;
-	if (from_y < 0)
-		from_y = 0;
-	if (to_y >= SCREEN_HEIGHT)
-		to_y = SCREEN_HEIGHT; 
-	if (cub->rays[x].hit_ver)
-		bresenhams(x, from_y, x, to_y, cub, 0xCCCCCCFF);
-	else
-		bresenhams(x, from_y, x, to_y, cub, WHITE);
-	bresenhams(x, 0, x, from_y, cub, get_color(cub->map->map_info, 'c'));
-	bresenhams(x, to_y, x, SCREEN_HEIGHT, cub, get_color(cub->map->map_info, 'f'));
+    double intensity = 0.8 - (distance / max_distance);
+    if (intensity < 0.3)
+        intensity = 0.3;
+    
+    uint32_t r = (*color >> 24) & 0xFF;
+    uint32_t g = (*color >> 16) & 0xFF;
+    uint32_t b = (*color >> 8) & 0xFF;
+    r *= intensity;
+    g *= intensity;
+    b *= intensity;
+    *color = (r << 24) | (g << 16) | (b << 8) | 0xff;
+}
+
+void    draw_wall(int x, t_cub3D *cub)
+{
+    double  plane_distance;
+    double  distance;
+    double  wall_height;
+    int     from_y;
+    int     to_y;
+    uint32_t color = 0xffffffff;
+
+    distance = cub->rays[x].distance * cos(cub->player->angle - cub->rays[x].rayAngle);
+    double max_distance = 500;
+    plane_distance = (SCREEN_WIDTH / 2) / tan(FOV_ANGLE / 2);
+    wall_height = (TILE_SIZE / distance) * plane_distance;
+    from_y = SCREEN_HEIGHT / 2 - (int)wall_height / 2;
+    to_y = SCREEN_HEIGHT / 2 + (int)wall_height / 2;
+    if (from_y < 0)
+        from_y = 0;
+    if (to_y >= SCREEN_HEIGHT)
+        to_y = SCREEN_HEIGHT;
+    apply_shadow(&color, distance, max_distance);
+    bresenhams(x, from_y, x, to_y, cub, color);
+    bresenhams(x, 0, x, from_y, cub, get_color(cub->map->map_info, 'c', cub, x));
+    bresenhams(x, to_y, x, SCREEN_HEIGHT, cub, get_color(cub->map->map_info, 'f', cub, x));
 }
 
 void    render_3d(t_cub3D *cub)
@@ -76,13 +95,6 @@ void    render_3d(t_cub3D *cub)
 	t_vect		vcheck;
 	t_vect		hcheck;
 
-	cub->__img = mlx_new_image(cub->__mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-    	if (!cub->__img)
-    	{
-    	        printf("%s\n", mlx_strerror(MLX_INVIMG));
-    	        exit(1);
-    	}
-    	mlx_image_to_window(cub->__mlx, cub->__img, 0, 0);
 	rays = cub->player->angle - (FOV_ANGLE / 2);
 	x = -1;
 	while (++x < SCREEN_WIDTH)

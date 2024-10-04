@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 02:29:06 by W2Wizard          #+#    #+#             */
-/*   Updated: 2024/10/03 17:42:16 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/04 12:57:46 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -736,7 +736,7 @@ void mlx_scroll_hook(mlx_t* mlx, mlx_scrollfunc func, void* param);
  */
 void mlx_mouse_hook(mlx_t* mlx, mlx_mousefunc func, void* param);
 
-/**
+/*
  * This function sets the cursor callback, which is called when the
  * mouse position changes. Position is relative to the window.
  * 

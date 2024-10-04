@@ -6,11 +6,20 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/03 16:23:38 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/04 12:56:46 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+void	func(void *params)
+{
+	t_cub3D *cub;
+
+	cub = (t_cub3D*)params;
+	render_3d(cub);
+	mlx_image_to_window(cub->__mlx, cub->__img, 0, 0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -38,6 +47,7 @@ int	main(int argc, char **argv)
 	render_3d(cub3d);
 	mlx_key_hook(cub3d->__mlx, key_handler, cub3d);
 	mlx_cursor_hook(cub3d->__mlx, mouse_handler, cub3d);
+	mlx_loop_hook(cub3d->__mlx, func, cub3d);
 	mlx_loop(cub3d->__mlx);
 	return (0);
 }

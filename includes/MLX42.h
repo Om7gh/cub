@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MLX42.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 02:29:06 by W2Wizard          #+#    #+#             */
-/*   Updated: 2024/09/29 18:26:46 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/03 17:42:16 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef enum mouse_key
  * @param HIDDEN The cursor is not rendered but still functions.
  * @param DISABLED The cursor is not rendered, nor is it functional.
  */
+
 typedef enum mouse_mode
 {
 	MLX_MOUSE_NORMAL	= 0x00034001,
@@ -260,6 +261,7 @@ typedef enum keys
  * @param pixels The literal pixel data.
  * @param bytes_per_pixel The amount of bytes in a pixel, always 4.
  */
+
 typedef struct mlx_texture
 {
 	uint32_t	width;
@@ -337,6 +339,7 @@ typedef struct mlx_key_data
  * @param enabled If true the image is drawn onto the screen, else it's not.
  * @param context Abstracted OpenGL data.
  */
+
 typedef struct mlx_image
 {
 	const uint32_t	width;
@@ -421,6 +424,7 @@ typedef void (*mlx_scrollfunc)(double xdelta, double ydelta, void* param);
  * @param[in] mods The modifier keys pressed together with the mouse key.
  * @param[in] param Additional parameter to pass on to the function.
  */
+
 typedef void (*mlx_mousefunc)(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
 
 /**
@@ -459,6 +463,7 @@ typedef void (*mlx_resizefunc)(int32_t width, int32_t height, void* param);
  * 
  * @param[in] param Additional parameter to pass on to the function.
  */
+
 typedef void (*mlx_closefunc)(void* param);
 
 /** 
@@ -678,6 +683,7 @@ void mlx_set_cursor_mode(mlx_t* mlx, mouse_mode_t mode);
  * @param[in] type The standard cursor type to create.
  * @return The cursor object or null on failure.
  */
+
 mlx_win_cursor_t* mlx_create_std_cursor(cursor_t type);
 
 /**
@@ -689,6 +695,7 @@ mlx_win_cursor_t* mlx_create_std_cursor(cursor_t type);
  * @param[in] texture The texture to use as cursor.
  * @returns The cursor object or null on failure.
  */
+
 mlx_win_cursor_t* mlx_create_cursor(mlx_texture_t* texture);
 
 /**
@@ -704,6 +711,7 @@ void mlx_destroy_cursor(mlx_win_cursor_t* cursor);
  * @param[in] mlx The MLX instance handle.
  * @param[in] cursor The cursor object to display, if null default cursor is selected.
  */
+
 void mlx_set_cursor(mlx_t* mlx, mlx_win_cursor_t* cursor);
 
 //= Hooks =//
@@ -736,6 +744,7 @@ void mlx_mouse_hook(mlx_t* mlx, mlx_mousefunc func, void* param);
  * @param[in] func The cursor callback function.
  * @param[in] param An additional optional parameter.
  */
+
 void mlx_cursor_hook(mlx_t* mlx, mlx_cursorfunc func, void* param);
 
 /**

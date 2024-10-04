@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/03 12:10:09 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/03 16:40:46 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void    render_3d(t_cub3D *cub)
 	double		rays;
 	t_vect		vcheck;
 	t_vect		hcheck;
-	
+
 	cub->__img = mlx_new_image(cub->__mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
     	if (!cub->__img)
     	{

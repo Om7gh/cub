@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/03 15:26:47 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/03 15:56:45 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ struct s_cub
 	int				max_height;
 	int				screen_width;
 	int				screen_height;
+	bool				cursor_hidden;
 } ;
 
 #endif

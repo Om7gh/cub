@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/03 15:28:55 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/03 16:37:16 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ void	key_checker(mlx_key_data_t key, void* param)
 	cub = (t_cub3D *)param;
 	if (key.action != MLX_RELEASE)
 	{
+		if (key.key == MLX_KEY_0)
+			cub->cursor_hidden = 1;
+		else if (key.key == MLX_KEY_1)
+			cub->cursor_hidden = 0;
 		if (key.key == MLX_KEY_ESCAPE)
 		{
 				mlx_close_window(cub->__mlx);
@@ -81,23 +85,14 @@ void	key_checker(mlx_key_data_t key, void* param)
 void    key_handler(mlx_key_data_t key, void* param)
 {
 	t_cub3D *cub;
-	// int	is_active;
 
 	cub = (t_cub3D *)param;
-	// is_active = 0;
-	// if (key.key == MLX_KEY_SPACE)
-	// {
-	// 	if (is_active == 0)
-	// 		is_active = 1;
-	// 	else if (is_active == 1)
-	// 		is_active = 0;
-	// }
-	// if (is_active)
-	// 	mlx_set_cursor_mode(cub->__mlx, MLX_MOUSE_HIDDEN);
-	// else
-	// 	mlx_set_cursor_mode(cub->__mlx, MLX_MOUSE_DISABLED);
 	if (key.action != MLX_RELEASE)
 	{
+		if (key.key == 320)
+			cub->cursor_hidden = 1;
+		if (key.key == 321)
+			cub->cursor_hidden = 0;
 		if (key.key == MLX_KEY_ESCAPE)
 		{
 				mlx_close_window(cub->__mlx);
@@ -115,10 +110,9 @@ void mouse_handler(double xpos, double ypos, void* param)
 
 	cub = (t_cub3D *)param;
 	mlx_set_cursor_mode(cub->__mlx, MLX_MOUSE_HIDDEN);
-	cub = (t_cub3D *)param;
-	if (cub->player->prev_x > xpos)
+	if (cub->cursor_hidden && cub->player->prev_x > xpos)
 		cub->player->angle -= fabs(cub->player->prev_x - xpos) * 0.004;
-	else if (cub->player->prev_x < xpos)
+	else if (cub->cursor_hidden && cub->player->prev_x < xpos)
 		cub->player->angle += fabs(cub->player->prev_x - xpos) * 0.004;
 	cub->player->prev_x = xpos;
 	mlx_delete_image(cub->__mlx, cub->__img);

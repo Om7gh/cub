@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:40:50 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/20 13:15:47 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/03 16:41:56 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void bresenhams(long from_x, long from_y, long to_x, long to_y, t_cub3D *cub, ui
     error[0] = diff[0] - diff[1];
     pos[0] = from_x;
     pos[1] = from_y;
-
     while (pos[0] != to_x || pos[1] != to_y)
     {
         my_mlx_put_pixel(pos[0], pos[1], color, cub);

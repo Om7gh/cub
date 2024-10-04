@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/04 13:01:54 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/04 14:57:02 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 # define SOUTH M_PI / 2
 # define EAST 0
 # define WEAST M_PI
+# define UP 0
+# define DOWN 1
+# define RIGHT 2
+# define LEFT 3
 
 /***********  STRUCT TYPEDEF  **********/
 typedef struct s_parser 	t_parser;

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:13:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/04 14:34:32 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/04 14:58:36 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ void    my_mlx_put_pixel(double x, double y, int color, t_cub3D *cub);
 void    key_handler(mlx_key_data_t key, void* param);
 void	mouse_handler(double xpos, double ypos, void* param);
 double	get_current_time();
-void	door_animation(t_cub3D *cub);
+void	open_door_animation(t_cub3D *cub);
+void	close_door_animation(t_cub3D *cub);
+void    close_door(t_cub3D *cub);
+void	open_door(t_cub3D *cub);
+int		is_facing(double angle);
 
 /* FUNCTIONS */
 int     wall(t_cub3D *cub, double x, double y);

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/04 14:34:15 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/04 14:47:24 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	func(void *params)
 
 	cub = (t_cub3D*)params;
 
-	door_animation(cub);
+	open_door_animation(cub);
+	close_door_animation(cub);
 	render_3d(cub);
 	mlx_image_to_window(cub->__mlx, cub->__img, 0, 0);
 }

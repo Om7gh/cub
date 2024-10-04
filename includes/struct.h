@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/03 15:56:45 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/04 13:01:54 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_vect		t_vect;
 typedef struct s_player 	t_player;
 typedef struct s_cub		t_cub3D;
 typedef struct s_Ray		t_Ray;
+typedef struct s_door		t_door;
 
 /***********  STRUCT PARSING  **********/
 struct s_parser
@@ -83,6 +84,18 @@ struct	s_player
 	double		angle;
 } ;
 
+struct s_door
+{
+	int		x;
+	int		y;
+	int		timer;
+	bool	is_open;
+	bool	is_opening;
+	bool	is_closing;
+	double		progress;
+	t_door	*next;
+} ;
+
 /***********  PROJECT GOLABL STRUCT  **********/
 struct s_Ray {
     double		rayAngle;
@@ -102,6 +115,7 @@ struct s_cub
 	t_vect			*h_ray;
 	t_vect			*v_ray;
 	t_Ray			*rays;
+	t_door			*doors;
 	double			delta_time;
 	int				max_width;
 	int				max_height;

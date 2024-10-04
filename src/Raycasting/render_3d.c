@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/04 12:55:34 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/04 14:41:47 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ void    draw_wall(int x, t_cub3D *cub)
     if (to_y >= SCREEN_HEIGHT)
         to_y = SCREEN_HEIGHT;
     apply_shadow(&color, distance, max_distance);
-    bresenhams(x, from_y, x, to_y, cub, color);
+	if (cub->rays[x].wall_content == 3)
+		bresenhams(x, from_y, x, to_y, cub, 0xC0FAFAFF);
+	else
+    	bresenhams(x, from_y, x, to_y, cub, color);
     bresenhams(x, 0, x, from_y, cub, get_color(cub->map->map_info, 'c', cub, x));
     bresenhams(x, to_y, x, SCREEN_HEIGHT, cub, get_color(cub->map->map_info, 'f', cub, x));
 }

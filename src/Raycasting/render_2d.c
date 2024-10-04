@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_2d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/03 12:08:11 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/04 13:06:49 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,15 @@ void	find_horizontal_intersections(t_cub3D *map, double angle, t_vect *check, in
 		if (!(angle > 0 && angle < M_PI))
 			check->y--;
 		if (wall(map , check->x, check->y))
+		{
+			map->rays[x].wall_content = map->map->map[(int)floor(check->y / TILE_SIZE)][(int)floor(check->x / TILE_SIZE)];
 			break;
+		}
 		next_touch.x += step.x;
 		next_touch.y += step.y;
 	}
 	check->x = next_touch.x;
 	check->y = next_touch.y;
-	// map->rays[x].wall_content = map->map->map[(int)floor(check->y / TILE_SIZE)]\			// get wall content
-	// [(int)floor(check->x / TILE_SIZE)];
 }
 
 void	find_vertical_intersections(t_cub3D *cub, double angle, t_vect *check, int x)
@@ -89,15 +90,16 @@ void	find_vertical_intersections(t_cub3D *cub, double angle, t_vect *check, int 
 		check->y = next_touch.y;
 		if ((angle > M_PI / 2 && angle < M_PI * 1.5))
 			check->x--;
-		if (wall(cub, check->x, check->y))
+		if (wall(cub , check->x, check->y))
+		{
+			cub->rays[x].wall_content = cub->map->map[(int)floor(check->y / TILE_SIZE)][(int)floor(check->x / TILE_SIZE)];
 			break;
+		}
 		next_touch.x += step.x;
 		next_touch.y += step.y;
 	}
 	check->x = next_touch.x;
 	check->y = next_touch.y;
-	// cub->rays[x].wall_content = cub->map->map[(int)floor(check->y / TILE_SIZE)]\			// get wall content
-	// [(int)floor(check->x / TILE_SIZE)];
 }
 
 void    mini_map(t_cub3D *cub)

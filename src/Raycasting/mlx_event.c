@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/04 12:57:37 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/04 14:39:20 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,22 @@
 
 int     wall(t_cub3D *cub, double x, double y)
 {
+	int drx;
+	int dry;
+
 	if (x < 0 || x >= cub->screen_width || y < 0 || y >= cub->screen_height)
 		return (1);
+	if (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 3)
+	{
+		drx = (int)floor(x / TILE_SIZE) * TILE_SIZE;
+		dry = (int)floor(y / TILE_SIZE) * TILE_SIZE;
+		if (x > drx + TILE_SIZE * cub->doors->progress && y < drx + TILE_SIZE)
+		{
+			return (0);
+		}
+		else
+			return (1);
+	}
 	return (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 1);
 }
 
@@ -55,31 +69,30 @@ void    arrow_handler(keys_t key, t_cub3D *cub)
 		cub->player->angle -= 0.005 * ROTATION_SPEED;
 	else if (key == MLX_KEY_RIGHT)
 		cub->player->angle += 0.005 * ROTATION_SPEED;
-	else
-		return ;
-	// mlx_delete_image(cub->__mlx, cub->__img);
-	// render_3d(cub);
 }
 
-void	key_checker(mlx_key_data_t key, void* param)
+void	door_animation(t_cub3D *cub)
 {
-	t_cub3D *cub;
-
-	cub = (t_cub3D *)param;
-	if (key.action != MLX_RELEASE)
+	if (cub->doors->is_opening)
 	{
-		if (key.key == MLX_KEY_0)
-			cub->cursor_hidden = 1;
-		else if (key.key == MLX_KEY_1)
-			cub->cursor_hidden = 0;
-		if (key.key == MLX_KEY_ESCAPE)
+		cub->doors->progress -= 0.01;
+		if (cub->doors->progress <= 0)
 		{
-				mlx_close_window(cub->__mlx);
-				mlx_terminate(cub->__mlx);
-				exit(0);
+			cub->doors->progress = 0;
+			cub->doors->is_opening = 0;
+			cub->doors->is_open = 1;
+			// star_timer(cub);
 		}
-		arrow_handler(key.key, cub);
 	}
+}
+
+void	open_door(t_cub3D *cub)
+{
+	// loop through the doors and check if the player is near a door and facing it
+	// if the player is near a door and facing it, start the door opening animation
+	if (!cub->doors->is_open)
+		cub->doors->is_opening = 1;
+	// wait for the door to open then start the timer of closing the door if the player is far enough from the door
 }
 
 void    key_handler(mlx_key_data_t key, void* param)
@@ -99,6 +112,8 @@ void    key_handler(mlx_key_data_t key, void* param)
 				mlx_terminate(cub->__mlx);
 				exit(0);
 		}
+		if (key.key == MLX_KEY_SPACE)
+			open_door(cub);
 		arrow_handler(key.key, cub);
 	}
 }
@@ -115,5 +130,4 @@ void mouse_handler(double xpos, double ypos, void* param)
 	else if (cub->cursor_hidden && cub->player->prev_x < xpos)
 		cub->player->angle += fabs(cub->player->prev_x - xpos) * 0.004;
 	cub->player->prev_x = xpos;
-	render_3d(cub);
 }

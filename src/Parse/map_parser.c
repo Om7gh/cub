@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:17:48 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/11 18:21:58 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/04 13:07:49 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	is_map_closed(t_parser *tmp)
 			if (tmp->line[i] == ' ')
 				check_point_side(tmp, i);
 			if (tmp->line[i] != '0' && !player_character(tmp->line[i]) \
-				&& !wall_character(tmp->line[i]))
+				&& !wall_character(tmp->line[i]) && tmp->line[i] != 'D')
 			{
 				ft_putstr_fd("invalid character in map `", 2);
 				ft_putchar_fd(tmp->line[i], 2);

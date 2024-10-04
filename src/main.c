@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/04 12:56:46 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/04 14:34:15 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	func(void *params)
 	t_cub3D *cub;
 
 	cub = (t_cub3D*)params;
+
+	door_animation(cub);
 	render_3d(cub);
 	mlx_image_to_window(cub->__mlx, cub->__img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/04 14:41:47 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/04 14:42:17 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void    draw_wall(int x, t_cub3D *cub)
         to_y = SCREEN_HEIGHT;
     apply_shadow(&color, distance, max_distance);
 	if (cub->rays[x].wall_content == 3)
-		bresenhams(x, from_y, x, to_y, cub, 0xC0FAFAFF);
+		bresenhams(x, from_y, x, to_y, cub, 0xC0FAF9FF);
 	else
     	bresenhams(x, from_y, x, to_y, cub, color);
     bresenhams(x, 0, x, from_y, cub, get_color(cub->map->map_info, 'c', cub, x));

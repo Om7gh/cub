@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/04 15:27:11 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/04 16:08:38 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int     wall(t_cub3D *cub, double x, double y)
 	{
 		drx = (int)floor(x / TILE_SIZE) * TILE_SIZE;
 		dry = (int)floor(y / TILE_SIZE) * TILE_SIZE;
-		if ((x > drx + TILE_SIZE * cub->doors->progress && y < drx + TILE_SIZE) && (is_facing(cub->player->angle) == UP || is_facing(cub->player->angle) == DOWN))
+		if (x > drx + TILE_SIZE * cub->doors->progress && (is_facing(cub->player->angle) == UP || is_facing(cub->player->angle) == DOWN))
 			return (0);
-		else if ((y > dry + TILE_SIZE * cub->doors->progress && y < dry + TILE_SIZE) && (is_facing(cub->player->angle) == LEFT || is_facing(cub->player->angle) == RIGHT))
+		else if (y > dry + TILE_SIZE * cub->doors->progress && (is_facing(cub->player->angle) == LEFT || is_facing(cub->player->angle) == RIGHT))
 			return (0);
 		else
 			return (1);
@@ -90,10 +90,7 @@ void    key_handler(mlx_key_data_t key, void* param)
 		}
 		if (key.key == MLX_KEY_SPACE)
 		{
-			if (cub->doors->is_open)
-				close_door(cub);
-			else
-				open_door(cub);
+			open_door(cub);
 		}
 		arrow_handler(key.key, cub);
 	}

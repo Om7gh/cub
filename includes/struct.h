@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/04 14:57:02 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/04 16:06:21 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ struct s_door
 {
 	int		x;
 	int		y;
-	int		timer;
+	size_t		timer;
 	bool	is_open;
 	bool	is_opening;
 	bool	is_closing;

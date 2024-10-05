@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:13:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/04 14:58:36 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/05 12:16:47 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void    bresenhams(long from_x, long from_y, long to_x, long to_y, t_cub3D *cub,
 void    my_mlx_put_pixel(double x, double y, int color, t_cub3D *cub);
 void    key_handler(mlx_key_data_t key, void* param);
 void	mouse_handler(double xpos, double ypos, void* param);
-double	get_current_time();
+size_t	get_current_time();
 void	open_door_animation(t_cub3D *cub);
 void	close_door_animation(t_cub3D *cub);
 void    close_door(t_cub3D *cub);
@@ -62,5 +62,6 @@ int     wall(t_cub3D *cub, double x, double y);
 void    render_3d(t_cub3D *cub);
 void	find_vertical_intersections(t_cub3D *cub, double angle, t_vect *check, int x);
 void	find_horizontal_intersections(t_cub3D *map, double angle, t_vect *check, int x);
-
+t_door  *new_door(int , int);
+void    fill_door_list(t_door **door, t_door *new_door);
 #endif

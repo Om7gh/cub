@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/05 11:24:14 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/05 16:09:18 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void    init_mlx(t_cub3D *cub)
 		exit(1);
 	}
 	cub->__img = mlx_new_image(cub->__mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-    if (!cub->__img)
-    {
-            printf("%s\n", mlx_strerror(MLX_INVIMG));
-            exit(1);
-    }
+    	if (!cub->__img)
+    	{
+    	        printf("%s\n", mlx_strerror(MLX_INVIMG));
+    	        exit(1);
+    	}
 }
 
 void    set_player_pos(t_cub3D *cub)

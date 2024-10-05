@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/05 12:09:28 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/05 16:31:35 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,19 @@ void	get_door_info(t_cub3D *cub, t_door **door)
 	}
 }
 
+void	init_texture(t_cub3D *cub)
+{
+	mlx_texture_t *text;
+
+	text = mlx_load_png("test.png");
+	if (!text)
+	{
+		mlx_terminate(cub->__mlx);
+		ft_error("Error loading .png texture.\n");
+	}
+	cub->texture = text;
+}
+
 int	main(int argc, char **argv)
 {
 	t_parser		*parser;
@@ -72,6 +85,14 @@ int	main(int argc, char **argv)
 	cub3d->map->map_info = map_info;
 	cub3d->player = &player;
 	init_settings(cub3d);
+	init_texture(cub3d);
+	cub3d->texture_img = mlx_texture_to_image(cub3d->__mlx, cub3d->texture);
+	if (!cub3d->texture_img)
+	{
+	    printf("Error converting PNG texture to image.\n");
+	    mlx_terminate(cub3d->__mlx);
+	    return -1;
+	}
 	get_door_info(cub3d, &door);
 	cub3d->doors = door;
 	render_3d(cub3d);

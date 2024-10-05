@@ -1,10 +1,9 @@
-NO = ./texture_no.xpm
+NO = ./test.png
 SO = ./texture_so.xpm
 WE = ./texture_we.xpm
 EA = ./texture_ea.xpm
 
-
-F = 20,20,20
+F = 200 ,200, 200
 C = 120, 6, 6
 
 1111111111111111111111111111111111

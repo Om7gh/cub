@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/05 12:19:08 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/05 16:28:39 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ struct s_map_info
 {
 	uint32_t	floor_color[3];
 	uint32_t	ceiling_color[3];
-	char		*no_texture;
-	char		*so_texture;
-	char		*we_texture;
-	char		*ea_texture;
+	const char		*no_texture;
+	const char		*so_texture;
+	const char		*we_texture;
+	const char		*ea_texture;
 } ;
 
 /***********  DRAWING MAP  **********/
@@ -113,6 +113,9 @@ struct s_cub
 {
 	mlx_t			*__mlx;
 	mlx_image_t		*__img;
+	mlx_texture_t			*texture;
+	mlx_image_t		*texture_img;
+	uint32_t		*pixels;
 	t_parser		*parser;
 	t_map_render	*map;
 	t_player		*player;

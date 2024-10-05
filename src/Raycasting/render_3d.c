@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/05 18:04:42 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/05 20:15:14 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void    draw_wall(int x, t_cub3D *cub)
     	int     from_y;
     	int     to_y;
     	uint32_t color = 0xffffffff;
-	
+
     	distance = cub->rays[x].distance * cos(cub->player->angle - cub->rays[x].rayAngle);
     	double max_distance = 600;
     	plane_distance = (SCREEN_WIDTH / 2) / tan(FOV_ANGLE / 2);
@@ -102,7 +102,7 @@ void    draw_wall(int x, t_cub3D *cub)
     	apply_shadow(&color, distance, max_distance);
 	// color = texture_to_wall( -1.0 * (to_y - from_y), cub, x);
 	if (cub->rays[x].wall_content == 3)
-		bresenhams(x, from_y, x, to_y, cub, 0xC0FAF9FF);
+		bresenhams(x, from_y, x, to_y, cub, 0x606060);
 	else
     		bresenhams(x, from_y, x, to_y, cub, color);
     	bresenhams(x, 0, x, from_y, cub, get_color(cub->map->map_info, 'c', cub, x));

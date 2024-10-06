@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:44:24 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/05 12:19:45 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/06 13:12:25 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int is_facing(double angle)
 {
-    if (angle >= M_PI * 1.25 && angle <= M_PI * 1.75)
+    if (angle >= M_PI && angle <= M_PI * 2)
         return (UP);
-    else if (angle >= M_PI / 4 && angle <= M_PI * 0.75)
+    else if (angle >= 0 && angle <= M_PI)
         return (DOWN);
-    else if (angle >= M_PI * 0.75 && angle <= M_PI * 1.25)
+    else if (angle >= M_PI / 2 && angle <= M_PI * 1.5)
         return (LEFT);
     return (RIGHT);
 }
@@ -50,6 +50,8 @@ void	open_door_animation(t_cub3D *cub)
 
 void	close_door_animation(t_cub3D *cub)
 {
+    if (cub->doors->timer + 5000 < get_current_time())
+        cub->doors->is_closing = 1;
     if (cub->doors->is_closing)
     {
         cub->doors->progress += 0.01;

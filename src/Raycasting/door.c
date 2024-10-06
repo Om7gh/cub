@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:44:24 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/06 13:12:25 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/06 15:24:11 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,12 @@ void	open_door(t_cub3D *cub)
 	// wait for the door to open then start the timer of closing the door if the player is far enough from the door
 }
 
-void	open_door_animation(t_cub3D *cub)
-{
-	if (cub->doors->is_opening)
-	{
-        // if player is far enough from the door
-        cub->doors->timer = get_current_time();
-		cub->doors->progress -= 0.01;
-		if (cub->doors->progress <= 0)
-		{
-			cub->doors->progress = 0;
-			cub->doors->is_opening = 0;
-			cub->doors->is_open = 1;
-		}
-	}
-}
-
 void	close_door_animation(t_cub3D *cub)
 {
     if (cub->doors->timer + 5000 < get_current_time())
         cub->doors->is_closing = 1;
     if (cub->doors->is_closing)
     {
-        cub->doors->progress += 0.01;
         if (cub->doors->progress >= 1)
         {
             cub->doors->progress = 1;

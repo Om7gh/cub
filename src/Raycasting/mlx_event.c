@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/06 14:51:11 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/06 17:45:39 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,8 @@
 
 int     wall(t_cub3D *cub, double x, double y)
 {
-	int drx;
-	int dry;
-
-	drx = (int)floor(x / TILE_SIZE) * TILE_SIZE;
-	dry = (int)floor(y / TILE_SIZE) * TILE_SIZE;
 	if (x < 0 || x >= cub->screen_width || y < 0 || y >= cub->screen_height)
 		return (1);
-	// if (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 3)
-	// {
-	// 	if (x > drx + TILE_SIZE * cub->doors->progress && (is_facing(cub->player->angle) == UP || is_facing(cub->player->angle) == DOWN))
-	// 		return (0);
-	// 	else if (y > dry + TILE_SIZE * cub->doors->progress && (is_facing(cub->player->angle) == LEFT || is_facing(cub->player->angle) == RIGHT))
-	// 		return (0);
-	// 	else
-	// 		return (1);
-	// }
-	if (cub->player->angle >= M_PI && cub->player->angle <= M_PI * 2 && cub->map->map[(int)floor((y + 1) / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 3)
-	{
-		if (x > drx + TILE_SIZE * cub->doors->progress)
-			return (0);
-		else
-			return (1);
-	}
-	// if (cub->player->angle >= 0 && cub->player->angle <= M_PI && cub->map->map[(int)floor((y - 1) / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 3)
-	// {
-	// 	if (x > drx + TILE_SIZE * cub->doors->progress)
-	// 		return (0);
-	// 	else
-	// 		return (1);
-	// }
-	// if ((cub->player->angle >= M_PI * 1.5 || cub->player->angle <= M_PI / 2) && cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor((x - 1) / TILE_SIZE)] == 3)
-	// {
-	// 	if (y > dry + TILE_SIZE * cub->doors->progress)
-	// 		return (0);
-	// 	else
-	// 		return (1);
-	// }
-	// if (cub->player->angle >= M_PI / 2 && cub->player->angle <= M_PI * 1.5 && cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor((x + 1) / TILE_SIZE)] == 3)
-	// {
-	// 	if (y > dry + TILE_SIZE * cub->doors->progress)
-	// 		return (0);
-	// 	else
-	// 		return (1);
-	// }
 	return (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 1);
 }
 
@@ -116,7 +74,7 @@ void    key_handler(mlx_key_data_t key, void* param)
 				mlx_terminate(cub->__mlx);
 				exit(0);
 		}
-		if (key.key >= 0 && key.key <= 127)
+		if (key.key >= 0 && key.key <= 320)
 			cub->intro_img = cub->__img;
 		if (key.key == MLX_KEY_SPACE)
 			open_door(cub);

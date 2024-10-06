@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/05 20:02:17 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/06 11:08:56 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,10 @@ struct s_cub
 	mlx_image_t		*__img;
 	mlx_texture_t			*texture;
 	mlx_texture_t			*intro;
+	mlx_texture_t			*door_texture;
 	mlx_image_t		*texture_img;
 	mlx_image_t		*intro_img;
+	mlx_image_t		*door_img;
 	uint32_t		*pixels;
 	t_parser		*parser;
 	t_map_render	*map;

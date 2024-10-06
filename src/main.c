@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/05 20:08:36 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/06 12:32:21 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	func(void *params)
 	t_cub3D *cub;
 
 	cub = (t_cub3D*)params;
-
 	open_door_animation(cub);
 	close_door_animation(cub);
 	render_3d(cub);
@@ -47,11 +46,11 @@ void	get_door_info(t_cub3D *cub, t_door **door)
 	}
 }
 
-
 void	init_texture(t_cub3D *cub)
 {
 	mlx_texture_t *text;
 	mlx_texture_t *intro;
+	mlx_texture_t *door;
 
 	text = mlx_load_png("test.png");
 	if (!text)
@@ -65,8 +64,15 @@ void	init_texture(t_cub3D *cub)
 		mlx_terminate(cub->__mlx);
 		ft_error("Error loading .png texture.\n");
 	}
+	door = mlx_load_png("door.png");
+	if (!intro)
+	{
+		mlx_terminate(cub->__mlx);
+		ft_error("Error loading .png texture.\n");
+	}
 	cub->texture = text;
 	cub->intro = intro;
+	cub->door_texture = door;
 }
 
 int	main(int argc, char **argv)
@@ -104,6 +110,13 @@ int	main(int argc, char **argv)
 	}
 	cub3d->intro_img = mlx_texture_to_image(cub3d->__mlx, cub3d->intro);
 	if (!cub3d->intro_img)
+	{
+	    printf("Error converting PNG texture to image.\n");
+	    mlx_terminate(cub3d->__mlx);
+	    return -1;
+	}
+	cub3d->door_img = mlx_texture_to_image(cub3d->__mlx, cub3d->door_texture);
+	if (!cub3d->door_img)
 	{
 	    printf("Error converting PNG texture to image.\n");
 	    mlx_terminate(cub3d->__mlx);

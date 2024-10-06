@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/05 20:12:01 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/06 12:19:45 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void    key_handler(mlx_key_data_t key, void* param)
 				mlx_terminate(cub->__mlx);
 				exit(0);
 		}
-		printf("%d\n", key.key);
+		// printf("%d\n", key.key);
 		if (key.key == 75)
 			cub->intro_img = cub->__img;
 		if (key.key == MLX_KEY_SPACE)

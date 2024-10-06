@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:18:37 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/14 11:06:43 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/05 20:35:18 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ void	last_line_process(t_parser *parser)
 
 void	check_point_side(t_parser *tmp, int i)
 {
-	if (tmp->line[i + 1] != '1')
+	if (tmp->line[i + 1] != '1' && tmp->line[i + 1] != ' ')
 		ft_error("Error\nInvalid map");
-	if (tmp->prev && tmp->prev->line[i] != '1')
+	if (tmp->prev && (tmp->prev->line[i] != '1' || tmp->prev->line[i] != ' '))
 		ft_error("Error\nInvalid map");
-	if (tmp->line[i - 1] != '1')
+	if (tmp->line[i - 1] != '1' || tmp->line[i - 1] != ' ')
 		ft_error("Error\nInvalid map");
-	if (tmp->next && tmp->next->line[i] != '1')
+	if (tmp->next && (tmp->next->line[i] != '1' || tmp->next->line[i] != '1'))
 		ft_error("Error\nInvalid map");
 }

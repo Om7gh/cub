@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:17:48 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/05 11:23:37 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/06 17:17:43 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	check_player_space(t_parser *parser)
 			ft_error("Error\nInvalid map");
 		while (tmp->line[++i])
 		{
-			if (tmp->line[i] == ' ')
+			if (tmp->line[i] == '0')
 				check_point_side(tmp, i);
 			if (player_character(tmp->line[i]))
 				flag++;

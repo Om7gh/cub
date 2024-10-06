@@ -3,62 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/06 14:51:11 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/06 17:45:07 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+t_door	*get_door(t_door **door, double x, double y)
+{
+	t_door	*tmp;
+
+	if (!door)
+		return( NULL );
+	tmp = *door;
+	while (tmp)
+	{
+		if (tmp->x == x && tmp->y == y)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
 int     wall(t_cub3D *cub, double x, double y)
 {
 	int drx;
 	int dry;
+	t_door	*door;
 
+	if (x < 0 || x > cub->screen_width || y < 0 || y > cub->screen_height)
+		return (1);
+	if (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 1)
+		return (1);
 	drx = (int)floor(x / TILE_SIZE) * TILE_SIZE;
 	dry = (int)floor(y / TILE_SIZE) * TILE_SIZE;
-	if (x < 0 || x >= cub->screen_width || y < 0 || y >= cub->screen_height)
-		return (1);
-	// if (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 3)
-	// {
-	// 	if (x > drx + TILE_SIZE * cub->doors->progress && (is_facing(cub->player->angle) == UP || is_facing(cub->player->angle) == DOWN))
-	// 		return (0);
-	// 	else if (y > dry + TILE_SIZE * cub->doors->progress && (is_facing(cub->player->angle) == LEFT || is_facing(cub->player->angle) == RIGHT))
-	// 		return (0);
-	// 	else
-	// 		return (1);
-	// }
-	if (cub->player->angle >= M_PI && cub->player->angle <= M_PI * 2 && cub->map->map[(int)floor((y + 1) / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 3)
+	if (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 3)
 	{
-		if (x > drx + TILE_SIZE * cub->doors->progress)
-			return (0);
-		else
-			return (1);
+		door = get_door(&cub->doors, x, y);
+        	
 	}
-	// if (cub->player->angle >= 0 && cub->player->angle <= M_PI && cub->map->map[(int)floor((y - 1) / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 3)
-	// {
-	// 	if (x > drx + TILE_SIZE * cub->doors->progress)
-	// 		return (0);
-	// 	else
-	// 		return (1);
-	// }
-	// if ((cub->player->angle >= M_PI * 1.5 || cub->player->angle <= M_PI / 2) && cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor((x - 1) / TILE_SIZE)] == 3)
-	// {
-	// 	if (y > dry + TILE_SIZE * cub->doors->progress)
-	// 		return (0);
-	// 	else
-	// 		return (1);
-	// }
-	// if (cub->player->angle >= M_PI / 2 && cub->player->angle <= M_PI * 1.5 && cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor((x + 1) / TILE_SIZE)] == 3)
-	// {
-	// 	if (y > dry + TILE_SIZE * cub->doors->progress)
-	// 		return (0);
-	// 	else
-	// 		return (1);
-	// }
-	return (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 1);
+	return (0);
 }
 
 void    arrow_handler(keys_t key, t_cub3D *cub)

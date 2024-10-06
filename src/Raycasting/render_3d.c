@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/06 13:08:54 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/06 15:21:10 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void apply_shadow(uint32_t *color, double distance, double max_distance)
 
 uint32_t get_texture_pixel(mlx_image_t *texture, int x, int y)
 {
-      uint8_t	r;
+    uint8_t	r;
 	uint8_t	g;
 	uint8_t	b;
 	uint8_t	a;
@@ -96,12 +96,10 @@ void draw_wall(int x, t_cub3D *cub)
     wall_height = (TILE_SIZE / distance) * plane_distance;
     from_y = SCREEN_HEIGHT / 2 - (int)wall_height / 2;
     to_y = SCREEN_HEIGHT / 2 + (int)wall_height / 2;
-
     if (from_y < 0)
         from_y = 0;
     if (to_y >= SCREEN_HEIGHT)
         to_y = SCREEN_HEIGHT;
-
     double wall_x;
     if (cub->rays[x].hit_ver)
         wall_x = cub->rays[x].wall_hit.y / TILE_SIZE;
@@ -112,7 +110,6 @@ void draw_wall(int x, t_cub3D *cub)
     int tex_width = cub->texture_img->width;
     int tex_height = cub->texture_img->height;
     int texture_x = (int)(wall_x * tex_width) % tex_width;  // Ensure texture_x wraps
-
     double step = (double)tex_height / wall_height;  // Ensure proper step size
     double texture_pos = (from_y - (SCREEN_HEIGHT / 2 - wall_height / 2)) * step;
     mlx_image_t *current_texture;
@@ -139,7 +136,6 @@ void draw_wall(int x, t_cub3D *cub)
     bresenhams(x, to_y, x, SCREEN_HEIGHT, cub, get_color(cub->map->map_info, 'f', cub, x));
 }
 
-
 void render_3d(t_cub3D *cub)
 {
     int x;
@@ -160,5 +156,3 @@ void render_3d(t_cub3D *cub)
     }
     mini_map(cub);
 }
-
-

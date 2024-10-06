@@ -6,17 +6,46 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/06 17:45:39 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/06 17:50:39 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+t_door	*get_door(t_door **door, double x, double y)
+{
+	t_door	*tmp;
+
+	if (!door)
+		return( NULL );
+	tmp = *door;
+	while (tmp)
+	{
+		if (tmp->x == x && tmp->y == y)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
 int     wall(t_cub3D *cub, double x, double y)
 {
-	if (x < 0 || x >= cub->screen_width || y < 0 || y >= cub->screen_height)
+	int drx;
+	int dry;
+	t_door	*door;
+
+	if (x < 0 || x > cub->screen_width || y < 0 || y > cub->screen_height)
 		return (1);
-	return (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 1);
+	if (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 1)
+		return (1);
+	drx = (int)floor(x / TILE_SIZE) * TILE_SIZE;
+	dry = (int)floor(y / TILE_SIZE) * TILE_SIZE;
+	if (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 3)
+	{
+		door = get_door(&cub->doors, x, y);
+        	
+	}
+	return (0);
 }
 
 void    arrow_handler(keys_t key, t_cub3D *cub)

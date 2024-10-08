@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:44:24 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/08 12:18:38 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/08 14:43:58 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int is_facing(double angle)
 {
-    if (angle >= M_PI && angle <= M_PI * 2)
+    if (angle >= M_PI * 1.25 && angle <= M_PI * 1.75)
         return (UP);
-    else if (angle >= 0 && angle <= M_PI)
+    else if (angle >= M_PI * 0.25 && angle <= M_PI * 0.75)
         return (DOWN);
-    else if (angle >= M_PI / 2 && angle <= M_PI * 1.5)
+    else if (angle >= M_PI * 1.25 && angle <= M_PI * 1.75)
         return (LEFT);
     return (RIGHT);
 }

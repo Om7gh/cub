@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/08 14:32:29 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/08 16:19:24 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	get_door_info(t_cub3D *cub, t_door **door)
 			if (cub->map->map[y][x] == 3)
 			{
 				new = new_door(x + 1, y + 1);
+				if (cub->map->map[y - 1][x] == 1)
+					new->is_facingx = 1;
 				fill_door_list(door, new);
 			}
 			x++;

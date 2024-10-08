@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/08 13:04:54 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/08 16:08:24 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ struct s_door
 	bool	is_open;
 	bool	is_opening;
 	bool	is_closing;
+	bool	is_facingx;
 	double		progress;
 	t_door	*next;
 } ;

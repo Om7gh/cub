@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/08 12:51:30 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/08 16:10:06 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void    init_mlx(t_cub3D *cub)
 	door->is_open = 0;
 	door->is_opening = 0;
 	door->progress = 1;
+	door->is_facingx = 1;
 	cub->doors = door;
 	if (!cub->__mlx || !cub->rays)
 	{
@@ -62,7 +63,7 @@ void    set_player_pos(t_cub3D *cub)
 
 void    init_player(t_player *player)
 {
-	player->angle = 0;
+	player->angle = NORD;
 	player->rot_speed = 100;    
 	player->prev_x = player->pos.x;
 }

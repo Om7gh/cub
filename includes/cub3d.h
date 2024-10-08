@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:13:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/05 12:19:04 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/08 13:07:14 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ int		is_facing(double angle);
 /* FUNCTIONS */
 int     wall(t_cub3D *cub, double x, double y);
 void    render_3d(t_cub3D *cub);
-void	find_vertical_intersections(t_cub3D *cub, double angle, t_vect *check, int x);
-void	find_horizontal_intersections(t_cub3D *map, double angle, t_vect *check, int x);
+void	find_vertical_intersections(t_cub3D *cub, double angle, t_vect *check);
+void	find_horizontal_intersections(t_cub3D *map, double angle, t_vect *check);
 t_door  *new_door(int , int);
 void    fill_door_list(t_door **door, t_door *new_door);
+t_door	*get_door(t_door **door, double x, double y);
+
 #endif

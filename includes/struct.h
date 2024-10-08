@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/06 11:08:56 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/08 13:04:54 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ struct s_cub
 	t_Ray			*rays;
 	t_door			*doors;
 	double			delta_time;
+	int				hit_content_h;
+	int				hit_content_v;
 	int				max_width;
 	int				max_height;
 	int				screen_width;

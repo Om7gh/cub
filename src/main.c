@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/06 12:32:21 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/08 14:32:29 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ void	func(void *params)
 	t_cub3D *cub;
 
 	cub = (t_cub3D*)params;
+	if (cub->__img)
+		mlx_delete_image(cub->__mlx, cub->__img);
+	cub->__img = mlx_new_image(cub->__mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	open_door_animation(cub);
 	close_door_animation(cub);
 	render_3d(cub);
-	mlx_image_to_window(cub->__mlx, cub->intro_img, 0, 0);
+	mlx_image_to_window(cub->__mlx, cub->__img, 0, 0);
 }
 
 void	get_door_info(t_cub3D *cub, t_door **door)
@@ -37,7 +40,7 @@ void	get_door_info(t_cub3D *cub, t_door **door)
 		{
 			if (cub->map->map[y][x] == 3)
 			{
-				new = new_door(y + 1, x + 1);
+				new = new_door(x + 1, y + 1);
 				fill_door_list(door, new);
 			}
 			x++;
@@ -52,7 +55,7 @@ void	init_texture(t_cub3D *cub)
 	mlx_texture_t *intro;
 	mlx_texture_t *door;
 
-	text = mlx_load_png("test.png");
+	text = mlx_load_png("wall.png");
 	if (!text)
 	{
 		mlx_terminate(cub->__mlx);

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/06 17:50:39 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/08 14:32:23 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ t_door	*get_door(t_door **door, double x, double y)
 	t_door	*tmp;
 
 	if (!door)
-		return( NULL );
+		return (NULL);
 	tmp = *door;
 	while (tmp)
 	{
-		if (tmp->x == x && tmp->y == y)
+		if (tmp->x * TILE_SIZE - TILE_SIZE <= x && tmp->x * TILE_SIZE + TILE_SIZE >= x && tmp->y * TILE_SIZE - TILE_SIZE <= y && tmp->y * TILE_SIZE + TILE_SIZE >= y)
 			return (tmp);
 		tmp = tmp->next;
 	}
@@ -30,20 +30,30 @@ t_door	*get_door(t_door **door, double x, double y)
 
 int     wall(t_cub3D *cub, double x, double y)
 {
-	int drx;
-	int dry;
+	// int		drx;
+	// int		dry;
 	t_door	*door;
 
 	if (x < 0 || x > cub->screen_width || y < 0 || y > cub->screen_height)
 		return (1);
 	if (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 1)
 		return (1);
-	drx = (int)floor(x / TILE_SIZE) * TILE_SIZE;
-	dry = (int)floor(y / TILE_SIZE) * TILE_SIZE;
+	// drx = (int)floor(x / TILE_SIZE) * TILE_SIZE;
 	if (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 3)
 	{
 		door = get_door(&cub->doors, x, y);
-        	
+		if (!door)
+			return (1);
+		// if (cub->player->angle <= M_PI * 1.25 || cub->player->angle >= M_PI / 2)
+		// {
+		// 	door->y--;
+		// }
+		if (door->x * TILE_SIZE >= x + TILE_SIZE * door->progress)
+			return (0); 
+		if (door->y * TILE_SIZE >= y + TILE_SIZE * door->progress)
+			return (0);
+		else
+			return (1);
 	}
 	return (0);
 }
@@ -104,9 +114,14 @@ void    key_handler(mlx_key_data_t key, void* param)
 				exit(0);
 		}
 		if (key.key >= 0 && key.key <= 320)
+		{
 			cub->intro_img = cub->__img;
+		}
 		if (key.key == MLX_KEY_SPACE)
+		{
+			printf("hit x = %f, y = %f\n", cub->rays[SCREEN_WIDTH / 2].wall_hit.x, cub->rays[SCREEN_WIDTH / 2].wall_hit.y);
 			open_door(cub);
+		}
 		arrow_handler(key.key, cub);
 	}
 }

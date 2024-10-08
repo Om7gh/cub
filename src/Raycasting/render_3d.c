@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/06 15:21:10 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/08 13:07:52 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ void calcule_close_ray(t_cub3D *cub, t_vect vcheck, t_vect hcheck, int x)
     v_distance = sqrt(pow(vcheck.x - cub->player->pos.x, 2) + pow(vcheck.y  - cub->player->pos.y, 2));
     if (v_distance > h_distance)
     {
+        cub->rays[x].wall_content = cub->hit_content_h;
         cub->rays[x].distance = h_distance;
         cub->rays[x].wall_hit = hcheck;
         cub->rays[x].hit_ver = false;
     }
     else
     {
+        cub->rays[x].wall_content = cub->hit_content_v;
         cub->rays[x].distance = v_distance;
         cub->rays[x].wall_hit = vcheck;
         cub->rays[x].hit_ver = true;
@@ -91,7 +93,7 @@ void draw_wall(int x, t_cub3D *cub)
     int to_y;
 
     distance = cub->rays[x].distance * cos(cub->player->angle - cub->rays[x].rayAngle);
-    double max_distance = 600;
+    double max_distance = 300;
     plane_distance = (SCREEN_WIDTH / 2) / tan(FOV_ANGLE / 2);
     wall_height = (TILE_SIZE / distance) * plane_distance;
     from_y = SCREEN_HEIGHT / 2 - (int)wall_height / 2;
@@ -122,15 +124,14 @@ void draw_wall(int x, t_cub3D *cub)
         int texture_y = (int)texture_pos % tex_height;  // Ensure texture_y wraps
         texture_pos += step;
         if (cub->rays[x].wall_content == 1)
+            current_texture = cub->texture_img;
+        if (cub->rays[x].wall_content == 3)
+            current_texture = cub->door_img;
             color = get_texture_pixel(current_texture, texture_x, texture_y);
-        else
-            color = 0x000000FF;
         // color |= 0xFF000000;
         apply_shadow(&color, distance, max_distance);
         mlx_put_pixel(cub->__img, x, y, color);
     }
-    if (cub->rays[x].hit_ver)
-        bresenhams(x, from_y, x, to_y, cub, RED);
     // Draw the ceiling and floor
     bresenhams(x, 0, x, from_y, cub, get_color(cub->map->map_info, 'c', cub, x));
     bresenhams(x, to_y, x, SCREEN_HEIGHT, cub, get_color(cub->map->map_info, 'f', cub, x));
@@ -148,8 +149,8 @@ void render_3d(t_cub3D *cub)
     while (++x < SCREEN_WIDTH)
     {
         cub->rays[x].rayAngle = rays;
-        find_vertical_intersections(cub, rays, &vcheck, x);
-        find_horizontal_intersections(cub, rays, &hcheck, x);
+        find_horizontal_intersections(cub, rays, &hcheck);
+        find_vertical_intersections(cub, rays, &vcheck);
         calcule_close_ray(cub, vcheck, hcheck, x);
         draw_wall(x, cub);
         rays += FOV_ANGLE / SCREEN_WIDTH;

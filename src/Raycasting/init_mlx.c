@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/05 19:48:55 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/08 12:51:30 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void    set_player_pos(t_cub3D *cub)
 
 void    init_player(t_player *player)
 {
-	player->angle = NORD;
+	player->angle = 0;
 	player->rot_speed = 100;    
 	player->prev_x = player->pos.x;
 }

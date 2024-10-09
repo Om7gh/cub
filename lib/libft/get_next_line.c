@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:07:44 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/10/09 10:41:06 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/09 13:55:15 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ static void	update_line(char **str)
 	{
 		tmp = ft_strdup(++tmp);
 		if (!tmp)
-			return (free(*str), (void)(*str = NULL));
+			return (void)(*str = NULL));
 	}
 	else
 		tmp = NULL;
-	free(*str);
 	*str = tmp;
 }
 
@@ -60,7 +59,6 @@ static void	append_line(char **str, char *buffer)
 
 	tmp = *str;
 	*str = ft_strjoin(tmp, buffer);
-	free(tmp);
 }
 
 static void	read_line(int fd, char **str)
@@ -75,16 +73,11 @@ static void	read_line(int fd, char **str)
 	{
 		rd = read(fd, buffer, BUFFER_SIZE);
 		if (rd <= 0)
-		{
-			free(buffer);
-			buffer = NULL;
 			return ;
-		}
 		buffer[rd] = '\0';
 		nl = ft_strchr(buffer, '\n');
 		append_line(str, buffer);
 	}
-	free(buffer);
 }
 
 char	*get_next_line(int fd)
@@ -93,7 +86,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (read(fd, NULL, 0) < 0)
-		return (free(str), str = NULL);
+		return (NULL);
 	if (!str || !ft_strchr(str, '\n'))
 		read_line(fd, &str);
 	line = create_line(str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 11:16:13 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/09 13:06:56 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,23 @@ void	init_texture(t_cub3D *cub)
 	cub->door_texture = door;
 }
 
+t_enemie	*init_enemie_texture(t_cub3D *cub)
+{
+	t_enemie	*enemie;
+	t_enemie	*new;
+
+	enemie = NULL;
+	new = new_enemie("enemie/enemie1.png", cub);
+	append_enemie(&enemie, new);
+	new = new_enemie("enemie/enemie2.png", cub);
+	append_enemie(&enemie, new);
+	new = new_enemie("enemie/enemie3.png", cub);
+	append_enemie(&enemie, new);
+	new = new_enemie("enemie/enemie4.png", cub);
+	append_enemie(&enemie, new);
+	return (enemie);
+}
+
 void f()
 {
 	system("leaks cub");
@@ -124,6 +141,7 @@ int	main(int argc, char **argv)
 	t_cub3D			*cub3d;
 	t_player			player;
 	t_door				*door;
+	t_enemie				*enemie;
 
 	if (argc != 2)
 		ft_error("Error\nInvalid number of arguments");
@@ -164,6 +182,8 @@ int	main(int argc, char **argv)
 	    o_malloc(0, 1);
 	    return -1;
 	}
+	enemie = init_enemie_texture(cub3d);
+	cub3d->enemie = enemie;
 	get_door_info(cub3d, &door);
 	cub3d->doors = door;
 	render_3d(cub3d);

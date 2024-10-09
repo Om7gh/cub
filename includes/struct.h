@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 10:07:52 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/09 12:24:52 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_player 	t_player;
 typedef struct s_cub		t_cub3D;
 typedef struct s_Ray		t_Ray;
 typedef struct s_door		t_door;
+typedef struct s_enemie		t_enemie;
 
 /***********  STRUCT PARSING  **********/
 struct s_parser
@@ -108,6 +109,13 @@ struct s_Ray {
     int			wall_content;
 };
 
+struct s_enemie
+{
+	mlx_texture_t	*enemie;
+	mlx_image_t	*enemie_img;
+	struct s_enemie	*next;
+};
+
 struct s_cub
 {
 	mlx_t			*__mlx;
@@ -135,6 +143,7 @@ struct s_cub
 	int				screen_height;
 	int				check_intro;
 	bool				cursor_hidden;
+	t_enemie			*enemie;
 } ;
 
 #endif

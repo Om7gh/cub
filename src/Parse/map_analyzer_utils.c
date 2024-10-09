@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:09:03 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/11 17:59:21 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/09 13:55:27 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ int	color_process(char *line, uint32_t *color)
 		color[i] = ft_atoi(tab[i]);
 		if (color[i] < 0 || color[i] > 255)
 			return (0);
-		free(tab[i]);
 		i++;
 	}
 	if (i != 3)
 		return (0);
-	free(tab);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:11:24 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/09/11 18:08:22 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/09 10:14:58 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (end > start && find_and_trim(s1[end], (char *)set) == 1)
 		end--;
 	current_index = end - start + 1;
-	arr = (char *)malloc(current_index + 1);
-	if (!arr)
-		return (NULL);
+	arr = o_malloc(current_index + 1, 0);
 	ft_strlcpy(arr, s1 + start, current_index + 1);
 	return (arr);
 }

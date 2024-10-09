@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_utils2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:18:31 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/04 13:08:16 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/09 10:07:12 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	map_before_and_after(t_cub3D *cub)
 
 	tmp = cub->parser;
 	i = -1;
-	cub->map->map = malloc(sizeof(int *) * (cub->max_height + 1));
+	cub->map->map = o_malloc(sizeof(int *) * (cub->max_height + 1), 0);
 	while (++i < cub->max_height)
-		cub->map->map[i] = malloc(sizeof(int) * (cub->max_width + 1));
+		cub->map->map[i] = o_malloc(sizeof(int) * (cub->max_width + 1), 0);
 	i = 0;
 	while (tmp)
 	{

@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:41:54 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/09/10 18:54:31 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/09 10:27:46 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,6 @@ static int	count_words(const char *s, int c)
 	return (cnt);
 }
 
-static void	*free_memory(char **strs, int i)
-{
-	while (i--)
-		free(strs[i]);
-	free(strs);
-	return (NULL);
-}
-
 static char	**split(char **strs, char const *s, char c)
 {
 	int	i;
@@ -58,8 +50,6 @@ static char	**split(char **strs, char const *s, char c)
 			while (s[len] && s[len] != c)
 				len++;
 			strs[i] = ft_substr(s, 0, len);
-			if (!strs[i])
-				return (free_memory(strs, i));
 			s += len;
 			i++;
 		}
@@ -74,8 +64,6 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	strs = (char **)ft_calloc(count_words(s, c) + 1, sizeof(char *));
-	if (!strs)
-		return (NULL);
+	strs = (char **)o_malloc((count_words(s, c) + 1) * sizeof(char *), 0);
 	return (split(strs, s, c));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 08:55:58 by ialdidi           #+#    #+#             */
-/*   Updated: 2023/11/11 08:56:31 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/10/09 10:06:41 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ void	*ft_calloc(size_t count, size_t size)
 
 	if (count && size && count > (4294967295 / size))
 		return (NULL);
-	ptr = malloc(count * size);
-	if (!ptr)
-		return (NULL);
+	ptr = o_malloc(count * size, 0);
 	ft_bzero(ptr, count * size);
 	return (ptr);
 }

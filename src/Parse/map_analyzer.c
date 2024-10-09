@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:08:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/09/11 18:18:32 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/09 10:32:32 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	check_map_data(char *line, int *checker, t_map_info *map_info)
 	else if (!ft_strncmp(ft_strtrim(line, " "), "F ", 2))
 	{
 		if (color_process(ft_strtrim(line, " "), map_info->floor_color) == 0)
-			ft_error("Error\nInvalid color");
+			(o_malloc(0, 1),ft_error("Error\nInvalid color"));
 		(*checker)++;
 	}
 	else if (!ft_strncmp(ft_strtrim(line, " "), "C ", 2))
 	{
 		if (color_process(ft_strtrim(line, " "), map_info->ceiling_color) == 0)
-			ft_error("Error\nInvalid color");
+			(o_malloc(0, 1),ft_error("Error\nInvalid color"));
 		(*checker)++;
 	}
 }
@@ -39,17 +39,17 @@ void	check_map_data(char *line, int *checker, t_map_info *map_info)
 int	check_extra_info(char *line)
 {
 	if (ft_strchr(line, 'N') && ft_strchr(line, 'O'))
-		ft_error("Error\nInvalid map data");
+		(o_malloc(0, 1), ft_error("Error\nInvalid map data"));
 	if (ft_strchr(line, 'F'))
-		ft_error("Error\nInvalid map data");
+		(o_malloc(0, 1), ft_error("Error\nInvalid map data"));
 	if (ft_strchr(line, 'S') && ft_strchr(line, 'O'))
-		ft_error("Error\nInvalid map data");
+		(o_malloc(0, 1), ft_error("Error\nInvalid map data"));
 	if (ft_strchr(line, 'W') && ft_strchr(line, 'E'))
-		ft_error("Error\nInvalid map data");
+		(o_malloc(0, 1), ft_error("Error\nInvalid map data"));
 	if (ft_strchr(line, 'E') && ft_strchr(line, 'A'))
-		ft_error("Error\nInvalid map data");
+		(o_malloc(0, 1), ft_error("Error\nInvalid map data"));
 	if (ft_strchr(line, 'C'))
-		ft_error("Error\nInvalid map data");
+		(o_malloc(0, 1), ft_error("Error\nInvalid map data"));
 	return (0);
 }
 
@@ -74,7 +74,7 @@ void	map_analyzer(t_parser **parser, t_map_info *map_info, char *file)
 
 	fd = open(file, O_RDONLY, 0644);
 	if (fd == -1)
-		ft_error("Error\nFile not found");
+		(o_malloc(0, 1), ft_error("Error\nFile not found"));
 	1 && (line = get_next_line(fd), flag = 0, node = NULL);
 	while (line)
 	{

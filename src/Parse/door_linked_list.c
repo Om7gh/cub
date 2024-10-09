@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   door.linked_list.c                                 :+:      :+:    :+:   */
+/*   door_linked_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:48:07 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/05 11:27:08 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/09 10:06:54 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ t_door  *new_door(int x, int y)
 {
         t_door *new_door;
 
-        new_door = malloc(sizeof(t_door));
-        if (!new_door)
-                return (NULL);
+        new_door = o_malloc(sizeof(t_door), 0);
         new_door->x = x;
         new_door->y = y;
         new_door->is_open = false;

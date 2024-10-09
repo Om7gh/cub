@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:07:44 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/03/29 15:36:24 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/10/09 10:41:06 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ static char	*create_line(char *str)
 	while (str[i] && str[i] != '\n')
 		i++;
 	i = i + 1 * (str[i] == '\n');
-	extracted_line = (char *)malloc(i + 1);
-	if (!extracted_line)
-		return (free(str), str = NULL);
+	extracted_line = (char *)o_malloc(i + 1, 0);
 	i = 0;
 	while (str[i])
 	{
@@ -72,9 +70,7 @@ static void	read_line(int fd, char **str)
 	int		rd;
 
 	nl = NULL;
-	buffer = (char *)malloc((size_t)BUFFER_SIZE + 1);
-	if (!buffer)
-		return (free(*str), (void)(*str = NULL));
+	buffer = (char *)o_malloc((size_t)BUFFER_SIZE + 1, 0);
 	while (!nl)
 	{
 		rd = read(fd, buffer, BUFFER_SIZE);

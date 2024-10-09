@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 10:02:18 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/09 10:23:29 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,14 @@ void	init_texture(t_cub3D *cub)
 	cub->door_texture = door;
 }
 
+void f()
+{
+	system("leaks cub");
+}	
+
 int	main(int argc, char **argv)
 {
+	atexit(f);
 	t_parser		*parser;
 	t_map_info		*map_info;
 	t_map_render	*map;
@@ -119,11 +125,9 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ft_error("Error\nInvalid number of arguments");
 	check_file_extension(argv[1]);
-	cub3d = malloc(sizeof(t_cub3D));
-	map_info = malloc(sizeof(t_map_info));
-	map = malloc(sizeof(t_map_render));
-	if (!cub3d || !map_info || !map)
-		ft_error("Error\nMemory allocation failed");
+	cub3d = o_malloc(sizeof(t_cub3D), 0);
+	map_info = o_malloc(sizeof(t_map_info), 0);
+	map = o_malloc(sizeof(t_map_render), 0);
 	cub3d->map = map;
 	parser = NULL;
 	map_analyzer(&parser, map_info, argv[1]);
@@ -138,6 +142,7 @@ int	main(int argc, char **argv)
 	{
 	    printf("Error converting PNG texture to image.\n");
 	    mlx_terminate(cub3d->__mlx);
+	    o_malloc(0, 1);
 	    return -1;
 	}
 	cub3d->intro_img = mlx_texture_to_image(cub3d->__mlx, cub3d->intro);
@@ -145,6 +150,7 @@ int	main(int argc, char **argv)
 	{
 	    printf("Error converting PNG texture to image.\n");
 	    mlx_terminate(cub3d->__mlx);
+	    o_malloc(0, 1);
 	    return -1;
 	}
 	cub3d->door_img = mlx_texture_to_image(cub3d->__mlx, cub3d->door_texture);
@@ -152,6 +158,7 @@ int	main(int argc, char **argv)
 	{
 	    printf("Error converting PNG texture to image.\n");
 	    mlx_terminate(cub3d->__mlx);
+	    o_malloc(0, 1);
 	    return -1;
 	}
 	get_door_info(cub3d, &door);

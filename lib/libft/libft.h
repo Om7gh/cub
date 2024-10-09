@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:24:11 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/09/20 13:00:46 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/09 10:13:39 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ typedef struct s_list
 	struct s_list	*next;
 	struct s_list	*previous;
 }		t_list;
+
+typedef	struct s_collector
+{
+	void	*addr;
+	struct s_collector *next;
+}	t_collector;
 
 /* ************************************************************************** */
 /*                             Mandatory Part                                 */
@@ -91,6 +97,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 long	ft_atol(const char *str);
 char	*ft_strpbrk(const char *s, const char *charset);
 size_t	ft_strspn(const char *s, const char *charset);
+void	*o_malloc(size_t size, int flag);
 char	*get_next_line(int fd);
 int		ft_printf(const char *s, ...);
 

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 09:38:16 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/09 09:49:56 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # define BLACK	0x000000FF
 # define WHITE	0xFFFFFFFF
 # define RED	0xFF0000FF
-# define SPEED 10
-# define ROTATION_SPEED 0.01
+# define SPEED 3
+# define ROTATION_SPEED 0.05
 # define NORD 3 * M_PI / 2
 # define SOUTH M_PI / 2
 # define EAST 0
@@ -81,6 +81,7 @@ struct	s_player
 	t_vect	pos;
 	int		prev_x;
 	double	angle;
+	int		arrow;
 	int		walk_direction;
 	int		turn_direction;	
 } ;

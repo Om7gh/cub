@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 09:22:13 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/09 09:51:42 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,29 @@ int     wall(t_cub3D *cub, double x, double y)
 	return (0);
 }
 
-void    arrow_handler(keys_t key, t_cub3D *cub)
+void    arrow_handler(mlx_key_data_t key, t_cub3D *cub)
 {
-	if (key == MLX_KEY_W)
+	if (key.key == MLX_KEY_W)
 		cub->player->walk_direction = 1;
-	else if (key == MLX_KEY_S)
+	else if (key.key == MLX_KEY_S)
 		cub->player->walk_direction = -1;
-	else if (key == MLX_KEY_A)
-		cub->player->walk_direction = -1;
-	else if (key == MLX_KEY_D)
-		cub->player->walk_direction = 1;
-	else if (key == MLX_KEY_LEFT)
-		cub->player->turn_direction = 1;
-	else if (key == MLX_KEY_RIGHT)
+	else if (key.key == MLX_KEY_A)
+		cub->player->arrow = -1;
+	else if (key.key == MLX_KEY_D)
+		cub->player->arrow = 1;
+	else if (key.key == MLX_KEY_LEFT)
 		cub->player->turn_direction = -1;
+	else if (key.key == MLX_KEY_RIGHT)
+		cub->player->turn_direction = 1;
+	if (key.action == MLX_RELEASE)
+	{
+		if (key.key == MLX_KEY_W || key.key == MLX_KEY_S)
+			cub->player->walk_direction = 0;
+		else if (key.key == MLX_KEY_A || key.key == MLX_KEY_D)
+			cub->player->arrow = 0;
+		else if (key.key == MLX_KEY_LEFT || key.key == MLX_KEY_RIGHT)
+			cub->player->turn_direction = 0;
+	}
 }
 
 void    key_handler(mlx_key_data_t key, void* param)
@@ -94,8 +103,8 @@ void    key_handler(mlx_key_data_t key, void* param)
 		}
 		if (key.key == MLX_KEY_SPACE)
 			open_door(cub);
-		arrow_handler(key.key, cub);
 	}
+	arrow_handler(key, cub);
 }
 
 void mouse_handler(double xpos, double ypos, void* param)

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 09:40:22 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/09 10:02:18 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,18 @@ void    move_player(t_cub3D *cub)
 	next_pos.x = cub->player->pos.x + SPEED * cos(cub->player->angle) * cub->player->walk_direction;
 	next_pos.y = cub->player->pos.y + SPEED * sin(cub->player->angle) * cub->player->walk_direction;
 	next_angle = cub->player->angle + ROTATION_SPEED * cub->player->turn_direction;
-	cub->player->pos.x = next_pos.x;
-	cub->player->pos.y = next_pos.y;
+	if (!wall(cub, next_pos.x, next_pos.y))
+	{
+		cub->player->pos.x = next_pos.x;
+		cub->player->pos.y = next_pos.y;
+	}
+	next_pos.x = cub->player->pos.x + SPEED * cos(cub->player->angle + M_PI / 2) * cub->player->arrow;
+	next_pos.y = cub->player->pos.y + SPEED * sin(cub->player->angle + M_PI / 2) * cub->player->arrow;
+	if (!wall(cub, next_pos.x, next_pos.y))
+	{
+		cub->player->pos.x = next_pos.x;
+		cub->player->pos.y = next_pos.y;
+	}
 	cub->player->angle = next_angle;
 	cub->player->angle = remainder(cub->player->angle, 2 * M_PI);
 	if (cub->player->angle < 0)

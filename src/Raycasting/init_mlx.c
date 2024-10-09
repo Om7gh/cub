@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 09:40:54 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/09 09:51:53 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void    init_player(t_player *player)
 	player->prev_x = player->pos.x;
 	player->walk_direction = 0;
 	player->turn_direction = 0;
+	player->arrow = 0;
 }
 
 void    init_settings(t_cub3D *cub)

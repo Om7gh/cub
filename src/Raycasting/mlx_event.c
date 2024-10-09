@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/08 16:21:19 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/08 22:33:28 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,7 @@ void    key_handler(mlx_key_data_t key, void* param)
 			cub->intro_img = cub->__img;
 		}
 		if (key.key == MLX_KEY_SPACE)
-		{
-			printf("hit x = %f, y = %f\n", cub->rays[SCREEN_WIDTH / 2].wall_hit.x, cub->rays[SCREEN_WIDTH / 2].wall_hit.y);
 			open_door(cub);
-		}
 		arrow_handler(key.key, cub);
 	}
 }

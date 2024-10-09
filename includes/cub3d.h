@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:13:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/08 16:20:44 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/09 09:10:33 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ void	mouse_handler(double xpos, double ypos, void* param);
 size_t	get_current_time();
 void	open_door_animation(t_cub3D *cub);
 void	close_door_animation(t_cub3D *cub);
-// void    close_door(t_cub3D *cub);
 void	open_door(t_cub3D *cub);
-int		is_facing(double angle);
 
 /* FUNCTIONS */
 int     wall(t_cub3D *cub, double x, double y);

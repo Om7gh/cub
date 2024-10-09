@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/08 16:19:24 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/08 22:37:22 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	init_texture(t_cub3D *cub)
 		mlx_terminate(cub->__mlx);
 		ft_error("Error loading .png texture.\n");
 	}
-	door = mlx_load_png("door.png");
+	door = mlx_load_png("door1.png");
 	if (!intro)
 	{
 		mlx_terminate(cub->__mlx);

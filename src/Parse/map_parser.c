@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:17:48 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/06 17:17:43 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/09 09:35:37 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,11 @@ static void	check_player_space(t_parser *parser)
 	t_parser	*tmp;
 	int			i;
 	int			flag;
+	int			door_flag;
 
 	tmp = parser;
 	flag = 0;
+	door_flag = 0;
 	while (tmp)
 	{
 		i = 0;
@@ -89,11 +91,15 @@ static void	check_player_space(t_parser *parser)
 				check_point_side(tmp, i);
 			if (player_character(tmp->line[i]))
 				flag++;
+			if (tmp->line[i] == 'D')
+				door_flag++;
 		}
 		tmp = tmp->next;
 	}
 	if (flag != 1)
 		ft_error("Error\nPlayer not found or muti player exist");
+	if (door_flag == 0)
+		ft_error("Error\nDoor not found");
 }
 
 void	parse_map(t_parser *parser, t_cub3D *cub3d)

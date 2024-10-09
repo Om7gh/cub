@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/08 22:33:28 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/09 09:22:13 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,40 +57,18 @@ int     wall(t_cub3D *cub, double x, double y)
 
 void    arrow_handler(keys_t key, t_cub3D *cub)
 {
-	double xpos[2];
-	double ypos[2];
-	
-	cub->player->angle = remainder(cub->player->angle, 2 * M_PI);
-	if (cub->player->angle < 0)
-		cub->player->angle += 2 * M_PI;
-	xpos[0] = SPEED * cos(cub->player->angle);
-	xpos[1] = SPEED * cos(cub->player->angle + M_PI / 2);
-	ypos[0] = SPEED * sin(cub->player->angle);
-	ypos[1] = SPEED * sin(cub->player->angle + M_PI / 2);
-	if (key == MLX_KEY_W && !wall(cub, cub->player->pos.x + xpos[0], cub->player->pos.y + ypos[0]))
-	{
-		cub->player->pos.x += xpos[0];
-		cub->player->pos.y += ypos[0]; 
-	}
-	else if (key == MLX_KEY_S && !wall(cub, cub->player->pos.x - xpos[0], cub->player->pos.y - ypos[0]))
-	{
-		cub->player->pos.x -= xpos[0];
-		cub->player->pos.y -= ypos[0]; 
-	}
-	else if (key == MLX_KEY_A && !wall(cub, cub->player->pos.x - xpos[1], cub->player->pos.y - ypos[1]))
-	{
-		cub->player->pos.x -= xpos[1];
-		cub->player->pos.y -= ypos[1]; 
-	}
-	else if (key == MLX_KEY_D && !wall(cub, cub->player->pos.x + xpos[1], cub->player->pos.y + ypos[1]))
-	{
-		cub->player->pos.x += xpos[1];
-		cub->player->pos.y += ypos[1]; 
-	}
+	if (key == MLX_KEY_W)
+		cub->player->walk_direction = 1;
+	else if (key == MLX_KEY_S)
+		cub->player->walk_direction = -1;
+	else if (key == MLX_KEY_A)
+		cub->player->walk_direction = -1;
+	else if (key == MLX_KEY_D)
+		cub->player->walk_direction = 1;
 	else if (key == MLX_KEY_LEFT)
-		cub->player->angle -= 0.005 * ROTATION_SPEED;
+		cub->player->turn_direction = 1;
 	else if (key == MLX_KEY_RIGHT)
-		cub->player->angle += 0.005 * ROTATION_SPEED;
+		cub->player->turn_direction = -1;
 }
 
 void    key_handler(mlx_key_data_t key, void* param)

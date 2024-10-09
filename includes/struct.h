@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/08 16:08:24 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/09 09:38:16 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,11 @@
 # define WHITE	0xFFFFFFFF
 # define RED	0xFF0000FF
 # define SPEED 10
-# define ROTATION_SPEED 15
+# define ROTATION_SPEED 0.01
 # define NORD 3 * M_PI / 2
 # define SOUTH M_PI / 2
 # define EAST 0
 # define WEAST M_PI
-# define UP 0
-# define DOWN 1
-# define RIGHT 2
-# define LEFT 3
 
 /***********  STRUCT TYPEDEF  **********/
 typedef struct s_parser 	t_parser;
@@ -82,10 +78,11 @@ struct	s_vect
 /***************  PLAYER INFO  ****************/
 struct	s_player
 {
-	t_vect		pos;
-	int			prev_x;
-	short int	rot_speed;
-	double		angle;
+	t_vect	pos;
+	int		prev_x;
+	double	angle;
+	int		walk_direction;
+	int		turn_direction;	
 } ;
 
 struct s_door

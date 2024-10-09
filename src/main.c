@@ -6,11 +6,27 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/08 22:37:22 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/09 09:40:22 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+void    move_player(t_cub3D *cub)
+{
+	t_vect next_pos;
+	double next_angle;
+	
+	next_pos.x = cub->player->pos.x + SPEED * cos(cub->player->angle) * cub->player->walk_direction;
+	next_pos.y = cub->player->pos.y + SPEED * sin(cub->player->angle) * cub->player->walk_direction;
+	next_angle = cub->player->angle + ROTATION_SPEED * cub->player->turn_direction;
+	cub->player->pos.x = next_pos.x;
+	cub->player->pos.y = next_pos.y;
+	cub->player->angle = next_angle;
+	cub->player->angle = remainder(cub->player->angle, 2 * M_PI);
+	if (cub->player->angle < 0)
+		cub->player->angle += 2 * M_PI;
+}
 
 void	func(void *params)
 {
@@ -20,6 +36,7 @@ void	func(void *params)
 	if (cub->__img)
 		mlx_delete_image(cub->__mlx, cub->__img);
 	cub->__img = mlx_new_image(cub->__mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	move_player(cub);
 	open_door_animation(cub);
 	close_door_animation(cub);
 	render_3d(cub);

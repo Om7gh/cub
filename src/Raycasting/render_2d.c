@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/10 12:08:26 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/11 16:34:02 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,16 @@ void    mini_map(t_cub3D *cub)
     int			y;
 
     y = 0;
-    while (y < cub->screen_height / 5)
+    while (y < cub->screen_height / 6)
     {
             x = 0;
-            while (x < cub->screen_width / 5)
+            while (x < cub->screen_width / 6)
             {
-				if (remainder(x * 5, TILE_SIZE) == 0 || remainder(y * 5, TILE_SIZE) == 0)
+				if (remainder(x * 6, TILE_SIZE) == 0 || remainder(y * 6, TILE_SIZE) == 0)
 					my_mlx_put_pixel(x, y, BLACK, cub);
-                else if (cub->map->map[(int)(y * 5 / TILE_SIZE)][(int)(x * 5 / TILE_SIZE)] == 1)
+                else if (cub->map->map[(int)(y * 6 / TILE_SIZE)][(int)(x * 6 / TILE_SIZE)] == 1)
                     my_mlx_put_pixel(x, y, ORANGE, cub);
-				else if (cub->map->map[(int)(y * 5 / TILE_SIZE)][(int)(x * 5 / TILE_SIZE)] == 3)
+				else if (cub->map->map[(int)(y * 6 / TILE_SIZE)][(int)(x * 6 / TILE_SIZE)] == 3)
 					my_mlx_put_pixel(x, y, RED, cub);
 				else if (cub->map->map[(int)(y * 5 / TILE_SIZE)][(int)(x * 5 / TILE_SIZE)] == 4)
 					my_mlx_put_pixel(x, y, 0x00ff00ff, cub);
@@ -124,5 +124,5 @@ void    mini_map(t_cub3D *cub)
     }
 	x = -1;
 	while (++x < SCREEN_WIDTH)
-		bresenhams(cub->player->pos.x / 5, cub->player->pos.y / 5, cub->rays[x].wall_hit.x / 5 , cub->rays[x].wall_hit.y / 5, cub, WHITE);
+		bresenhams(cub->player->pos.x / 6, cub->player->pos.y / 6, cub->rays[x].wall_hit.x / 6 , cub->rays[x].wall_hit.y / 6, cub, WHITE);
 }

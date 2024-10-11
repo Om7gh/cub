@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:25:49 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/11 16:27:30 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/11 16:56:02 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void    draw_spirites(t_cub3D *cub)
                 sprit_render->spriteX = cub->sprites[sprit_order].x - cub->player->pos.x;
                 sprit_render->spriteY = cub->sprites[sprit_order].y - cub->player->pos.y;
                 dirX = cos(cub->player->angle);
-                dirX = sin(cub->player->angle);
+                dirY = sin(cub->player->angle);
                 planX = -sin(cub->player->angle);
                 planY = cos(cub->player->angle);
                 sprit_render->invDet = 1.0 / (planX * dirX - dirX * planY);
@@ -112,7 +112,7 @@ void    draw_spirites(t_cub3D *cub)
                         sprit_render->drawStartY = 0;
                 sprit_render->drawEndY = sprit_render->spriteHeight / 2 + cub->screen_height / 2;
                 if (sprit_render->drawEndY > cub->max_height)
-                        sprit_render->drawEndY = cub->max_height - 1;
+                        sprit_render->drawEndY = cub->screen_height - 1;
                 sprit_render->spriteWidth = abs((int)(cub->screen_height / (sprit_render->transformY)));
                 sprit_render->drawStartX = -sprit_render->spriteWidth / 2 + sprit_render->spriteScreenX;
                 if (sprit_render->drawStartX < 0)
@@ -129,7 +129,7 @@ void    draw_spirites(t_cub3D *cub)
                                 {
                                         int d = (y) * 256 - cub->screen_height * 128 + sprit_render->spriteHeight * 128;
                                         int texY = ((d * cub->texture->height) / sprit_render->spriteHeight) / 256;
-                                        uint32_t color = cub->enemie->enemie_img->pixels[cub->texture->width * texY + texX];
+                                        uint32_t color = cub->enemie->enemie_img->pixels[cub->enemie->enemie_img->width * texY + texX];
                                         if ((color & 0x00FFFFFF) != 0)
                                                 cub->pixels[y * cub->screen_width + stripe] = color;
                                 }

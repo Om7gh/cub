@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/08 16:21:07 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/11 16:25:54 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int get_color(t_map_info *map, char c, t_cub3D *cub, int x)
 
 void apply_shadow(uint32_t *color, double distance, double max_distance)
 {
-    double intensity = 1 - (distance / max_distance);
+    double intensity = 1.1 - (distance / max_distance);
 
     if (intensity < 0.3)
         intensity = 0.3;
@@ -103,36 +103,34 @@ void draw_wall(int x, t_cub3D *cub)
     if (to_y >= SCREEN_HEIGHT)
         to_y = SCREEN_HEIGHT;
     double wall_x;
+    wall_x = 0;
     if (cub->rays[x].hit_ver)
         wall_x = cub->rays[x].wall_hit.y / TILE_SIZE;
-    else
+    else if (cub->rays[x].wall_content != 4)
         wall_x = cub->rays[x].wall_hit.x / TILE_SIZE;
-    wall_x -= floor(wall_x);  // Normalize to 0.0 - 1.0
-
+    wall_x -= floor(wall_x);
     int tex_width = cub->texture_img->width;
     int tex_height = cub->texture_img->height;
-    int texture_x = (int)(wall_x * tex_width) % tex_width;  // Ensure texture_x wraps
-    double step = (double)tex_height / wall_height;  // Ensure proper step size
+    int texture_x = (int)(wall_x * tex_width) % tex_width;
+    double step = (double)tex_height / wall_height;
     double texture_pos = (from_y - (SCREEN_HEIGHT / 2 - wall_height / 2)) * step;
     mlx_image_t *current_texture;
     current_texture = cub->texture_img; 
     if (cub->rays[x].wall_content == 1)
-        current_texture = cub->texture_img;  // Wall texture
+        current_texture = cub->texture_img;
+    uint32_t color;
     for (int y = from_y; y < to_y; y++)
     {
-        uint32_t color;
-        int texture_y = (int)texture_pos % tex_height;  // Ensure texture_y wraps
+        int texture_y = (int)texture_pos % tex_height;
         texture_pos += step;
         if (cub->rays[x].wall_content == 1)
             current_texture = cub->texture_img;
         if (cub->rays[x].wall_content == 3)
             current_texture = cub->door_img;
-            color = get_texture_pixel(current_texture, texture_x, texture_y);
-        // color |= 0xFF000000;
+        color = get_texture_pixel(current_texture, texture_x, texture_y);
         apply_shadow(&color, distance, max_distance);
         mlx_put_pixel(cub->__img, x, y, color);
     }
-    // Draw the ceiling and floor
     bresenhams(x, 0, x, from_y, cub, get_color(cub->map->map_info, 'c', cub, x));
     bresenhams(x, to_y, x, SCREEN_HEIGHT, cub, get_color(cub->map->map_info, 'f', cub, x));
 }
@@ -154,6 +152,7 @@ void render_3d(t_cub3D *cub)
         calcule_close_ray(cub, vcheck, hcheck, x);
         draw_wall(x, cub);
         rays += FOV_ANGLE / SCREEN_WIDTH;
+        draw_spirites(cub);
     }
     mini_map(cub);
 }

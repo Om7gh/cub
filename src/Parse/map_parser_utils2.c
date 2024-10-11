@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:18:31 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 10:07:12 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/10 12:04:37 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	fill_row(t_parser *tmp, t_cub3D *cub, int i, int *j)
 		cub->map->map[i][*j] = 3;
 	else if (tmp->line[*j] == '0')
 		cub->map->map[i][*j] = 0;
+	else if (tmp->line[*j] == 'A')
+		cub->map->map[i][*j] = 4;
 	else if (player_character(tmp->line[*j]))
 		cub->map->map[i][*j] = 2;
 	(*j)++;

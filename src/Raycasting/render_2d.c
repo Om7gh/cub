@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_2d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/08 16:21:03 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/10 12:08:26 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ void    mini_map(t_cub3D *cub)
                     my_mlx_put_pixel(x, y, ORANGE, cub);
 				else if (cub->map->map[(int)(y * 5 / TILE_SIZE)][(int)(x * 5 / TILE_SIZE)] == 3)
 					my_mlx_put_pixel(x, y, RED, cub);
+				else if (cub->map->map[(int)(y * 5 / TILE_SIZE)][(int)(x * 5 / TILE_SIZE)] == 4)
+					my_mlx_put_pixel(x, y, 0x00ff00ff, cub);
                 else
                     my_mlx_put_pixel(x, y, BLACK, cub);
                 x++;

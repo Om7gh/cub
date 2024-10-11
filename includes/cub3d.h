@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:13:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 12:55:40 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:40:02 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	find_horizontal_intersections(t_cub3D *map, double angle, t_vect *check);
 t_door  *new_door(int , int);
 void    fill_door_list(t_door **door, t_door *new_door);
 t_door	*get_door(t_door **door, double x, double y);
+void    draw_spirites(t_cub3D *cub);
 
 t_enemie        *new_enemie(const char *path, t_cub3D *cub);
 void    	append_enemie(t_enemie **enemie, t_enemie *new_enemie);

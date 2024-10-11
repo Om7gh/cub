@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 13:06:56 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/11 11:46:49 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ void	func(void *params)
 void	get_door_info(t_cub3D *cub, t_door **door)
 {
 	t_door *new;
+	t_sprite	*sprite;
 	int	x;
 	int	y;
 
+	sprite = o_malloc(sizeof(t_sprite), 0);
 	y = 0;
 	while (y < cub->max_height)
 	{
@@ -75,10 +77,16 @@ void	get_door_info(t_cub3D *cub, t_door **door)
 					new->is_facingx = 1;
 				fill_door_list(door, new);
 			}
+			if (cub->map->map[y][x] == 4)
+			{
+				sprite->x = x + 1;
+				sprite->y = y + 1;
+			}
 			x++;
 		}
 		y++;
 	}
+	cub->sprites = sprite;
 }
 
 void	init_texture(t_cub3D *cub)
@@ -110,7 +118,7 @@ void	init_texture(t_cub3D *cub)
 	cub->door_texture = door;
 }
 
-t_enemie	*init_enemie_texture(t_cub3D *cub)
+void	init_enemie_texture(t_cub3D *cub)
 {
 	t_enemie	*enemie;
 	t_enemie	*new;
@@ -124,24 +132,17 @@ t_enemie	*init_enemie_texture(t_cub3D *cub)
 	append_enemie(&enemie, new);
 	new = new_enemie("enemie/enemie4.png", cub);
 	append_enemie(&enemie, new);
-	return (enemie);
+	cub->enemie = enemie;
 }
-
-void f()
-{
-	system("leaks cub");
-}	
 
 int	main(int argc, char **argv)
 {
-	atexit(f);
 	t_parser		*parser;
 	t_map_info		*map_info;
 	t_map_render	*map;
 	t_cub3D			*cub3d;
 	t_player			player;
 	t_door				*door;
-	t_enemie				*enemie;
 
 	if (argc != 2)
 		ft_error("Error\nInvalid number of arguments");
@@ -182,8 +183,7 @@ int	main(int argc, char **argv)
 	    o_malloc(0, 1);
 	    return -1;
 	}
-	enemie = init_enemie_texture(cub3d);
-	cub3d->enemie = enemie;
+	init_enemie_texture(cub3d);
 	get_door_info(cub3d, &door);
 	cub3d->doors = door;
 	render_3d(cub3d);

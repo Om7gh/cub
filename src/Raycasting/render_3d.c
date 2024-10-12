@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/11 16:53:12 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 10:25:56 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void draw_wall(int x, t_cub3D *cub)
     wall_x = 0;
     if (cub->rays[x].hit_ver)
         wall_x = cub->rays[x].wall_hit.y / TILE_SIZE;
-    else if (cub->rays[x].wall_content != 4)
+    else
         wall_x = cub->rays[x].wall_hit.x / TILE_SIZE;
     wall_x -= floor(wall_x);
     int tex_width = cub->texture_img->width;

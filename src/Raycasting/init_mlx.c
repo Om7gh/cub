@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 13:46:42 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 20:34:21 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	init_mlx(t_cub3D *cub)
+void	init_mlx(t_cub3d *cub)
 {
 	t_door	*door;
 
@@ -20,7 +20,7 @@ void	init_mlx(t_cub3D *cub)
 	cub->screen_height = cub->max_height * T_L;
 	cub->screen_width = cub->max_width * T_L;
 	cub->__mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D", true);
-	cub->rays = o_malloc(sizeof(t_Ray) * SCREEN_WIDTH, 0);
+	cub->rays = o_malloc(sizeof(t_ray) * SCREEN_WIDTH, 0);
 	door = o_malloc(sizeof(t_door), 0);
 	door->is_open = 0;
 	door->is_opening = 0;
@@ -41,7 +41,7 @@ void	init_mlx(t_cub3D *cub)
 	}
 }
 
-void	set_player_pos(t_cub3D *cub)
+void	set_player_pos(t_cub3d *cub)
 {
 	int	x;
 	int	y;
@@ -64,16 +64,17 @@ void	set_player_pos(t_cub3D *cub)
 
 void	init_player(t_player *player)
 {
-	player->angle = NORD;
+	player->angle = 0;
 	player->prev_x = player->pos.x;
 	player->walk_direction = 0;
 	player->turn_direction = 0;
 	player->arrow = 0;
 }
 
-void	init_settings(t_cub3D *cub)
+void	init_settings(t_cub3d *cub)
 {
 	init_mlx(cub);
+	cub->fov = 60 * (M_PI / 180);
 	set_player_pos(cub);
 	init_player(cub->player);
 }

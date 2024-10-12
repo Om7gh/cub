@@ -3,25 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:35:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/05 12:19:51 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 20:52:13 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-size_t get_current_time()
+void	my_mlx_put_pixel(double x, double y, int color, t_cub3d *cub)
 {
-	struct timeval tv;
-	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000.0 + tv.tv_usec / 1000.0);
+	if ((x < 0 || x >= cub->screen_height) && (y < 0 || y >= cub->screen_width))
+		return ;
+	mlx_put_pixel(cub->__img, x, y, color);
 }
 
-void  get_delta_time(double *last_time, t_cub3D *cub)
+size_t	get_current_time(void)
 {
-	double  current_time;
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void	get_delta_time(double *last_time, t_cub3d *cub)
+{
+	double	current_time;
 
 	current_time = get_current_time();
 	cub->delta_time = current_time - *last_time;

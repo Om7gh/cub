@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:17:48 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 10:38:43 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 20:32:45 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ static void	check_player_space(t_parser *parser)
 		ft_error("Error\nDoor not found");
 }
 
-void	parse_map(t_parser *parser, t_cub3D *cub3d)
+void	parse_map(t_parser *parser, t_cub3d *cub3d)
 {
 	t_parser	*tmp;
 

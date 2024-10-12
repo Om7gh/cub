@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 13:14:26 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/12 20:32:45 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_door	*get_door(t_door **door, double x, double y)
 	return (NULL);
 }
 
-int	wall(t_cub3D *cub, double x, double y)
+int	wall(t_cub3d *cub, double x, double y)
 {
 	t_door	*door;
 
@@ -56,7 +56,7 @@ int	wall(t_cub3D *cub, double x, double y)
 	return (0);
 }
 
-void	arrow_handler(mlx_key_data_t key, t_cub3D *cub)
+void	arrow_handler(mlx_key_data_t key, t_cub3d *cub)
 {
 	if (key.key == MLX_KEY_W)
 		cub->player->walk_direction = 1;
@@ -83,9 +83,9 @@ void	arrow_handler(mlx_key_data_t key, t_cub3D *cub)
 
 void	key_handler(mlx_key_data_t key, void *param)
 {
-	t_cub3D	*cub;
+	t_cub3d	*cub;
 
-	cub = (t_cub3D *)param;
+	cub = (t_cub3d *)param;
 	if (key.action != MLX_RELEASE)
 	{
 		if (key.key == 320)
@@ -110,10 +110,10 @@ void	key_handler(mlx_key_data_t key, void *param)
 
 void	mouse_handler(double xpos, double ypos, void *param)
 {
-	t_cub3D	*cub;
+	t_cub3d	*cub;
 
 	(void)ypos;
-	cub = (t_cub3D *)param;
+	cub = (t_cub3d *)param;
 	mlx_set_cursor_mode(cub->__mlx, MLX_MOUSE_HIDDEN);
 	if (cub->cursor_hidden && cub->player->prev_x > xpos)
 		cub->player->angle -= fabs(cub->player->prev_x - xpos) * 0.004;

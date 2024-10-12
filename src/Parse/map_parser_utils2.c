@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_utils2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:18:31 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/10 12:04:37 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 20:32:45 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	fill_row(t_parser *tmp, t_cub3D *cub, int i, int *j)
+void	fill_row(t_parser *tmp, t_cub3d *cub, int i, int *j)
 {
 	if (tmp->line[*j] == '1')
 		cub->map->map[i][*j] = 1;
@@ -27,7 +27,7 @@ void	fill_row(t_parser *tmp, t_cub3D *cub, int i, int *j)
 	(*j)++;
 }
 
-void	map_before_and_after(t_cub3D *cub)
+void	map_before_and_after(t_cub3d *cub)
 {
 	t_parser			*tmp;
 	int		i;

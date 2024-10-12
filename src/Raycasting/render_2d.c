@@ -6,20 +6,13 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 13:27:17 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/12 20:54:32 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	my_mlx_put_pixel(double x, double y, int color, t_cub3D *cub)
-{
-	if ((x < 0 || x >= cub->screen_height) && (y < 0 || y >= cub->screen_width))
-		return ;
-	mlx_put_pixel(cub->__img, x, y, color);
-}
-
-t_vect	first_horizontal_touch(t_cub3D *cub, double angle, t_vect *step)
+t_vect	first_horizontal_touch(t_cub3d *cub, double angle, t_vect *step)
 {
 	t_vect	intersx;
 
@@ -39,7 +32,7 @@ t_vect	first_horizontal_touch(t_cub3D *cub, double angle, t_vect *step)
 	return (intersx);
 }
 
-void	find_horizontal_intersx(t_cub3D *cub, double angle, t_vect *check)
+void	find_horizontal_intersx(t_cub3d *cub, double angle, t_vect *check)
 {
 	t_vect	step;
 	t_vect	next_touch;
@@ -63,7 +56,7 @@ void	find_horizontal_intersx(t_cub3D *cub, double angle, t_vect *check)
 	check->y = next_touch.y;
 }
 
-t_vect	first_vertical_touch(t_cub3D *cub, double angle, t_vect *step)
+t_vect	first_vertical_touch(t_cub3d *cub, double angle, t_vect *step)
 {
 	t_vect	intersx;
 
@@ -83,7 +76,7 @@ t_vect	first_vertical_touch(t_cub3D *cub, double angle, t_vect *step)
 	return (intersx);
 }
 
-void	find_vertical_intersx(t_cub3D *cub, double angle, t_vect *check)
+void	find_vertical_intersx(t_cub3d *cub, double angle, t_vect *check)
 {
 	t_vect	next_touch;
 	t_vect	step;
@@ -107,7 +100,7 @@ void	find_vertical_intersx(t_cub3D *cub, double angle, t_vect *check)
 	check->y = next_touch.y;
 }
 
-void	mini_map(t_cub3D *cub)
+void	mini_map(t_cub3d *cub)
 {
 	t_vect	from;
 	t_vect	to;
@@ -119,9 +112,11 @@ void	mini_map(t_cub3D *cub)
 		from.x = -1;
 		while (++from.x < cub->screen_width / 6)
 		{
-			if (cub->map->map[(int)(from.y * 6 / T_L)][(int)(from.x * 6 / T_L)] == 1)
+			if (cub->map->map[(int)(from.y * 6 / T_L)] \
+			[(int)(from.x * 6 / T_L)] == 1)
 				my_mlx_put_pixel(from.x, from.y, ORANGE, cub);
-			else if (cub->map->map[(int)(from.y * 6 / T_L)][(int)(from.x * 6 / T_L)] == 3)
+			else if (cub->map->map[(int)(from.y * 6 / T_L)] \
+			[(int)(from.x * 6 / T_L)] == 3)
 				my_mlx_put_pixel(from.x, from.y, RED, cub);
 			else
 				my_mlx_put_pixel(from.x, from.y, BLACK, cub);
@@ -130,8 +125,6 @@ void	mini_map(t_cub3D *cub)
 	x = -1;
 	1 && (from.x = cub->player->pos.x / 6), (from.y = cub->player->pos.y / 6);
 	while (++x < SCREEN_WIDTH)
-	{
-		1 && (to.x = cub->rays[x].wall_hit.x / 6), (to.y = cub->rays[x].wall_hit.y / 6);
-		bresenhams(from, to, cub, WHITE);
-	}
+		1 && (to.x = cub->rays[x].wall_hit.x / 6), \
+		(to.y = cub->rays[x].wall_hit.y / 6, bresenhams(from, to, cub, WHITE));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tax_collector.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 23:26:42 by kael-ala          #+#    #+#             */
-/*   Updated: 2024/10/09 10:38:40 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 20:29:14 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,5 @@ void *o_malloc(size_t size, int flag)
         return (addr);
     }
     else
-    {
-        collect_address(&garbage);
-        return (NULL);
-    }
+        return (collect_address(&garbage), NULL);
 }

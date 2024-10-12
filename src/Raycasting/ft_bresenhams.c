@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bresenhams.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:40:50 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 16:08:41 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 20:51:06 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	get_sign(long a, long b)
 	return (-1);
 }
 
-void	bresenhams(t_vect from, t_vect to, t_cub3D *cub, uint32_t color)
+void	bresenhams(t_vect from, t_vect to, t_cub3d *cub, uint32_t color)
 {
-	long diff[2];
-	long step[2];
-	long error[2];
-	long pos[2];
+	long	diff[2];
+	long	step[2];
+	long	error[2];
+	long	pos[2];
 
 	diff[0] = labs((long)to.x - (long)from.x);
 	diff[1] = labs((long)to.y - (long)from.y);
@@ -43,4 +43,3 @@ void	bresenhams(t_vect from, t_vect to, t_cub3D *cub, uint32_t color)
 			1 && (error[0] += diff[0], pos[1] += step[1]);
 	}
 }
-

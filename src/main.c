@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 16:04:30 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 20:59:10 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void    move_player(t_cub3D *cub)
+void	move_player(t_cub3d *cub)
 {
-	t_vect next_pos;
-	double next_angle;
-	
+	t_vect	next_pos;
+	double	next_angle;
+
 	next_pos.x = cub->player->pos.x + SPEED * \
 	cos(cub->player->angle) * cub->player->walk_direction;
 	next_pos.y = cub->player->pos.y + SPEED * \
@@ -41,9 +41,9 @@ void    move_player(t_cub3D *cub)
 
 void	func(void *params)
 {
-	t_cub3D *cub;
+	t_cub3d	*cub;
 
-	cub = (t_cub3D*)params;
+	cub = (t_cub3d *)params;
 	if (cub->__img)
 		mlx_delete_image(cub->__mlx, cub->__img);
 	cub->__img = mlx_new_image(cub->__mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -54,7 +54,7 @@ void	func(void *params)
 	mlx_image_to_window(cub->__mlx, cub->__img, 0, 0);
 }
 
-void	get_door_info(t_cub3D *cub, t_door **door)
+void	get_door_info(t_cub3d *cub, t_door **door)
 {
 	t_door	*new;
 	int		x;
@@ -77,7 +77,7 @@ void	get_door_info(t_cub3D *cub, t_door **door)
 	}
 }
 
-mlx_texture_t	*my_mlx_load_png( const char *path, t_cub3D *cub)
+mlx_texture_t	*my_mlx_load_png( const char *path, t_cub3d *cub)
 {
 	mlx_texture_t	*text;
 
@@ -90,22 +90,22 @@ mlx_texture_t	*my_mlx_load_png( const char *path, t_cub3D *cub)
 	return (text);
 }
 
-mlx_image_t	*my_mlx_texture_to_img(t_cub3D *cub, mlx_texture_t *texture)
+mlx_image_t	*my_mlx_texture_to_img(t_cub3d *cub, mlx_texture_t *texture)
 {
 	mlx_image_t	*text_to_img;
 
 	text_to_img = mlx_texture_to_image(cub->__mlx, texture);
 	if (!cub->texture_img_no)
 	{
-	    printf("Error converting PNG texture to image.\n");
-	    mlx_terminate(cub->__mlx);
-	    o_malloc(0, 1);
-	    exit(1);
+		printf("Error converting PNG texture to image.\n");
+		mlx_terminate(cub->__mlx);
+		o_malloc(0, 1);
+		exit(1);
 	}
 	return (text_to_img);
 }
 
-void	init_texture(t_cub3D *cub)
+void	init_texture(t_cub3d *cub)
 {
 	mlx_texture_t *intro;
 	mlx_texture_t *door;
@@ -116,7 +116,7 @@ void	init_texture(t_cub3D *cub)
 	cub->door_img = my_mlx_texture_to_img(cub, door);
 }
 
-void	init_wall_texture(t_cub3D *cub)
+void	init_wall_texture(t_cub3d *cub)
 {
 	mlx_texture_t *text_no;
 	mlx_texture_t *text_so;
@@ -137,7 +137,7 @@ void	init_wall_texture(t_cub3D *cub)
 	cub->texture_img_no = my_mlx_texture_to_img(cub, cub->texture_no);
 }
 
-void	init_enemie_texture(t_cub3D *cub)
+void	init_enemie_texture(t_cub3d *cub)
 {
 	t_enemie	*enemie;
 	t_enemie	*new;
@@ -154,7 +154,7 @@ void	init_enemie_texture(t_cub3D *cub)
 	cub->enemie = enemie;
 }
 
-void	init_data(t_cub3D *cub3d, t_door *door)
+void	init_data(t_cub3d *cub3d, t_door *door)
 {
 	init_settings(cub3d);
 	init_texture(cub3d);
@@ -172,14 +172,14 @@ int	main(int argc, char **argv)
 	t_parser		*parser;
 	t_map_info		*map_info;
 	t_map_render	*map;
-	t_cub3D			*cub3d;
+	t_cub3d			*cub3d;
 	t_player			player;
 	t_door				*door;
 
 	if (argc != 2)
 		ft_error("Error\nInvalid number of arguments");
 	check_file_extension(argv[1]);
-	cub3d = o_malloc(sizeof(t_cub3D), 0);
+	cub3d = o_malloc(sizeof(t_cub3d), 0);
 	map_info = o_malloc(sizeof(t_map_info), 0);
 	map = o_malloc(sizeof(t_map_render), 0);
 	cub3d->map = map;

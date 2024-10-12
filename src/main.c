@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 10:22:15 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/12 12:10:10 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	init_texture(t_cub3D *cub)
 	mlx_texture_t *intro;
 	mlx_texture_t *door;
 
-	text = mlx_load_png("wall.png");
+	text = mlx_load_png("wall_texture/water.png");
 	if (!text)
 	{
 		mlx_terminate(cub->__mlx);
@@ -191,5 +191,6 @@ int	main(int argc, char **argv)
 	mlx_cursor_hook(cub3d->__mlx, mouse_handler, cub3d);
 	mlx_loop_hook(cub3d->__mlx, func, cub3d);
 	mlx_loop(cub3d->__mlx);
+	o_malloc(0, 1);
 	return (0);
 }

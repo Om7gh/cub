@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:13:22 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 10:36:25 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 10:37:25 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_error(char *str)
 {
 	ft_putendl_fd(str, 2);
+	o_malloc(0, 1);
 	exit(1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:17:48 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/10 12:00:41 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 10:38:43 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,35 @@ static void	is_map_closed(t_parser *tmp)
 			{
 				ft_putstr_fd("invalid character in map `", 2);
 				ft_putchar_fd(tmp->line[i], 2);
-				o_malloc(0, 1);
 				ft_error("\nError\nInvalid map data");
 			}
 			i++;
 		}
 		tmp = tmp->next;
+	}
+}
+
+void	parse_door(t_parser *parser, int i)
+{
+	if (parser->line[i - 1] == '1')
+	{
+		if (parser->line[i + 1] != '1')
+			ft_error("Error\nInvalid door");
+	}
+	else if (parser->prev->line[i] == '1')
+	{
+		if (parser->next->line[i] != '1')
+			ft_error("Error\nInvalid door");
+	}
+	else if (parser->line[i + 1] == '1')
+	{
+		if (parser->line[i - 1] != '1')
+			ft_error("Error\nInvalid door");
+	}
+	else if (parser->next->line[i] == '1')
+	{
+		if (parser->prev->line[i] != '1')
+			ft_error("Error\nInvalid door");
 	}
 }
 
@@ -92,6 +115,8 @@ static void	check_player_space(t_parser *parser)
 		{
 			if (tmp->line[i] == '0')
 				check_point_side(tmp, i);
+			if (tmp->line[i] == 'D')
+				parse_door(tmp, i);
 			if (player_character(tmp->line[i]))
 				flag++;
 			if (tmp->line[i] == 'A')
@@ -102,11 +127,11 @@ static void	check_player_space(t_parser *parser)
 		tmp = tmp->next;
 	}
 	if (flag != 1)
-		(o_malloc(0, 1), ft_error("Error\nPlayer not found or muti player exist"));
+		ft_error("Error\nPlayer not found or muti player exist");
 	if (enemie_flag == 0)
-		(o_malloc(0, 1), ft_error("Error\nenemie not found "));
+		ft_error("Error\nenemie not found ");
 	if (door_flag == 0)
-		(o_malloc(0, 1), ft_error("Error\nDoor not found"));
+		ft_error("Error\nDoor not found");
 }
 
 void	parse_map(t_parser *parser, t_cub3D *cub3d)

@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:08:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 10:32:32 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 10:37:52 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ void	check_map_data(char *line, int *checker, t_map_info *map_info)
 int	check_extra_info(char *line)
 {
 	if (ft_strchr(line, 'N') && ft_strchr(line, 'O'))
-		(o_malloc(0, 1), ft_error("Error\nInvalid map data"));
+		ft_error("Error\nInvalid map data");
 	if (ft_strchr(line, 'F'))
-		(o_malloc(0, 1), ft_error("Error\nInvalid map data"));
+		ft_error("Error\nInvalid map data");
 	if (ft_strchr(line, 'S') && ft_strchr(line, 'O'))
-		(o_malloc(0, 1), ft_error("Error\nInvalid map data"));
+		ft_error("Error\nInvalid map data");
 	if (ft_strchr(line, 'W') && ft_strchr(line, 'E'))
-		(o_malloc(0, 1), ft_error("Error\nInvalid map data"));
+		ft_error("Error\nInvalid map data");
 	if (ft_strchr(line, 'E') && ft_strchr(line, 'A'))
-		(o_malloc(0, 1), ft_error("Error\nInvalid map data"));
+		ft_error("Error\nInvalid map data");
 	if (ft_strchr(line, 'C'))
-		(o_malloc(0, 1), ft_error("Error\nInvalid map data"));
+		ft_error("Error\nInvalid map data");
 	return (0);
 }
 

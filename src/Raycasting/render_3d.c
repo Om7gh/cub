@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/12 13:36:20 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/12 15:23:24 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,22 +112,22 @@ void draw_wall(int x, t_cub3D *cub)
     else
         wall_x = cub->rays[x].wall_hit.x / T_L;
     wall_x -= floor(wall_x);
-    int tex_width = cub->texture_img->width;
-    int tex_height = cub->texture_img->height;
+    int tex_width = cub->texture_img_no->width;
+    int tex_height = cub->texture_img_no->height;
     int texture_x = (int)(wall_x * tex_width) % tex_width;
     double step = (double)tex_height / wall_height;
     double texture_pos = (from.y - (SCREEN_HEIGHT / 2 - wall_height / 2)) * step;
     mlx_image_t *current_texture;
-    current_texture = cub->texture_img; 
+    current_texture = cub->texture_img_no; 
     if (cub->rays[x].wall_content == 1)
-        current_texture = cub->texture_img;
+        current_texture = cub->texture_img_no;
     uint32_t color;
     for (int y = from.y; y < to.y; y++)
     {
         int texture_y = (int)texture_pos % tex_height;
         texture_pos += step;
         if (cub->rays[x].wall_content == 1)
-            current_texture = cub->texture_img;
+            current_texture = cub->texture_img_no;
         if (cub->rays[x].wall_content == 3)
             current_texture = cub->door_img;
         color = get_texture_pixel(current_texture, texture_x, texture_y);

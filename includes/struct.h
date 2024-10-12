@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 13:07:54 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/12 15:55:23 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 # define SCREEN_WIDTH	1080
 # define SCREEN_HEIGHT	720
-# define FOV_ANGLE (60 * (M_PI / 180))
+# define FOV_ANGLE (70 * (M_PI / 180))
 # define T_L	60
 # define ORANGE	0xFFA500FF
 # define BLACK	0x000000FF
 # define WHITE	0xFFFFFFFF
 # define RED	0xFF0000FF
-# define SPEED 3
+# define SPEED 4
 # define ROTATION_SPEED 0.05
 # define NORD 3 * M_PI / 2
 # define SOUTH M_PI / 2
@@ -145,10 +145,16 @@ struct s_cub
 {
 	mlx_t			*__mlx;
 	mlx_image_t		*__img;
-	mlx_texture_t			*texture;
+	mlx_texture_t			*texture_no;
+	mlx_texture_t			*texture_so;
+	mlx_texture_t			*texture_ea;
+	mlx_texture_t			*texture_we;
 	mlx_texture_t			*intro;
 	mlx_texture_t			*door_texture;
-	mlx_image_t		*texture_img;
+	mlx_image_t		*texture_img_no;
+	mlx_image_t		*texture_img_so;
+	mlx_image_t		*texture_img_ea;
+	mlx_image_t		*texture_img_we;
 	mlx_image_t		*intro_img;
 	mlx_image_t		*door_img;
 	uint32_t		*pixels;

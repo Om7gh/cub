@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 13:15:55 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/12 13:46:42 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_mlx(t_cub3D *cub)
 	if (!cub->__img)
 	{
 		printf("%s\n", mlx_strerror(MLX_INVIMG));
+		o_malloc(0, 1);
 		exit(1);
 	}
 }

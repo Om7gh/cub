@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 12:40:04 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/12 15:54:25 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,33 +77,64 @@ void	get_door_info(t_cub3D *cub, t_door **door)
 	}
 }
 
-void	init_texture(t_cub3D *cub)
+mlx_texture_t	*my_mlx_load_png( const char *path, t_cub3D *cub)
 {
-	mlx_texture_t *text;
-	mlx_texture_t *intro;
-	mlx_texture_t *door;
+	mlx_texture_t	*text;
 
-	text = mlx_load_png("wall_texture/water.png");
+	text = mlx_load_png(path);
 	if (!text)
 	{
 		mlx_terminate(cub->__mlx);
 		ft_error("Error loading .png texture.\n");
 	}
-	intro = mlx_load_png("intro.png");
-	if (!intro)
+	return (text);
+}
+
+mlx_image_t	*my_mlx_texture_to_img(t_cub3D *cub, mlx_texture_t *texture)
+{
+	mlx_image_t	*text_to_img;
+
+	text_to_img = mlx_texture_to_image(cub->__mlx, texture);
+	if (!cub->texture_img_no)
 	{
-		mlx_terminate(cub->__mlx);
-		ft_error("Error loading .png texture.\n");
+	    printf("Error converting PNG texture to image.\n");
+	    mlx_terminate(cub->__mlx);
+	    o_malloc(0, 1);
+	    exit(1);
 	}
-	door = mlx_load_png("doot.png");
-	if (!intro)
-	{
-		mlx_terminate(cub->__mlx);
-		ft_error("Error loading .png texture.\n");
-	}
-	cub->texture = text;
-	cub->intro = intro;
-	cub->door_texture = door;
+	return (text_to_img);
+}
+
+void	init_texture(t_cub3D *cub)
+{
+	mlx_texture_t *intro;
+	mlx_texture_t *door;
+	
+	intro = my_mlx_load_png("intro.png", cub);
+	door = my_mlx_load_png("doot.png", cub);
+	cub->intro_img = my_mlx_texture_to_img(cub, intro);
+	cub->door_img = my_mlx_texture_to_img(cub, door);
+}
+
+void	init_wall_texture(t_cub3D *cub)
+{
+	mlx_texture_t *text_no;
+	mlx_texture_t *text_so;
+	mlx_texture_t *text_ea;
+	mlx_texture_t *text_we;
+
+	text_no = my_mlx_load_png(ft_strtrim(cub->map->map_info->no_texture, "\n"), cub);
+	text_so = my_mlx_load_png(ft_strtrim(cub->map->map_info->so_texture, "\n"), cub);
+	text_ea = my_mlx_load_png(ft_strtrim(cub->map->map_info->ea_texture, "\n"), cub);
+	text_we = my_mlx_load_png(ft_strtrim(cub->map->map_info->no_texture, "\n"), cub);
+	cub->texture_no = text_no;
+	cub->texture_so = text_so;
+	cub->texture_ea = text_ea;
+	cub->texture_we = text_we;
+	cub->texture_img_ea = my_mlx_texture_to_img(cub, cub->texture_ea);
+	cub->texture_img_we = my_mlx_texture_to_img(cub, cub->texture_we);
+	cub->texture_img_so = my_mlx_texture_to_img(cub, cub->texture_so);
+	cub->texture_img_no = my_mlx_texture_to_img(cub, cub->texture_no);
 }
 
 void	init_enemie_texture(t_cub3D *cub)
@@ -147,30 +178,7 @@ int	main(int argc, char **argv)
 	cub3d->player = &player;
 	init_settings(cub3d);
 	init_texture(cub3d);
-	cub3d->texture_img = mlx_texture_to_image(cub3d->__mlx, cub3d->texture);
-	if (!cub3d->texture_img)
-	{
-	    printf("Error converting PNG texture to image.\n");
-	    mlx_terminate(cub3d->__mlx);
-	    o_malloc(0, 1);
-	    return -1;
-	}
-	cub3d->intro_img = mlx_texture_to_image(cub3d->__mlx, cub3d->intro);
-	if (!cub3d->intro_img)
-	{
-	    printf("Error converting PNG texture to image.\n");
-	    mlx_terminate(cub3d->__mlx);
-	    o_malloc(0, 1);
-	    return -1;
-	}
-	cub3d->door_img = mlx_texture_to_image(cub3d->__mlx, cub3d->door_texture);
-	if (!cub3d->door_img)
-	{
-	    printf("Error converting PNG texture to image.\n");
-	    mlx_terminate(cub3d->__mlx);
-	    o_malloc(0, 1);
-	    return -1;
-	}
+	init_wall_texture(cub3d);
 	init_enemie_texture(cub3d);
 	get_door_info(cub3d, &door);
 	cub3d->doors = door;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/11 11:39:55 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 10:22:38 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ t_door	*get_door(t_door **door, double x, double y)
 
 int     wall(t_cub3D *cub, double x, double y)
 {
-	int		x_distace;
-	int		y_distace;
 	t_door	*door;
  
 	if (x < 0 || x > cub->screen_width || y < 0 || y > cub->screen_height)
@@ -45,12 +43,11 @@ int     wall(t_cub3D *cub, double x, double y)
 		door = get_door(&cub->doors, x, y);
 		if (!door)
 			return (1);
-		x_distace = door->x * TILE_SIZE - cub->player->pos.x;
-		y_distace = door->y * TILE_SIZE - cub->player->pos.y;
-		if (door->is_facingx && door->y * TILE_SIZE >= y + TILE_SIZE * door->progress)
+		if (door->is_facingx && door->y * TILE_SIZE >= y + (TILE_SIZE * door->progress) / 2 && door->y * TILE_SIZE - TILE_SIZE / 2 <= y + (TILE_SIZE * (1 - door->progress)) / 2)
 			return (0);
-		if (!door->is_facingx && door->x * TILE_SIZE >= x + TILE_SIZE * door->progress)
+		if (!door->is_facingx && door->x * TILE_SIZE >= x + (TILE_SIZE * door->progress) / 2 && door->x * TILE_SIZE - TILE_SIZE / 2 <= x + (TILE_SIZE * (1 - door->progress)) / 2)
 			return (0);
+
 		else
 			return (1);
 	}

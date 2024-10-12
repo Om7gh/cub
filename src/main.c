@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/11 11:46:49 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 10:22:15 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	get_door_info(t_cub3D *cub, t_door **door)
 			}
 			if (cub->map->map[y][x] == 4)
 			{
-				sprite->x = x + 1;
-				sprite->y = y + 1;
+				sprite->x = x;
+				sprite->y = y;
 			}
 			x++;
 		}
@@ -107,7 +107,7 @@ void	init_texture(t_cub3D *cub)
 		mlx_terminate(cub->__mlx);
 		ft_error("Error loading .png texture.\n");
 	}
-	door = mlx_load_png("door1.png");
+	door = mlx_load_png("doot.png");
 	if (!intro)
 	{
 		mlx_terminate(cub->__mlx);

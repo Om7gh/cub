@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 10:07:46 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 13:15:55 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void    init_mlx(t_cub3D *cub)
+void	init_mlx(t_cub3D *cub)
 {
 	t_door	*door;
-	
+
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-	cub->screen_height = cub->max_height * TILE_SIZE;
-	cub->screen_width = cub->max_width * TILE_SIZE;
+	cub->screen_height = cub->max_height * T_L;
+	cub->screen_width = cub->max_width * T_L;
 	cub->__mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D", true);
 	cub->rays = o_malloc(sizeof(t_Ray) * SCREEN_WIDTH, 0);
 	door = o_malloc(sizeof(t_door), 0);
@@ -33,17 +33,17 @@ void    init_mlx(t_cub3D *cub)
 		exit(1);
 	}
 	cub->__img = mlx_new_image(cub->__mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-    	if (!cub->__img)
-    	{
-    	        printf("%s\n", mlx_strerror(MLX_INVIMG));
-    	        exit(1);
-    	}
+	if (!cub->__img)
+	{
+		printf("%s\n", mlx_strerror(MLX_INVIMG));
+		exit(1);
+	}
 }
 
-void    set_player_pos(t_cub3D *cub)
+void	set_player_pos(t_cub3D *cub)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = -1;
 	while (++y < cub->max_height)
@@ -53,15 +53,15 @@ void    set_player_pos(t_cub3D *cub)
 		{
 			if (player_character(cub->map->map[y][x]))
 			{
-				cub->player->pos.x = (double)x * TILE_SIZE + (TILE_SIZE / 2);
-				cub->player->pos.y = (double)y * TILE_SIZE + (TILE_SIZE / 2);
+				cub->player->pos.x = (double)x * T_L + (T_L / 2);
+				cub->player->pos.y = (double)y * T_L + (T_L / 2);
 				return ;
 			}
 		}
 	}
 }
 
-void    init_player(t_player *player)
+void	init_player(t_player *player)
 {
 	player->angle = NORD;
 	player->prev_x = player->pos.x;
@@ -70,7 +70,7 @@ void    init_player(t_player *player)
 	player->arrow = 0;
 }
 
-void    init_settings(t_cub3D *cub)
+void	init_settings(t_cub3D *cub)
 {
 	init_mlx(cub);
 	set_player_pos(cub);

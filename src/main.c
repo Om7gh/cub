@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 12:10:10 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 12:40:04 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,25 @@ void    move_player(t_cub3D *cub)
 	t_vect next_pos;
 	double next_angle;
 	
-	next_pos.x = cub->player->pos.x + SPEED * cos(cub->player->angle) * cub->player->walk_direction;
-	next_pos.y = cub->player->pos.y + SPEED * sin(cub->player->angle) * cub->player->walk_direction;
-	next_angle = cub->player->angle + ROTATION_SPEED * cub->player->turn_direction;
+	next_pos.x = cub->player->pos.x + SPEED * \
+	cos(cub->player->angle) * cub->player->walk_direction;
+	next_pos.y = cub->player->pos.y + SPEED * \
+	sin(cub->player->angle) * cub->player->walk_direction;
+	next_angle = cub->player->angle + \
+	ROTATION_SPEED * cub->player->turn_direction;
 	cub->player->angle = next_angle;
-	cub->player->angle = remainder(cub->player->angle, 2 * M_PI);
-	if (cub->player->angle < 0)
-		cub->player->angle += 2 * M_PI;
-	if (!wall(cub, next_pos.x + 5, next_pos.y) && !wall(cub, next_pos.x - 5, next_pos.y))
-	{
-		cub->player->pos.x = next_pos.x;
-		cub->player->pos.y = next_pos.y;
-	}
+	if (!wall(cub, next_pos.x + 5, next_pos.y) && \
+	!wall(cub, next_pos.x - 5, next_pos.y))
+		cub->player->pos = next_pos;
 	if (cub->player->arrow != 0)
 	{
-		next_pos.x = cub->player->pos.x + SPEED * cos(cub->player->angle + M_PI / 2) * cub->player->arrow;
-		next_pos.y = cub->player->pos.y + SPEED * sin(cub->player->angle + M_PI / 2) * cub->player->arrow;
-		if (!wall(cub, next_pos.x + 5, next_pos.y) && !wall(cub, next_pos.x - 5, next_pos.y))
-		{
-			cub->player->pos.x = next_pos.x;
-			cub->player->pos.y = next_pos.y;
-		}
+		next_pos.x = cub->player->pos.x + SPEED * \
+		cos(cub->player->angle + M_PI / 2) * cub->player->arrow;
+		next_pos.y = cub->player->pos.y + SPEED * \
+		sin(cub->player->angle + M_PI / 2) * cub->player->arrow;
+		if (!wall(cub, next_pos.x + 5, next_pos.y) && \
+		!wall(cub, next_pos.x - 5, next_pos.y))
+			cub->player->pos = next_pos;
 	}
 }
 
@@ -58,17 +56,15 @@ void	func(void *params)
 
 void	get_door_info(t_cub3D *cub, t_door **door)
 {
-	t_door *new;
-	t_sprite	*sprite;
-	int	x;
-	int	y;
+	t_door	*new;
+	int		x;
+	int		y;
 
-	sprite = o_malloc(sizeof(t_sprite), 0);
-	y = 0;
-	while (y < cub->max_height)
+	y = -1;
+	while (++y < cub->max_height)
 	{
-		x = 0;
-		while (x < cub->max_width)
+		x = -1;
+		while (++x < cub->max_width)
 		{
 			if (cub->map->map[y][x] == 3)
 			{
@@ -77,16 +73,8 @@ void	get_door_info(t_cub3D *cub, t_door **door)
 					new->is_facingx = 1;
 				fill_door_list(door, new);
 			}
-			if (cub->map->map[y][x] == 4)
-			{
-				sprite->x = x;
-				sprite->y = y;
-			}
-			x++;
 		}
-		y++;
 	}
-	cub->sprites = sprite;
 }
 
 void	init_texture(t_cub3D *cub)

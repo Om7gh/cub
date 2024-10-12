@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:44:24 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/09 09:10:46 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/12 13:43:14 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	open_door(t_cub3D *cub)
 {
     t_door    *door;
 
-    if (cub->rays[SCREEN_WIDTH / 2].wall_content == 3 && cub->rays[SCREEN_WIDTH / 2].distance < TILE_SIZE * 3)
+    if (cub->rays[SCREEN_WIDTH / 2].wall_content == 3 && cub->rays[SCREEN_WIDTH / 2].distance < T_L * 3)
     {
         door = get_door(&cub->doors, floor(cub->rays[SCREEN_WIDTH / 2].wall_hit.x), floor(cub->rays[SCREEN_WIDTH / 2].wall_hit.y));
         if (door)
@@ -58,12 +58,12 @@ void	close_door_animation(t_cub3D *cub)
     door = cub->doors;
     while (door)
     {
-        if (door->timer + 3000 < get_current_time())
+        if (door->timer + 2500 < get_current_time())
             door->is_closing = 1;
         if (door->is_closing)
         {
-            if ((int)ceil(cub->player->pos.x / TILE_SIZE) != door->x || (int)ceil(cub->player->pos.y / TILE_SIZE) != door->y)
-                door->progress += 0.015;
+            if ((int)ceil(cub->player->pos.x / T_L) != door->x || (int)ceil(cub->player->pos.y / T_L) != door->y)
+                door->progress += 0.03;
             if (door->progress >= 1)
             {
                 door->progress = 1;

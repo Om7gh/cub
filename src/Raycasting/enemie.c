@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemie.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:25:49 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 10:26:18 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 13:41:00 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,4 @@ t_spirite_render        *init_sprit_render(t_cub3D *cub)
         sprit->transformY = 0;
         cub->sprit_render = sprit;
         return (sprit);
-}
-
-void    draw_spirites(t_cub3D *cub)
-{
-        (void)cub;
 }

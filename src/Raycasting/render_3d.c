@@ -6,11 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/12 10:26:04 by omghazi          ###   ########.fr       */
-=======
-/*   Updated: 2024/10/12 10:25:56 by hbettal          ###   ########.fr       */
->>>>>>> 792541ae14c4662b9198b02bf29990b45ab16d3e
+/*   Updated: 2024/10/12 13:36:20 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,37 +89,40 @@ void draw_wall(int x, t_cub3D *cub)
     double plane_distance;
     double distance;
     double wall_height;
-    int from_y;
-    int to_y;
+    t_vect from;
+    t_vect to;
+    int tmp;
 
     distance = cub->rays[x].distance * cos(cub->player->angle - cub->rays[x].rayAngle);
     double max_distance = 300;
     plane_distance = (SCREEN_WIDTH / 2) / tan(FOV_ANGLE / 2);
-    wall_height = (TILE_SIZE / distance) * plane_distance;
-    from_y = SCREEN_HEIGHT / 2 - (int)wall_height / 2;
-    to_y = SCREEN_HEIGHT / 2 + (int)wall_height / 2;
-    if (from_y < 0)
-        from_y = 0;
-    if (to_y >= SCREEN_HEIGHT)
-        to_y = SCREEN_HEIGHT;
+    wall_height = (T_L / distance) * plane_distance;
+    from.y = SCREEN_HEIGHT / 2 - (int)wall_height / 2;
+    to.y = SCREEN_HEIGHT / 2 + (int)wall_height / 2;
+    to.x = x;
+    from.x = x;
+    if (from.y < 0)
+        from.y = 0;
+    if (to.y >= SCREEN_HEIGHT)
+        to.y = SCREEN_HEIGHT;
     double wall_x;
     wall_x = 0;
     if (cub->rays[x].hit_ver)
-        wall_x = cub->rays[x].wall_hit.y / TILE_SIZE;
+        wall_x = cub->rays[x].wall_hit.y / T_L;
     else
-        wall_x = cub->rays[x].wall_hit.x / TILE_SIZE;
+        wall_x = cub->rays[x].wall_hit.x / T_L;
     wall_x -= floor(wall_x);
     int tex_width = cub->texture_img->width;
     int tex_height = cub->texture_img->height;
     int texture_x = (int)(wall_x * tex_width) % tex_width;
     double step = (double)tex_height / wall_height;
-    double texture_pos = (from_y - (SCREEN_HEIGHT / 2 - wall_height / 2)) * step;
+    double texture_pos = (from.y - (SCREEN_HEIGHT / 2 - wall_height / 2)) * step;
     mlx_image_t *current_texture;
     current_texture = cub->texture_img; 
     if (cub->rays[x].wall_content == 1)
         current_texture = cub->texture_img;
     uint32_t color;
-    for (int y = from_y; y < to_y; y++)
+    for (int y = from.y; y < to.y; y++)
     {
         int texture_y = (int)texture_pos % tex_height;
         texture_pos += step;
@@ -135,8 +134,12 @@ void draw_wall(int x, t_cub3D *cub)
         apply_shadow(&color, distance, max_distance);
         mlx_put_pixel(cub->__img, x, y, color);
     }
-    bresenhams(x, 0, x, from_y, cub, get_color(cub->map->map_info, 'c', cub, x));
-    bresenhams(x, to_y, x, SCREEN_HEIGHT, cub, get_color(cub->map->map_info, 'f', cub, x));
+    tmp = to.y;
+    to.y = 0;
+    bresenhams(from, to, cub, get_color(cub->map->map_info, 'c', cub, x));
+    to.y = tmp;
+    from.y = SCREEN_HEIGHT;
+    bresenhams(from, to, cub, get_color(cub->map->map_info, 'f', cub, x));
 }
 
 void render_3d(t_cub3D *cub)
@@ -150,9 +153,12 @@ void render_3d(t_cub3D *cub)
     x = -1;
     while (++x < SCREEN_WIDTH)
     {
+        rays = remainder(rays, 2 * M_PI);
+        if (rays < 0)
+            rays += 2 * M_PI;
         cub->rays[x].rayAngle = rays;
-        find_horizontal_intersections(cub, rays, &hcheck);
-        find_vertical_intersections(cub, rays, &vcheck);
+        find_horizontal_intersx(cub, rays, &hcheck);
+        find_vertical_intersx(cub, rays, &vcheck);
         calcule_close_ray(cub, vcheck, hcheck, x);
         draw_wall(x, cub);
         rays += FOV_ANGLE / SCREEN_WIDTH;

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 10:26:53 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/12 13:14:26 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,40 +21,42 @@ t_door	*get_door(t_door **door, double x, double y)
 	tmp = *door;
 	while (tmp)
 	{
-		if (tmp->x * TILE_SIZE - TILE_SIZE <= x && tmp->x * TILE_SIZE + TILE_SIZE >= x && tmp->y * TILE_SIZE - TILE_SIZE <= y && tmp->y * TILE_SIZE + TILE_SIZE >= y)
+		if (tmp->x * T_L - T_L <= x && tmp->x * T_L + T_L >= x \
+		&& tmp->y * T_L - T_L <= y && tmp->y * T_L + T_L >= y)
 			return (tmp);
 		tmp = tmp->next;
 	}
 	return (NULL);
 }
 
-int     wall(t_cub3D *cub, double x, double y)
+int	wall(t_cub3D *cub, double x, double y)
 {
 	t_door	*door;
- 
+
 	if (x < 0 || x > cub->screen_width || y < 0 || y > cub->screen_height)
 		return (1);
-	if (cub->map->map[(int)y / TILE_SIZE][(int)x / TILE_SIZE] == 1)
+	if (cub->map->map[(int)y / T_L][(int)x / T_L] == 1)
 		return (1);
-	if (cub->map->map[(int)y / TILE_SIZE][(int)x / TILE_SIZE] == 4)
+	if (cub->map->map[(int)y / T_L][(int)x / T_L] == 4)
 		return (1);
-	if (cub->map->map[(int)floor(y / TILE_SIZE)][(int)floor(x / TILE_SIZE)] == 3)
+	if (cub->map->map[(int)floor(y / T_L)][(int)floor(x / T_L)] == 3)
 	{
 		door = get_door(&cub->doors, x, y);
 		if (!door)
 			return (1);
-		if (door->is_facingx && door->y * TILE_SIZE > y + (TILE_SIZE * door->progress) / 2 && door->y * TILE_SIZE - TILE_SIZE / 2 <= y + (TILE_SIZE * (1 - door->progress)) / 2)
+		if (door->is_facingx && door->y * T_L > y + (T_L * door->progress) / 2 \
+		&& door->y * T_L - T_L / 2 <= y + (T_L * (1 - door->progress)) / 2)
 			return (0);
-		if (!door->is_facingx && door->x * TILE_SIZE >= x + (TILE_SIZE * door->progress) / 2 && door->x * TILE_SIZE - TILE_SIZE / 2 < x + (TILE_SIZE * (1 - door->progress)) / 2)
+		if (!door->is_facingx && door->x * T_L >= x + (T_L * door->progress) \
+		/ 2 && door->x * T_L - T_L / 2 < x + (T_L * (1 - door->progress)) / 2)
 			return (0);
-
 		else
 			return (1);
 	}
 	return (0);
 }
 
-void    arrow_handler(mlx_key_data_t key, t_cub3D *cub)
+void	arrow_handler(mlx_key_data_t key, t_cub3D *cub)
 {
 	if (key.key == MLX_KEY_W)
 		cub->player->walk_direction = 1;
@@ -79,9 +81,9 @@ void    arrow_handler(mlx_key_data_t key, t_cub3D *cub)
 	}
 }
 
-void    key_handler(mlx_key_data_t key, void* param)
+void	key_handler(mlx_key_data_t key, void *param)
 {
-	t_cub3D *cub;
+	t_cub3D	*cub;
 
 	cub = (t_cub3D *)param;
 	if (key.action != MLX_RELEASE)
@@ -92,9 +94,9 @@ void    key_handler(mlx_key_data_t key, void* param)
 			cub->cursor_hidden = 0;
 		if (key.key == MLX_KEY_ESCAPE)
 		{
-				mlx_close_window(cub->__mlx);
-				mlx_terminate(cub->__mlx);
-				exit(0);
+			mlx_close_window(cub->__mlx);
+			mlx_terminate(cub->__mlx);
+			exit(0);
 		}
 		if (key.key >= 0 && key.key <= 320)
 		{
@@ -106,11 +108,11 @@ void    key_handler(mlx_key_data_t key, void* param)
 	arrow_handler(key, cub);
 }
 
-void mouse_handler(double xpos, double ypos, void* param)
+void	mouse_handler(double xpos, double ypos, void *param)
 {
-    t_cub3D *cub;
-	(void)ypos;
+	t_cub3D	*cub;
 
+	(void)ypos;
 	cub = (t_cub3D *)param;
 	mlx_set_cursor_mode(cub->__mlx, MLX_MOUSE_HIDDEN);
 	if (cub->cursor_hidden && cub->player->prev_x > xpos)

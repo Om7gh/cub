@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 15:54:25 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 16:04:30 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,19 @@ void	init_enemie_texture(t_cub3D *cub)
 	cub->enemie = enemie;
 }
 
+void	init_data(t_cub3D *cub3d, t_door *door)
+{
+	init_settings(cub3d);
+	init_texture(cub3d);
+	init_wall_texture(cub3d);
+	init_enemie_texture(cub3d);
+	get_door_info(cub3d, &door);
+	cub3d->doors = door;
+	render_3d(cub3d);
+	mlx_key_hook(cub3d->__mlx, key_handler, cub3d);
+	mlx_cursor_hook(cub3d->__mlx, mouse_handler, cub3d);
+}
+
 int	main(int argc, char **argv)
 {
 	t_parser		*parser;
@@ -176,15 +189,7 @@ int	main(int argc, char **argv)
 	door = NULL;
 	cub3d->map->map_info = map_info;
 	cub3d->player = &player;
-	init_settings(cub3d);
-	init_texture(cub3d);
-	init_wall_texture(cub3d);
-	init_enemie_texture(cub3d);
-	get_door_info(cub3d, &door);
-	cub3d->doors = door;
-	render_3d(cub3d);
-	mlx_key_hook(cub3d->__mlx, key_handler, cub3d);
-	mlx_cursor_hook(cub3d->__mlx, mouse_handler, cub3d);
+	init_data(cub3d, door);
 	mlx_loop_hook(cub3d->__mlx, func, cub3d);
 	mlx_loop(cub3d->__mlx);
 	o_malloc(0, 1);

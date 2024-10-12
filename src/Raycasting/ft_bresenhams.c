@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bresenhams.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:40:50 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 13:18:48 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/12 16:08:41 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int	get_sign(long a, long b)
 
 void	bresenhams(t_vect from, t_vect to, t_cub3D *cub, uint32_t color)
 {
-	long diff[2], step[2], error[2], pos[2];
+	long diff[2];
+	long step[2];
+	long error[2];
+	long pos[2];
 
 	diff[0] = labs((long)to.x - (long)from.x);
 	diff[1] = labs((long)to.y - (long)from.y);
@@ -35,15 +38,9 @@ void	bresenhams(t_vect from, t_vect to, t_cub3D *cub, uint32_t color)
 		my_mlx_put_pixel(pos[0], pos[1], color, cub);
 		error[1] = 2 * error[0];
 		if (error[1] > -diff[1])
-		{
-			error[0] -= diff[1];
-			pos[0] += step[0];
-		}
+			1 && (error[0] -= diff[1], pos[0] += step[0]);
 		if (error[1] < diff[0])
-		{
-			error[0] += diff[0];
-			pos[1] += step[1];
-		}
+			1 && (error[0] += diff[0], pos[1] += step[1]);
 	}
 }
 

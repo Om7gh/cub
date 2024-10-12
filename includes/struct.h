@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 15:55:23 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/12 17:01:45 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,10 @@ struct s_cub
 	int				screen_height;
 	int				check_intro;
 	bool				cursor_hidden;
+	int				texture_x;
+	double				step;
+	double				texture_pos;
+	double				distance;
 	t_enemie			*enemie;
 } ;
 

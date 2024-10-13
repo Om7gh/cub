@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:13:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 17:47:17 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/13 20:16:22 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ int				wall_character(int c);
 int				player_character(int c);
 int				check_extra_info(char *line);
 int				color_process(char *line, uint32_t *color);
+int				get_color(t_map_info *map, char c);
+void			apply_shadow(uint32_t *color, double distance, \
+	double max_distance);
+void			check_texture_angle(t_cub3d *cub, int x, \
+	mlx_image_t **current_texture);
+uint32_t		get_texture_pixel(mlx_image_t *texture, int x, int y);
+void			draw_floor_ceil(t_vect from, t_vect to, t_cub3d *cub);
 char			*add_texture_path(char *line, int *checker);
 void			check_point_side(t_parser *tmp, int i);
 void			last_line_process(t_parser *parser);
@@ -38,6 +45,8 @@ void			parse_map(t_parser *parser, t_cub3d *cub3d);
 void			map_analyzer(t_parser **parser, t_map_info \
 	*map_info, char *file);
 void			check_map_data(char *line, int *checker, t_map_info *map_info);
+int				get_max_width(t_parser *parser);
+int				get_max_height(t_parser *parser);
 void			map_before_and_after(t_cub3d *cub);
 void			insert_node(int *flag, t_parser *node, \
 	t_parser **parser, char *line);

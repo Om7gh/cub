@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:24:11 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/10/09 10:13:39 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/13 20:27:35 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ typedef struct s_list
 	struct s_list	*previous;
 }		t_list;
 
-typedef	struct s_collector
+typedef struct s_collector
 {
-	void	*addr;
-	struct s_collector *next;
+	struct s_collector	*next;
+	void				*addr;
 }	t_collector;
 
 /* ************************************************************************** */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_analyzer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:08:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 20:57:40 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 20:01:44 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	check_map_data(char *line, int *checker, t_map_info *map_info)
 	else if (!ft_strncmp(ft_strtrim(line, " "), "F ", 2))
 	{
 		if (color_process(ft_strtrim(line, " "), map_info->floor_color) == 0)
-			(o_malloc(0, 1),ft_error("Error\nInvalid color"));
+			ft_error("Error\nInvalid color");
 		(*checker)++;
 	}
 	else if (!ft_strncmp(ft_strtrim(line, " "), "C ", 2))
 	{
 		if (color_process(ft_strtrim(line, " "), map_info->ceiling_color) == 0)
-			(o_malloc(0, 1),ft_error("Error\nInvalid color"));
+			ft_error("Error\nInvalid color");
 		(*checker)++;
 	}
 }

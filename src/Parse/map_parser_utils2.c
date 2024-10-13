@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:18:31 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 17:26:19 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/13 20:28:20 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,35 @@ void	map_before_and_after(t_cub3d *cub)
 		tmp = tmp->next;
 	}
 	cub->map->map[i] = NULL;
+}
+
+int	get_max_width(t_parser *parser)
+{
+	t_parser	*tmp;
+	int			i;
+
+	tmp = parser;
+	i = INT_MIN;
+	while (tmp)
+	{
+		if (tmp->max >= i)
+			i = tmp->max;
+		tmp = tmp->next;
+	}
+	return (i);
+}
+
+int	get_max_height(t_parser *parser)
+{
+	t_parser	*tmp;
+	int			i;
+
+	i = 0;
+	tmp = parser;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
 }

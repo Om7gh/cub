@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 18:31:50 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/13 20:24:06 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 # define ROTATION_SPEED 0.05
 
 /***********  STRUCT TYPEDEF  **********/
-typedef struct s_parser		t_parser;
-typedef struct s_map_info	t_map_info;
-typedef struct s_map		t_map_render;
-typedef struct s_vect		t_vect;
-typedef struct s_player		t_player;
-typedef struct s_cub		t_cub3d;
-typedef struct s_ray		t_ray;
-typedef struct s_door		t_door;
-typedef struct s_enemie		t_enemie;
-typedef struct s_sprite_render	t_spirite_render;
-typedef struct s_sprite		t_sprite;
+typedef struct s_map_info		t_map_info;
+typedef struct s_parser			t_parser;
+typedef struct s_map			t_map_render;
+typedef struct s_vect			t_vect;
+typedef struct s_player			t_player;
+typedef struct s_cub			t_cub3d;
+typedef struct s_ray			t_ray;
+typedef struct s_door			t_door;
+typedef struct s_enemie			t_enemie;
+typedef struct s_sprite			t_sprite;
+typedef struct s_sprite_render	t_sprite_render;
 
 /***********  STRUCT PARSING  **********/
 struct s_parser
@@ -94,7 +94,7 @@ struct s_door
 	bool	is_opening;
 	bool	is_closing;
 	bool	is_facingx;
-	double		progress;
+	double	progress;
 	t_door	*next;
 } ;
 
@@ -125,6 +125,8 @@ struct s_cub
 	mlx_image_t		*intro_img;
 	mlx_image_t		*door_img;
 	uint32_t		*pixels;
+	mlx_texture_t	*sprit_text[14];
+	mlx_image_t		*sprite[14];
 	t_parser		*parser;
 	t_map_render	*map;
 	t_player		*player;
@@ -143,12 +145,10 @@ struct s_cub
 	int				check_intro;
 	int				tex_width;
 	int				tex_height;
-	double 				texture_pos;
-	double 				wall_x;
-	mlx_image_t			*sprite[14];
-	mlx_texture_t			*sprit_text[14];
-	double				step;
-	uint32_t			color;
+	double			texture_pos;
+	double			wall_x;
+	double			step;
+	uint32_t		color;
 	double			fov;
 	bool			cursor_hidden;
 	int				texture_x;

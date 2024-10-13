@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:35:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/13 18:49:51 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/13 20:29:38 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ mlx_image_t	*my_mlx_texture_to_img(t_cub3d *cub, mlx_texture_t *texture)
 
 void	load_sprit_texture(t_cub3d *cub)
 {
-	int	i;
 	char	*str;
+	int		i;
 
 	i = 0;
 	while (i < 14)
@@ -79,28 +79,4 @@ void	load_sprit_image(t_cub3d *cub)
 		cub->sprite[i] = my_mlx_texture_to_img(cub, cub->sprit_text[i]);
 		i++;
 	}
-}
-
-void	my_mlx_put_pixel(double x, double y, int color, t_cub3d *cub)
-{
-	if ((x < 0 || x >= cub->screen_height) && (y < 0 || y >= cub->screen_width))
-		return ;
-	mlx_put_pixel(cub->__img, x, y, color);
-}
-
-size_t	get_current_time(void)
-{
-	struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
-}
-
-void	get_delta_time(double *last_time, t_cub3d *cub)
-{
-	double	current_time;
-
-	current_time = get_current_time();
-	cub->delta_time = current_time - *last_time;
-	*last_time = current_time;
 }

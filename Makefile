@@ -3,14 +3,26 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+         #
+#    By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 22:06:46 by hbettal           #+#    #+#              #
-#    Updated: 2024/10/13 16:51:22 by hbettal          ###   ########.fr        #
+#    Updated: 2024/10/13 20:35:48 by omghazi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			= $(shell find src -type f -name "*.c")
+SRCS_DIR		= src/
+PARSE_DIR		= $(SRCS_DIR)Parse/
+RAYCASTING_DIR		= $(SRCS_DIR)Raycasting/
+SRCS			= $(SRCS_DIR)main.c $(SRCS_DIR)ft_error.c \
+				$(PARSE_DIR)door_linked_list.c $(PARSE_DIR)map_analyzer.c \
+				$(PARSE_DIR)map_analyzer_utils.c $(PARSE_DIR)map_parser.c \
+				$(PARSE_DIR)map_parser_utils.c $(PARSE_DIR)map_parser_utils2.c \
+				$(PARSE_DIR)parse_linked_list.c \
+				$(RAYCASTING_DIR)door.c $(RAYCASTING_DIR)ft_bresenhams.c \
+				$(RAYCASTING_DIR)init_mlx.c $(RAYCASTING_DIR)mlx_event.c \
+				$(RAYCASTING_DIR)render_2d.c $(RAYCASTING_DIR)render_3d.c \
+				$(RAYCASTING_DIR)render_3d_utils.c $(RAYCASTING_DIR)utils.c \
+				$(RAYCASTING_DIR)utils2.c
 OBJS_DIR		= obj/
 OBJS 			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 INCS_DIR		= includes/

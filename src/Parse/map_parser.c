@@ -6,42 +6,11 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:17:48 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 17:26:09 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/13 20:04:41 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-static int	get_max_width(t_parser *parser)
-{
-	t_parser	*tmp;
-	int			i;
-
-	tmp = parser;
-	i = INT_MIN;
-	while (tmp)
-	{
-		if (tmp->max >= i)
-			i = tmp->max;
-		tmp = tmp->next;
-	}
-	return (i);
-}
-
-static int	get_max_height(t_parser *parser)
-{
-	t_parser	*tmp;
-	int			i;
-
-	i = 0;
-	tmp = parser;
-	while (tmp)
-	{
-		i++;
-		tmp = tmp->next;
-	}
-	return (i);
-}
 
 static void	is_map_closed(t_parser *tmp)
 {
@@ -95,6 +64,18 @@ void	parse_door(t_parser *parser, int i)
 	}
 }
 
+static void	check_map_character(t_parser *tmp, int i, int *flag, int *door_flag)
+{
+	if (tmp->line[i] == '0')
+		check_point_side(tmp, i);
+	if (tmp->line[i] == 'D')
+		parse_door(tmp, i);
+	if (player_character(tmp->line[i]))
+		(*flag)++;
+	if (tmp->line[i] == 'D')
+		(*door_flag)++;
+}
+
 static void	check_player_space(t_parser *parser)
 {
 	t_parser	*tmp;
@@ -109,16 +90,7 @@ static void	check_player_space(t_parser *parser)
 		if (tmp->line[0] == '\n')
 			ft_error("Error\nInvalid map");
 		while (tmp->line[++i])
-		{
-			if (tmp->line[i] == '0')
-				check_point_side(tmp, i);
-			if (tmp->line[i] == 'D')
-				parse_door(tmp, i);
-			if (player_character(tmp->line[i]))
-				flag++;
-			if (tmp->line[i] == 'D')
-				door_flag++;
-		}
+			check_map_character(tmp, i, &flag, &door_flag);
 		tmp = tmp->next;
 	}
 	if (flag != 1)

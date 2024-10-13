@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:47:31 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/10/13 18:04:48 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/13 20:25:47 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_itoa(int n)
 
 	num = n;
 	n_len = number_length(num);
-	str = (char *)ft_calloc((n_len + 1) , sizeof(char));
+	str = (char *)ft_calloc((n_len + 1), sizeof(char));
 	if (!str)
 		return (NULL);
 	while (n_len)

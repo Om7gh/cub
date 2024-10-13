@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:07:44 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/10/09 14:42:38 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/13 20:26:14 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	update_line(char **str)
 	{
 		tmp = ft_strdup(++tmp);
 		if (!tmp)
-			return (void)(*str = NULL);
+			return ((void)(*str = NULL));
 	}
 	else
 		tmp = NULL;

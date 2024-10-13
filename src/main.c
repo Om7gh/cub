@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 17:13:58 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 18:05:23 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	init_data(t_cub3d *cub3d)
 	init_texture(cub3d);
 	init_wall_texture(cub3d);
 	get_door_info(cub3d, &door);
+	load_sprit_image(cub3d);
 	cub3d->doors = door;
 	render_3d(cub3d);
 	mlx_key_hook(cub3d->__mlx, key_handler, cub3d);

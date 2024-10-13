@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:35:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/13 17:47:04 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/13 18:49:51 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ mlx_texture_t	*my_mlx_load_png( const char *path, t_cub3d *cub)
 {
 	mlx_texture_t	*text;
 
-	printf("%s\n", path);
 	text = mlx_load_png(path);
 	if (!text)
 	{

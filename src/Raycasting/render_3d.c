@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/13 16:40:40 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/13 18:48:10 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int get_color(t_map_info *map, char c, t_cub3d *cub, int x)
 
 void apply_shadow(uint32_t *color, double distance, double max_distance)
 {
-	double intensity = 1.1 - (distance / max_distance);
+	double intensity = 1 - (distance / max_distance);
 
 	if (intensity < 0.3)
 		intensity = 0.3;
@@ -71,6 +71,8 @@ uint32_t get_texture_pixel(mlx_image_t *texture, int x, int y)
 	uint8_t	a;
 	int		index;
 
+	if (!texture)
+		return (0);
 	if (x >= 0 && (uint32_t)x < texture->width
 		&& y >= 0 && (uint32_t)y < texture->height)
 	{
@@ -81,7 +83,7 @@ uint32_t get_texture_pixel(mlx_image_t *texture, int x, int y)
 		a = texture->pixels[index + 3];
 		return (r << 24 | g << 16 | b << 8 | a);
 	}
-	return (0x000000FF);
+	return (0xFFFFFFFF);
 }
 
 void	draw_floor_ceil(t_vect from, t_vect to, t_cub3d *cub, int x)
@@ -102,19 +104,26 @@ void	wall_loop(t_vect from, t_vect to, t_cub3d *cub, int x)
 
 	y = from.y;
 	mlx_image_t *current_texture;
-	current_texture = cub->texture_img_no; 
-	if (cub->rays[x].wall_content == 1)
-		current_texture = cub->texture_img_no;
+	current_texture = NULL; 
 	while (y < to.y)
 	{
 		cub->texture_y = (int)cub->texture_pos % cub->tex_height;
 		cub->texture_pos += cub->step;
 		if (cub->rays[x].wall_content == 1)
-			current_texture = cub->texture_img_no;
+		{
+			if (cub->rays[x].hit_ver && cub->rays[x].rayangle <= 1.5 * M_PI && cub->rays[x].rayangle >= 0.5 * M_PI)
+				current_texture = cub->texture_img_ea;
+			else if (cub->rays[x].hit_ver && !(cub->rays[x].rayangle <= 1.5 * M_PI && cub->rays[x].rayangle >= 0.5 * M_PI))
+				current_texture = cub->texture_img_we;
+			else if (!cub->rays[x].hit_ver && (cub->rays[x].rayangle >= 0 && cub->rays[x].rayangle <= M_PI))
+				current_texture = cub->texture_img_so;
+			else if (!cub->rays[x].hit_ver && !(cub->rays[x].rayangle >= 0 && cub->rays[x].rayangle <= M_PI))
+				current_texture = cub->texture_img_no;
+		}
 		if (cub->rays[x].wall_content == 3)
 			current_texture = cub->door_img;
 		cub->color = get_texture_pixel(current_texture, cub->texture_x, cub->texture_y);
-		apply_shadow(&cub->color, cub->distance, 200);
+		apply_shadow(&cub->color, cub->distance, 700);
 		mlx_put_pixel(cub->__img, x, y, cub->color);
 		y++;
 	}

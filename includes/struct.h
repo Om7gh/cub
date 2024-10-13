@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 17:42:43 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/13 18:31:50 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define BLACK	0x000000FF
 # define WHITE	0xFFFFFFFF
 # define RED	0xFF0000FF
-# define SPEED 4
+# define SPEED 5
 # define ROTATION_SPEED 0.05
 
 /***********  STRUCT TYPEDEF  **********/

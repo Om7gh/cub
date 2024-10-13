@@ -2,13 +2,13 @@ WE wall_texture/fire.png
 NO wall_texture/water.png
 SO wall_texture/earth.png
 
-F   69, 222, 199
+F   59, 100, 89
 
 EA wall_texture/air.png
 
 
 
-C 235, 198, 52
+C 150, 150, 150
 
 111111111111111111111111
 100000000000000000000001

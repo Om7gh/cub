@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 16:49:40 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 18:33:13 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_wall_texture(t_cub3d *cub)
 	texture[2] = my_mlx_load_png \
 	(ft_strtrim(cub->map->map_info->ea_texture, "\n"), cub);
 	texture[3] = my_mlx_load_png \
-	(ft_strtrim(cub->map->map_info->no_texture, "\n"), cub);
+	(ft_strtrim(cub->map->map_info->we_texture, "\n"), cub);
 	cub->texture_no = texture[0];
 	cub->texture_so = texture[1];
 	cub->texture_ea = texture[2];
@@ -108,7 +108,7 @@ void	init_player(t_player *player)
 void	init_settings(t_cub3d *cub)
 {
 	init_mlx(cub);
-	cub->fov = 60 * (M_PI / 180);
+	cub->fov = 65 * (M_PI / 180);
 	set_player_pos(cub);
 	init_player(cub->player);
 	get_minimap_scale(cub);

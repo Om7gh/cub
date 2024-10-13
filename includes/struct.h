@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 13:45:59 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 16:42:29 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,36 +108,6 @@ struct s_ray
 	int			wall_content;
 };
 
-struct s_enemie
-{
-	mlx_texture_t	*enemie;
-	mlx_image_t		*enemie_img;
-	struct s_enemie	*next;
-};
-
-struct s_sprite
-{
-	double	x;
-	double	y;
-	int		texture;
-};
-
-struct s_sprite_render
-{
-	double	spriteX;       // Translated X coordinate relative to player
-	double	spriteY;       // Translated Y coordinate relative to player
-	double	invDet;        // Inverse determinant of camera matrix
-	double	transformX;    // Transformed X position of the sprite in camera space
-	double	transformY;    // Transformed Y position of the sprite (depth)
-	int		spriteScreenX;    // X-coordinate on the screen
-	int		spriteHeight;     // Height of the sprite on screen
-	int		spriteWidth;      // Width of the sprite on screen
-	int		drawStartX;       // Starting X position for drawing
-	int		drawEndX;         // Ending X position for drawing
-	int		drawStartY;       // Starting Y position for drawing
-	int		drawEndY;         // Ending Y position for drawing
-};
-
 struct s_cub
 {
 	mlx_t			*__mlx;
@@ -156,10 +126,6 @@ struct s_cub
 	mlx_image_t		*door_img;
 	uint32_t		*pixels;
 	t_parser		*parser;
-	t_sprite		*sprites;
-	t_spirite_render	*sprit_render;
-	int				numSprites;
-	double 			ZBuffer[SCREEN_WIDTH];
 	t_map_render	*map;
 	t_player		*player;
 	t_vect			*h_ray;
@@ -175,13 +141,17 @@ struct s_cub
 	int				screen_width;
 	int				screen_height;
 	int				check_intro;
+	int				tex_width;
+	int				tex_height;
+	double 				texture_pos;
+	double 				wall_x;
+	double				step;
+	uint32_t			color;
 	double			fov;
 	bool			cursor_hidden;
 	int				texture_x;
-	double			step;
-	double			texture_pos;
+	int				texture_y;
 	double			distance;
-	t_enemie		*enemie;
 } ;
 
 #endif

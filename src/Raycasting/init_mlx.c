@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 12:39:45 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 13:54:13 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,28 +65,40 @@ void	init_mlx(t_cub3d *cub)
 
 void	set_player_pos(t_cub3d *cub)
 {
-	int	x;
-	int	y;
+	int			x;
+	int			y;
+	t_parser	*tmp;
 
-	y = -1;
-	while (++y < cub->max_height)
+	tmp = cub->parser;
+	y = 0;
+	while (tmp->next)
 	{
 		x = -1;
-		while (++x < cub->max_width)
+		while (tmp->line[++x])
 		{
-			if (player_character(cub->map->map[y][x]))
+			if (player_character(tmp->line[x]))
 			{
 				cub->player->pos.x = (double)x * T_L + (T_L / 2);
 				cub->player->pos.y = (double)y * T_L + (T_L / 2);
+				cub->player->player_character = tmp->line[x];
 				return ;
 			}
 		}
+		y++;
+		tmp = tmp->next;
 	}
 }
 
 void	init_player(t_player *player)
 {
-	player->angle = 0;
+	if (player->player_character == 'N')
+		player->angle = 270 * (M_PI / 180);
+	else if (player->player_character == 'S')
+		player->angle = 90 * (M_PI / 180);
+	else if (player->player_character == 'W')
+		player->angle = 180 * (M_PI / 180);
+	else if (player->player_character == 'E')
+		player->angle = 0;
 	player->prev_x = player->pos.x;
 	player->walk_direction = 0;
 	player->turn_direction = 0;

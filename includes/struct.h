@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 20:40:09 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 13:45:59 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ struct	s_player
 	int		arrow;
 	int		walk_direction;
 	int		turn_direction;	
+	char	player_character;
 } ;
 
 struct s_door

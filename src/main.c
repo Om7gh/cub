@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 12:32:14 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 17:13:58 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	move_player(t_cub3d *cub)
 	}
 }
 
-void	func(void *params)
+void	fram(void *params)
 {
 	t_cub3d	*cub;
 
@@ -101,7 +101,7 @@ int	main(int argc, char **argv)
 	cub3d->map->map_info = map_info;
 	cub3d->player = &player;
 	init_data(cub3d);
-	mlx_loop_hook(cub3d->__mlx, func, cub3d);
+	mlx_loop_hook(cub3d->__mlx, fram, cub3d);
 	mlx_loop(cub3d->__mlx);
 	o_malloc(0, 1);
 	return (0);

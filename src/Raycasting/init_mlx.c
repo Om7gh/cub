@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 13:54:13 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 16:49:40 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,5 @@ void	init_settings(t_cub3d *cub)
 	cub->fov = 60 * (M_PI / 180);
 	set_player_pos(cub);
 	init_player(cub->player);
+	get_minimap_scale(cub);
 }

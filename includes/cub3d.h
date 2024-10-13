@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:13:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 16:20:11 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/13 17:19:12 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include <libft.h>
-# include "MLX42.h"
+# include ".MLX42.h"
 # include <stdint.h>
 # include <stdbool.h>
 # include <stddef.h>
@@ -59,6 +59,8 @@ size_t			get_current_time(void);
 void			open_door_animation(t_cub3d *cub);
 void			close_door_animation(t_cub3d *cub);
 void			open_door(t_cub3d *cub);
+void			get_minimap_scale(t_cub3d *cub);
+void			draw_rays(t_cub3d *cub);
 
 /* FUNCTIONS */
 int				wall(t_cub3d *cub, double x, double y);

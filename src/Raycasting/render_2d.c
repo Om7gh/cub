@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 20:54:32 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 17:19:43 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,29 +102,24 @@ void	find_vertical_intersx(t_cub3d *cub, double angle, t_vect *check)
 
 void	mini_map(t_cub3d *cub)
 {
-	t_vect	from;
-	t_vect	to;
-	int		x;
+	int x;
+	int y;
 
-	from.y = -1;
-	while (++from.y < cub->screen_height / 6)
+	y = -1;
+	while (++y < cub->screen_height * cub->scale)
 	{
-		from.x = -1;
-		while (++from.x < cub->screen_width / 6)
+		x = -1;
+		while (++x < cub->screen_width * cub->scale)
 		{
-			if (cub->map->map[(int)(from.y * 6 / T_L)] \
-			[(int)(from.x * 6 / T_L)] == 1)
-				my_mlx_put_pixel(from.x, from.y, ORANGE, cub);
-			else if (cub->map->map[(int)(from.y * 6 / T_L)] \
-			[(int)(from.x * 6 / T_L)] == 3)
-				my_mlx_put_pixel(from.x, from.y, RED, cub);
+			if (cub->map->map[(int)(y / cub->scale / T_L)] \
+			[(int)(x / cub->scale / T_L)] == 1)
+				my_mlx_put_pixel(x, y, ORANGE, cub);
+			else if (cub->map->map[(int)(y / cub->scale / T_L)] \
+			[(int)(x / cub->scale / T_L)] == 3)
+				my_mlx_put_pixel(x, y, RED, cub);
 			else
-				my_mlx_put_pixel(from.x, from.y, BLACK, cub);
+				my_mlx_put_pixel(x, y, BLACK, cub);
 		}
 	}
-	x = -1;
-	1 && (from.x = cub->player->pos.x / 6), (from.y = cub->player->pos.y / 6);
-	while (++x < SCREEN_WIDTH)
-		1 && (to.x = cub->rays[x].wall_hit.x / 6), \
-		(to.y = cub->rays[x].wall_hit.y / 6, bresenhams(from, to, cub, WHITE));
+	draw_rays(cub);
 }

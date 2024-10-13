@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:18:37 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 10:38:13 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/13 12:44:17 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,19 @@ void	last_line_process(t_parser *parser)
 
 void	check_point_side(t_parser *tmp, int i)
 {
-	if (tmp->line[i + 1] != '1' && tmp->line[i + 1] != '0' && tmp->line[i + 1] != 'D' && tmp->line[i + 1] != 'A' && !player_character(tmp->line[i + 1]))
+	if (tmp->line[i + 1] != '1' && tmp->line[i + 1] != '0' && tmp->line[i + 1] \
+	!= 'D' && tmp->line[i + 1] != 'A' && !player_character(tmp->line[i + 1]))
 		ft_error("Error1\nInvalid map");
-	if (tmp->prev && tmp->prev->line && (tmp->prev->line[i] != '1' && tmp->prev->line[i] != '0' && tmp->prev->line[i] != 'D' && tmp->prev->line[i] != 'A' && !player_character(tmp->prev->line[i])))
+	if (tmp->prev && tmp->prev->line && (tmp->prev->line[i] != '1' && \
+	tmp->prev->line[i] != '0' && tmp->prev->line[i] != 'D' && \
+	tmp->prev->line[i] != 'A' && !player_character(tmp->prev->line[i])))
 		ft_error("Error2\nInvalid map");
-	if (tmp->line[i - 1] != '1' && tmp->line[i - 1] != '0' && !player_character(tmp->line[i - 1]) && tmp->line[i - 1] != 'D' && tmp->line[i - 1] != 'A')
+	if (tmp->line[i - 1] != '1' && tmp->line[i - 1] != '0' && \
+	!player_character(tmp->line[i - 1]) && tmp->line[i - 1] != 'D' \
+	&& tmp->line[i - 1] != 'A')
 		ft_error("Error3\nInvalid map");
-	if (tmp->next && (tmp->next->line[i] != '1' && tmp->next->line[i] != '0' && tmp->next->line[i] != 'A' && !player_character(tmp->next->line[i]) && tmp->next->line[i] != 'D'))
+	if (tmp->next && (tmp->next->line[i] != '1' && tmp->next->line[i] != '0' \
+	&& tmp->next->line[i] != 'A' && !player_character(tmp->next->line[i]) \
+	&& tmp->next->line[i] != 'D'))
 		ft_error("Error4\nInvalid map");
 }

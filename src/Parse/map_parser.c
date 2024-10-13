@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:17:48 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 20:32:45 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 12:47:25 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ static void	is_map_closed(t_parser *tmp)
 			if (tmp->line[i] == '0')
 				check_point_side(tmp, i);
 			if (tmp->line[i] != '0' && !player_character(tmp->line[i]) \
-				&& !wall_character(tmp->line[i]) && tmp->line[i] != 'D' && tmp->line[i] != 'A')
+				&& !wall_character(tmp->line[i]) && \
+				tmp->line[i] != 'D' && tmp->line[i] != 'A')
 			{
 				ft_putstr_fd("invalid character in map `", 2);
 				ft_putchar_fd(tmp->line[i], 2);
@@ -102,10 +103,7 @@ static void	check_player_space(t_parser *parser)
 	int			door_flag;
 	int			enemie_flag;
 
-	tmp = parser;
-	flag = 0;
-	door_flag = 0;
-	enemie_flag = 0;
+	1 && (tmp = parser, flag = 0, door_flag = 0, enemie_flag = 0);
 	while (tmp)
 	{
 		i = 0;

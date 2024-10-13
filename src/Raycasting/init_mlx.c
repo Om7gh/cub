@@ -6,11 +6,33 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 20:34:21 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 12:39:45 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+void	init_wall_texture(t_cub3d *cub)
+{
+	mlx_texture_t	*texture[4];
+
+	texture[0] = my_mlx_load_png \
+	(ft_strtrim(cub->map->map_info->no_texture, "\n"), cub);
+	texture[1] = my_mlx_load_png \
+	(ft_strtrim(cub->map->map_info->so_texture, "\n"), cub);
+	texture[2] = my_mlx_load_png \
+	(ft_strtrim(cub->map->map_info->ea_texture, "\n"), cub);
+	texture[3] = my_mlx_load_png \
+	(ft_strtrim(cub->map->map_info->no_texture, "\n"), cub);
+	cub->texture_no = texture[0];
+	cub->texture_so = texture[1];
+	cub->texture_ea = texture[2];
+	cub->texture_we = texture[3];
+	cub->texture_img_ea = my_mlx_texture_to_img(cub, cub->texture_ea);
+	cub->texture_img_we = my_mlx_texture_to_img(cub, cub->texture_we);
+	cub->texture_img_so = my_mlx_texture_to_img(cub, cub->texture_so);
+	cub->texture_img_no = my_mlx_texture_to_img(cub, cub->texture_no);
+}
 
 void	init_mlx(t_cub3d *cub)
 {

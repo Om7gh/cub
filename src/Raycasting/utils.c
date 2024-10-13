@@ -6,11 +6,39 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:35:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/12 20:52:13 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 12:18:10 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+mlx_texture_t	*my_mlx_load_png( const char *path, t_cub3d *cub)
+{
+	mlx_texture_t	*text;
+
+	text = mlx_load_png(path);
+	if (!text)
+	{
+		mlx_terminate(cub->__mlx);
+		ft_error("Error loading .png texture.\n");
+	}
+	return (text);
+}
+
+mlx_image_t	*my_mlx_texture_to_img(t_cub3d *cub, mlx_texture_t *texture)
+{
+	mlx_image_t	*text_to_img;
+
+	text_to_img = mlx_texture_to_image(cub->__mlx, texture);
+	if (!cub->texture_img_no)
+	{
+		printf("Error converting PNG texture to image.\n");
+		mlx_terminate(cub->__mlx);
+		o_malloc(0, 1);
+		exit(1);
+	}
+	return (text_to_img);
+}
 
 void	my_mlx_put_pixel(double x, double y, int color, t_cub3d *cub)
 {

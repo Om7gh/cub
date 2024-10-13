@@ -6,11 +6,51 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:44:24 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/12 20:49:22 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 12:29:38 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+void	get_door_info(t_cub3d *cub, t_door **door)
+{
+	t_door	*new;
+	int		x;
+	int		y;
+
+	y = -1;
+	while (++y < cub->max_height)
+	{
+		x = -1;
+		while (++x < cub->max_width)
+		{
+			if (cub->map->map[y][x] == 3)
+			{
+				new = new_door(x + 1, y + 1);
+				if (cub->map->map[y - 1][x] == 1)
+					new->is_facingx = 1;
+				fill_door_list(door, new);
+			}
+		}
+	}
+}
+
+t_door	*get_door(t_door **door, double x, double y)
+{
+	t_door	*tmp;
+
+	if (!door)
+		return (NULL);
+	tmp = *door;
+	while (tmp)
+	{
+		if (tmp->x * T_L - T_L <= x && tmp->x * T_L + T_L >= x \
+		&& tmp->y * T_L - T_L <= y && tmp->y * T_L + T_L >= y)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
 
 void	open_door(t_cub3d *cub)
 {

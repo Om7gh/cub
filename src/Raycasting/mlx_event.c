@@ -6,28 +6,11 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 20:32:45 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 12:29:31 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-t_door	*get_door(t_door **door, double x, double y)
-{
-	t_door	*tmp;
-
-	if (!door)
-		return (NULL);
-	tmp = *door;
-	while (tmp)
-	{
-		if (tmp->x * T_L - T_L <= x && tmp->x * T_L + T_L >= x \
-		&& tmp->y * T_L - T_L <= y && tmp->y * T_L + T_L >= y)
-			return (tmp);
-		tmp = tmp->next;
-	}
-	return (NULL);
-}
 
 int	wall(t_cub3d *cub, double x, double y)
 {

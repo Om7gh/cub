@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:18:31 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/12 20:32:45 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 12:41:30 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	fill_row(t_parser *tmp, t_cub3d *cub, int i, int *j)
 
 void	map_before_and_after(t_cub3d *cub)
 {
-	t_parser			*tmp;
-	int		i;
-	int		j;
+	t_parser	*tmp;
+	int			i;
+	int			j;
 
 	tmp = cub->parser;
 	i = -1;

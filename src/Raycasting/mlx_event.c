@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 17:18:58 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 17:27:28 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ int	wall(t_cub3d *cub, double x, double y)
 	if (x < 0 || x > cub->screen_width || y < 0 || y > cub->screen_height)
 		return (1);
 	if (cub->map->map[(int)y / T_L][(int)x / T_L] == 1)
-		return (1);
-	if (cub->map->map[(int)y / T_L][(int)x / T_L] == 4)
 		return (1);
 	if (cub->map->map[(int)floor(y / T_L)][(int)floor(x / T_L)] == 3)
 	{

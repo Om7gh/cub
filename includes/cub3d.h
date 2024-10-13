@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:13:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 17:19:12 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 17:47:17 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ t_door			*new_door(int x, int y);
 void			fill_door_list(t_door **door, t_door *new_door);
 t_door			*get_door(t_door **door, double x, double y);
 void			get_door_info(t_cub3d *cub, t_door **door);
+void			load_sprit_image(t_cub3d *cub);
 
 #endif

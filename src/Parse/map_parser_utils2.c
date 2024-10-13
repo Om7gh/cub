@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_utils2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:18:31 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 12:41:30 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 17:26:19 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	fill_row(t_parser *tmp, t_cub3d *cub, int i, int *j)
 		cub->map->map[i][*j] = 3;
 	else if (tmp->line[*j] == '0')
 		cub->map->map[i][*j] = 0;
-	else if (tmp->line[*j] == 'A')
-		cub->map->map[i][*j] = 4;
 	else if (player_character(tmp->line[*j]))
 		cub->map->map[i][*j] = 2;
 	(*j)++;

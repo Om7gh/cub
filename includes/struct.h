@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 16:48:32 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 17:42:43 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,8 @@ struct s_cub
 	int				tex_height;
 	double 				texture_pos;
 	double 				wall_x;
+	mlx_image_t			*sprite[14];
+	mlx_texture_t			*sprit_text[14];
 	double				step;
 	uint32_t			color;
 	double			fov;

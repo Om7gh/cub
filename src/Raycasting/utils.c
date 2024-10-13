@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:35:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/13 17:14:56 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 17:47:04 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ mlx_texture_t	*my_mlx_load_png( const char *path, t_cub3d *cub)
 {
 	mlx_texture_t	*text;
 
+	printf("%s\n", path);
 	text = mlx_load_png(path);
 	if (!text)
 	{
@@ -49,6 +50,36 @@ mlx_image_t	*my_mlx_texture_to_img(t_cub3d *cub, mlx_texture_t *texture)
 		exit(1);
 	}
 	return (text_to_img);
+}
+
+void	load_sprit_texture(t_cub3d *cub)
+{
+	int	i;
+	char	*str;
+
+	i = 0;
+	while (i < 14)
+	{
+		str = NULL;
+		str = ft_strjoin(str, "sprite/");
+		str = ft_strjoin(str, ft_itoa(i + 1));
+		str = ft_strjoin(str, ".png");
+		cub->sprit_text[i] = my_mlx_load_png(str, cub);
+		i++;
+	}
+}
+
+void	load_sprit_image(t_cub3d *cub)
+{
+	int	i;
+
+	load_sprit_texture(cub);
+	i = 0;
+	while (i < 14)
+	{
+		cub->sprite[i] = my_mlx_texture_to_img(cub, cub->sprit_text[i]);
+		i++;
+	}
 }
 
 void	my_mlx_put_pixel(double x, double y, int color, t_cub3d *cub)

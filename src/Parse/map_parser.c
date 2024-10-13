@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:17:48 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 12:47:25 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 17:26:09 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	is_map_closed(t_parser *tmp)
 				check_point_side(tmp, i);
 			if (tmp->line[i] != '0' && !player_character(tmp->line[i]) \
 				&& !wall_character(tmp->line[i]) && \
-				tmp->line[i] != 'D' && tmp->line[i] != 'A')
+				tmp->line[i] != 'D')
 			{
 				ft_putstr_fd("invalid character in map `", 2);
 				ft_putchar_fd(tmp->line[i], 2);
@@ -101,9 +101,8 @@ static void	check_player_space(t_parser *parser)
 	int			i;
 	int			flag;
 	int			door_flag;
-	int			enemie_flag;
 
-	1 && (tmp = parser, flag = 0, door_flag = 0, enemie_flag = 0);
+	1 && (tmp = parser, flag = 0, door_flag = 0);
 	while (tmp)
 	{
 		i = 0;
@@ -117,8 +116,6 @@ static void	check_player_space(t_parser *parser)
 				parse_door(tmp, i);
 			if (player_character(tmp->line[i]))
 				flag++;
-			if (tmp->line[i] == 'A')
-				enemie_flag++;
 			if (tmp->line[i] == 'D')
 				door_flag++;
 		}
@@ -126,8 +123,6 @@ static void	check_player_space(t_parser *parser)
 	}
 	if (flag != 1)
 		ft_error("Error\nPlayer not found or muti player exist");
-	if (enemie_flag == 0)
-		ft_error("Error\nenemie not found ");
 	if (door_flag == 0)
 		ft_error("Error\nDoor not found");
 }

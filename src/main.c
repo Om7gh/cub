@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 22:38:41 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 22:48:31 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,23 @@
 
 void	run_animation(t_cub3d *cub)
 {
-	mlx_delete_image(cub->__mlx, cub->tp);
-	cub->tp = mlx_texture_to_image(cub->__mlx, cub->sprit_text[cub->fram]);
-	mlx_image_to_window(cub->__mlx, cub->tp, 0, 0);
-	if (!cub->animation_flage && cub->fram == 179)
-		cub->fram = 150;
-	if (cub->animation_flage && cub->fram == 179)
+	static int		i;
+
+	if (i % 2 == 0)
 	{
-		cub->fram = 150;
-		cub->animation_flage = 0;
+		mlx_delete_image(cub->__mlx, cub->tp);
+		cub->tp = mlx_texture_to_image(cub->__mlx, cub->sprit_text[cub->fram]);
+		mlx_image_to_window(cub->__mlx, cub->tp, 0, 0);
+		if (!cub->animation_flage && cub->fram == 179)
+			cub->fram = 150;
+		if (cub->animation_flage && cub->fram == 179)
+		{
+			cub->fram = 150;
+			cub->animation_flage = 0;
+		}
+		cub->fram++;
 	}
-	cub->fram++;
+	i++;
 }
 
 void	fram(void *params)

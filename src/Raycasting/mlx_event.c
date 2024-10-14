@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 22:36:50 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 22:49:41 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_rays(t_cub3d *cub)
 		from.y = cub->player->pos.y * cub->scale;
 		to.x = cub->rays[x].wall_hit.x * cub->scale;
 		to.y = cub->rays[x].wall_hit.y * cub->scale;
-		bresenhams(from, to, cub, WHITE);
+		bresenhams(from, to, cub, RED);
 	}
 }
 

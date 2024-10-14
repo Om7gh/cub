@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 20:53:21 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 22:01:07 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void	init_settings(t_cub3d *cub)
 {
 	init_mlx(cub);
 	cub->fov = 65 * (M_PI / 180);
+	cub->animation_flage = 0;
+	cub->fram = 150;
 	set_player_pos(cub);
 	init_player(cub->player);
 	get_minimap_scale(cub);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:13:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 15:44:45 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 21:42:16 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void			load_sprit_image(t_cub3d *cub);
 int				get_texture_height(t_cub3d *cub, int x);
 int				get_texture_width(t_cub3d *cub, int x);
 void	draw_sprite(void *p);
+void	load_sprit_texture(t_cub3d *cub);
 
 #endif

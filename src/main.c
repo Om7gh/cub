@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 19:50:01 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/14 22:07:01 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,22 @@ void	move_player(t_cub3d *cub)
 	}
 }
 
+
+void	run_animation(t_cub3d *cub)
+{
+	mlx_delete_image(cub->__mlx, cub->tp);
+	cub->tp = mlx_texture_to_image(cub->__mlx, cub->sprit_text[cub->fram]);
+	mlx_image_to_window(cub->__mlx, cub->tp, 0, 0);
+	if (!cub->animation_flage && cub->fram == 179)
+		cub->fram = 150;
+	if (cub->animation_flage && cub->fram == 179)
+	{
+		cub->fram = 150;
+		cub->animation_flage = 0;
+	}
+	cub->fram++;
+}
+
 void	fram(void *params)
 {
 	t_cub3d	*cub;
@@ -69,6 +85,7 @@ void	fram(void *params)
 	open_door_animation(cub);
 	close_door_animation(cub);
 	render_3d(cub);
+	run_animation(cub);
 }
 
 void	init_texture(t_cub3d *cub)
@@ -91,44 +108,16 @@ void	init_data(t_cub3d *cub3d)
 	init_texture(cub3d);
 	init_wall_texture(cub3d);
 	get_door_info(cub3d, &door);
-	load_sprit_image(cub3d);
+	load_sprit_texture(cub3d);
 	cub3d->doors = door;
 	mlx_image_to_window(cub3d->__mlx, cub3d->__img, 0, 0);
 	mlx_key_hook(cub3d->__mlx, key_handler, cub3d);
 	mlx_cursor_hook(cub3d->__mlx, mouse_handler, cub3d);
 }
 
-void	run_animation(t_cub3d *cub, int *flag)
+void	f(void)
 {
-	static int	fram;
-	static int		i;
-
-	if (fram % 2 == 0)
-	{
-		printf("i = %d\n", i);
-		mlx_delete_image(cub->__mlx, cub->tp);
-		cub->tp = mlx_texture_to_image(cub->__mlx, cub->sprit_text[i]);
-		mlx_image_to_window(cub->__mlx, cub->tp, 0, 0);
-		i++;
-		if (fram == 180)
-		{
-			fram = 0;
-			*flag = 1;
-			return ;
-		}
-	}
-	fram++;
-}
-
-void	draw_sprite(void *p)
-{
-	t_cub3d *cub;
-	int	flag;
-
-	flag = 0;
-	cub = (t_cub3d *)p;
-	if (mlx_is_key_down(cub->__mlx, 75) && !flag)
-		run_animation(cub, &flag);
+	system("leaks cub3d");
 }
 
 int	main(int argc, char **argv)
@@ -139,6 +128,7 @@ int	main(int argc, char **argv)
 	t_cub3d			*cub3d;
 	t_player		player;
 
+	atexit(f);
 	if (argc != 2)
 		ft_error("Error\nInvalid number of arguments");
 	check_file_extension(argv[1]);
@@ -155,7 +145,6 @@ int	main(int argc, char **argv)
 	cub3d->tp = mlx_texture_to_image(cub3d->__mlx, cub3d->sprit_text[0]);
 		mlx_image_to_window(cub3d->__mlx, cub3d->tp, 0, 0);
 	mlx_loop_hook(cub3d->__mlx, fram, cub3d);
-	mlx_loop_hook(cub3d->__mlx, draw_sprite, cub3d);
 	mlx_loop(cub3d->__mlx);
 	o_malloc(0, 1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 19:59:48 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/14 22:10:45 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,8 @@ struct s_cub
 	mlx_image_t		*intro_img;
 	mlx_image_t		*door_img;
 	uint32_t		*pixels;
-	mlx_texture_t	*sprit_text[14];
-	mlx_image_t		*sprite[14];
+	mlx_texture_t	*sprit_text[180];
+	mlx_image_t		*sprite[180];
 	t_parser		*parser;
 	t_map_render	*map;
 	t_player		*player;
@@ -155,6 +155,8 @@ struct s_cub
 	int				texture_y;
 	double			distance;
 	double			scale;
+	bool			animation_flage;
+	int				fram;
 	mlx_image_t	*tp;
 } ;
 

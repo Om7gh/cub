@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 18:29:53 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 22:03:58 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,13 @@ void	key_handler(mlx_key_data_t key, void *param)
 			mlx_terminate(cub->__mlx);
 			exit(0);
 		}
-		if (key.key >= 0 && key.key <= 320)
-		{
-			cub->intro_img = cub->__img;
-		}
 		if (key.key == MLX_KEY_SPACE)
 			open_door(cub);
+		if (key.key == MLX_KEY_R)
+		{
+			cub->fram = 0;
+			cub->animation_flage = 1;
+		}
 	}
 	arrow_handler(key, cub);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:35:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/13 20:29:38 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 22:08:49 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ mlx_image_t	*my_mlx_texture_to_img(t_cub3d *cub, mlx_texture_t *texture)
 	mlx_image_t	*text_to_img;
 
 	text_to_img = mlx_texture_to_image(cub->__mlx, texture);
-	if (!cub->texture_img_no)
+	if (!text_to_img)
 	{
 		printf("Error converting PNG texture to image.\n");
 		mlx_terminate(cub->__mlx);
@@ -54,14 +54,17 @@ mlx_image_t	*my_mlx_texture_to_img(t_cub3d *cub, mlx_texture_t *texture)
 void	load_sprit_texture(t_cub3d *cub)
 {
 	char	*str;
+	char	*tmp;
 	int		i;
 
 	i = 0;
-	while (i < 14)
+	while (i < 180)
 	{
 		str = NULL;
 		str = ft_strjoin(str, "sprite/");
-		str = ft_strjoin(str, ft_itoa(i + 1));
+		tmp = ft_itoa(i + 1);
+		str = ft_strjoin(str, tmp);
+		free(tmp);
 		str = ft_strjoin(str, ".png");
 		cub->sprit_text[i] = my_mlx_load_png(str, cub);
 		i++;
@@ -74,7 +77,7 @@ void	load_sprit_image(t_cub3d *cub)
 
 	load_sprit_texture(cub);
 	i = 0;
-	while (i < 14)
+	while (i < 180)
 	{
 		cub->sprite[i] = my_mlx_texture_to_img(cub, cub->sprit_text[i]);
 		i++;

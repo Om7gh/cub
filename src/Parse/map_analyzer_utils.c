@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:09:03 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 13:55:27 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 23:08:42 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	color_process(char *line, uint32_t *color)
 
 	i = 0;
 	line = ft_strtrim(line, " ");
-	tab = ft_split(line + 3, ',');
+	tab = ft_split(line + 2, ',');
 	while (tab[i])
 	{
 		j = 0;

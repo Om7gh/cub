@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_gsubstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kael-ala <kael-ala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/29 13:11:31 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/28 10:26:10 by omghazi          ###   ########.fr       */
+/*   Created: 2024/09/10 15:05:20 by kael-ala          #+#    #+#             */
+/*   Updated: 2024/09/21 02:50:15 by kael-ala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+char	*ft_freq_substr(char const *s, unsigned int start, size_t len)
 {
-	t_list	*last;
+	char	*new;
+	size_t	i;
 
-	if (!lst)
-		return ;
-	if (!*lst)
-		*lst = new;
-	else
+	i = 0;
+	if (!s)
+		return (NULL);
+	new = o_malloc(sizeof(char) * (len - start + 1), FREQ);
+	while (start + i < len)
 	{
-		last = ft_lstlast(*lst);
-		last->next = new;
-		new->previous = last;
+		new[i] = s[start + i];
+		i++;
 	}
+	return (new[i] = '\0', new);
 }

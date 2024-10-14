@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_gsplit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/05 15:16:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 23:17:24 by omghazi          ###   ########.fr       */
+/*   Created: 2024/09/10 15:04:42 by kael-ala          #+#    #+#             */
+/*   Updated: 2024/09/24 11:44:01 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ static int	count_words(const char *s, int c)
 	return (cnt);
 }
 
+static void	*free_memory(char **strs, int i)
+{
+	while (i--)
+		free(strs[i]);
+	free(strs);
+	strs = NULL;
+	return (NULL);
+}
+
 static char	**split(char **strs, char const *s, char c)
 {
 	int	i;
@@ -49,7 +58,9 @@ static char	**split(char **strs, char const *s, char c)
 			len = 0;
 			while (s[len] && s[len] != c)
 				len++;
-			strs[i] = ft_substr(s, 0, len);
+			strs[i] = ft_freq_substr(s, 0, len);
+			if (!strs[i])
+				return (free_memory(strs, i));
 			s += len;
 			i++;
 		}
@@ -58,12 +69,12 @@ static char	**split(char **strs, char const *s, char c)
 	return (strs);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_freq_split(char const *s, char c)
 {
 	char	**strs;
 
 	if (!s)
 		return (NULL);
-	strs = (char **)o_malloc((count_words(s, c) + 1) * sizeof(char *), 0);
+	strs = o_malloc(sizeof(char *) * ((count_words(s, c) + 1)), FREQ);
 	return (split(strs, s, c));
 }

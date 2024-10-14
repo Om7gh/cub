@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 07:44:58 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/10/09 10:25:51 by omghazi          ###   ########.fr       */
+/*   Created: 2023/11/15 21:00:09 by omghazi           #+#    #+#             */
+/*   Updated: 2024/10/14 23:20:07 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*new;
 	size_t	i;

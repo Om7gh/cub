@@ -6,15 +6,15 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 20:24:06 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:46:49 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# define SCREEN_WIDTH	1080
-# define SCREEN_HEIGHT	720
+# define SCREEN_WIDTH	2000
+# define SCREEN_HEIGHT	1125
 # define T_L	60
 # define ORANGE	0xFFA500FF
 # define BLACK	0x000000FF
@@ -155,6 +155,7 @@ struct s_cub
 	int				texture_y;
 	double			distance;
 	double			scale;
+	mlx_image_t	*tp;
 } ;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:17:48 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 20:04:41 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 10:49:12 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,19 @@ static void	is_map_closed(t_parser *tmp)
 
 void	parse_door(t_parser *parser, int i)
 {
-	if (parser->line[i - 1] == '1')
+	if (parser->line[i + 1] == '1' && parser->line[i - 1] == '1')
 	{
-		if (parser->line[i + 1] != '1')
-			ft_error("Error\nInvalid door");
+		if (parser->prev->line[i] != '1' && parser->next->line[i] != '1')
+			return ;
+		ft_error("Error\nInvalid Door");
 	}
-	else if (parser->prev->line[i] == '1')
+	if (parser->prev->line[i] == '1' && parser->next->line[i] == '1')
 	{
-		if (parser->next->line[i] != '1')
-			ft_error("Error\nInvalid door");
+		if (parser->line[i + 1] != '1' && parser->line[i - 1] != '1')
+			return ;
+		ft_error("Error\nInvalid Door");
 	}
-	else if (parser->line[i + 1] == '1')
-	{
-		if (parser->line[i - 1] != '1')
-			ft_error("Error\nInvalid door");
-	}
-	else if (parser->next->line[i] == '1')
-	{
-		if (parser->prev->line[i] != '1')
-			ft_error("Error\nInvalid door");
-	}
+	ft_error("Error\nInvalid Door");
 }
 
 static void	check_map_character(t_parser *tmp, int i, int *flag, int *door_flag)

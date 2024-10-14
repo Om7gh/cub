@@ -6,7 +6,7 @@
 #    By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 22:06:46 by hbettal           #+#    #+#              #
-#    Updated: 2024/10/13 20:35:48 by omghazi          ###   ########.fr        #
+#    Updated: 2024/10/13 21:28:21 by omghazi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS			= $(SRCS_DIR)main.c $(SRCS_DIR)ft_error.c \
 				$(RAYCASTING_DIR)init_mlx.c $(RAYCASTING_DIR)mlx_event.c \
 				$(RAYCASTING_DIR)render_2d.c $(RAYCASTING_DIR)render_3d.c \
 				$(RAYCASTING_DIR)render_3d_utils.c $(RAYCASTING_DIR)utils.c \
-				$(RAYCASTING_DIR)utils2.c
+				$(RAYCASTING_DIR)utils2.c $(RAYCASTING_DIR)render_3d_utils2.c
 OBJS_DIR		= obj/
 OBJS 			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 INCS_DIR		= includes/

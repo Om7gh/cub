@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/13 20:14:39 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 15:29:58 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	wall_loop(t_vect from, t_vect to, t_cub3d *cub, int x)
 			current_texture = cub->door_img;
 		cub->color = get_texture_pixel(current_texture, \
 			cub->texture_x, cub->texture_y);
-		apply_shadow(&cub->color, cub->distance, 700);
+		// apply_shadow(&cub->color, cub->distance, 700);
 		mlx_put_pixel(cub->__img, x, y, cub->color);
 		y++;
 	}
@@ -90,14 +90,33 @@ void	draw_wall(int x, t_cub3d *cub)
 	else
 		cub->wall_x = cub->rays[x].wall_hit.x / T_L;
 	cub->wall_x -= floor(cub->wall_x);
-	cub->tex_width = cub->texture_img_no->width;
-	cub->tex_height = cub->texture_img_no->height;
+	cub->tex_width = get_texture_width(cub, x);
+	cub->tex_height = get_texture_height(cub, x);
 	cub->texture_x = (int)(cub->wall_x * cub->tex_width) % cub->tex_width;
 	cub->step = (double)cub->tex_height / wall_height;
 	cub->texture_pos = (from.y - (SCREEN_HEIGHT / 2 - wall_height / 2)) \
 		* cub->step;
 	wall_loop(from, to, cub, x);
 	draw_floor_ceil(from, to, cub);
+}
+
+void	my_mlx_image_to_window(t_cub3d *cub)
+{
+	int x;
+	int y;
+
+	y = -1;
+	while (++y < SCREEN_HEIGHT)
+	{
+		x = -1;
+		while (++x < SCREEN_WIDTH)
+		{
+			if (cub->sprite[2]->pixels[y * SCREEN_HEIGHT + x])
+				continue;
+			mlx_put_pixel(cub->__img, x, y, cub->sprite[2]->pixels[y * SCREEN_HEIGHT + x]);
+		}
+		
+	}
 }
 
 void	render_3d(t_cub3d *cub)

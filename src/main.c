@@ -6,11 +6,31 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 18:05:23 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:45:54 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+void ft_clear_image(mlx_image_t *img)
+{
+    uint32_t        i;
+    uint32_t        j;
+    unsigned int    clear;
+    
+    i = 0;
+    clear = 255 << 24 | 255 << 16 | 255 << 8 | 0;
+    while (i < img->height)
+    {
+        j = 0;
+        while (j < img->width)
+        {
+            mlx_put_pixel(img, j, i, clear);
+            j++;
+        }
+        i++;
+    }
+}
 
 void	move_player(t_cub3d *cub)
 {
@@ -44,14 +64,11 @@ void	fram(void *params)
 	t_cub3d	*cub;
 
 	cub = (t_cub3d *)params;
-	if (cub->__img)
-		mlx_delete_image(cub->__mlx, cub->__img);
-	cub->__img = mlx_new_image(cub->__mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	ft_clear_image(cub->__img);
 	move_player(cub);
 	open_door_animation(cub);
 	close_door_animation(cub);
 	render_3d(cub);
-	mlx_image_to_window(cub->__mlx, cub->__img, 0, 0);
 }
 
 void	init_texture(t_cub3d *cub)
@@ -60,7 +77,7 @@ void	init_texture(t_cub3d *cub)
 	mlx_texture_t	*door;
 
 	intro = my_mlx_load_png("intro.png", cub);
-	door = my_mlx_load_png("doot.png", cub);
+	door = my_mlx_load_png("door.png", cub);
 	cub->intro_img = my_mlx_texture_to_img(cub, intro);
 	cub->door_img = my_mlx_texture_to_img(cub, door);
 }
@@ -76,9 +93,41 @@ void	init_data(t_cub3d *cub3d)
 	get_door_info(cub3d, &door);
 	load_sprit_image(cub3d);
 	cub3d->doors = door;
-	render_3d(cub3d);
+	mlx_image_to_window(cub3d->__mlx, cub3d->__img, 0, 0);
 	mlx_key_hook(cub3d->__mlx, key_handler, cub3d);
 	mlx_cursor_hook(cub3d->__mlx, mouse_handler, cub3d);
+}
+
+void	run_animation(t_cub3d *cub, int *flag)
+{
+	static int	fram;
+	static int		i;
+
+	if (fram % 2 == 0)
+	{
+		mlx_delete_image(cub->__mlx, cub->tp);
+		cub->tp = mlx_texture_to_image(cub->__mlx, cub->sprit_text[i]);
+		mlx_image_to_window(cub->__mlx, cub->tp, 0, 0);
+		i++;
+		if (fram == 180)
+		{
+			fram = 0;
+			*flag = 1;
+			return ;
+		}
+	}
+	fram++;
+}
+
+void	draw_sprite(void *p)
+{
+	t_cub3d *cub;
+	int	flag;
+
+	flag = 0;
+	cub = (t_cub3d *)p;
+	if (mlx_is_key_down(cub->__mlx, 75) && !flag)
+		run_animation(cub, &flag);
 }
 
 int	main(int argc, char **argv)
@@ -102,7 +151,10 @@ int	main(int argc, char **argv)
 	cub3d->map->map_info = map_info;
 	cub3d->player = &player;
 	init_data(cub3d);
+	cub3d->tp = mlx_texture_to_image(cub3d->__mlx, cub3d->sprit_text[0]);
+		mlx_image_to_window(cub3d->__mlx, cub3d->tp, 0, 0);
 	mlx_loop_hook(cub3d->__mlx, fram, cub3d);
+	mlx_loop_hook(cub3d->__mlx, draw_sprite, cub3d);
 	mlx_loop(cub3d->__mlx);
 	o_malloc(0, 1);
 	return (0);

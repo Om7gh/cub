@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:44:24 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/13 12:29:38 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/13 21:51:44 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	open_door_animation(t_cub3d *cub)
 	{
 		if (door->is_opening)
 		{
-			door->progress -= 0.015;
+			door->progress -= 0.050;
 			door->timer = get_current_time();
 			if (door->progress <= 0)
 			{

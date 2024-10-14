@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 20:28:39 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 10:58:11 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	mini_map(t_cub3d *cub)
 		{
 			if (cub->map->map[(int)(y / cub->scale / T_L)] \
 			[(int)(x / cub->scale / T_L)] == 1)
-				my_mlx_put_pixel(x, y, ORANGE, cub);
+				my_mlx_put_pixel(x, y, WHITE, cub);
 			else if (cub->map->map[(int)(y / cub->scale / T_L)] \
 			[(int)(x / cub->scale / T_L)] == 3)
 				my_mlx_put_pixel(x, y, RED, cub);

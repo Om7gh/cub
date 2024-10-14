@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 19:45:54 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:50:01 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	run_animation(t_cub3d *cub, int *flag)
 
 	if (fram % 2 == 0)
 	{
+		printf("i = %d\n", i);
 		mlx_delete_image(cub->__mlx, cub->tp);
 		cub->tp = mlx_texture_to_image(cub->__mlx, cub->sprit_text[i]);
 		mlx_image_to_window(cub->__mlx, cub->tp, 0, 0);

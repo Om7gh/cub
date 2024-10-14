@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:35:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/14 22:08:49 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/14 22:34:39 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ mlx_image_t	*my_mlx_texture_to_img(t_cub3d *cub, mlx_texture_t *texture)
 		o_malloc(0, 1);
 		exit(1);
 	}
+	mlx_delete_texture(texture);
 	return (text_to_img);
 }
 

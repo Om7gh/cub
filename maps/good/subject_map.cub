@@ -1,7 +1,7 @@
-NO textures/wolfenstein/grey_stone.xpm
-SO textures/wolfenstein/purple_stone.xpm
-WE textures/wolfenstein/red_brick.xpm
-EA textures/wolfenstein/wood.xpm
+WE wall_texture/fire.png
+NO wall_texture/water.png
+SO wall_texture/earth.png
+EA wall_texture/air.png
 
 F 220,100,0
 C 10,10,10

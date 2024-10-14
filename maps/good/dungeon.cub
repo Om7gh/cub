@@ -1,10 +1,10 @@
 F 100,100,100
 C 60, 60,60
 
-NO textures/simonkraft/cobblestone.xpm
-SO textures/simonkraft/cobblestone_01.xpm
-WE textures/simonkraft/mossy_cobblestone1.xpm
-EA textures/simonkraft/cobblestone_02.xpm
+WE wall_texture/fire.png
+NO wall_texture/water.png
+SO wall_texture/earth.png
+EA wall_texture/air.png
 
 1111111111111111111
 10W1001001001000001

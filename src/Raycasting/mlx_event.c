@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 22:03:58 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/14 22:36:50 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,7 @@ void	key_handler(mlx_key_data_t key, void *param)
 		if (key.key == 321)
 			cub->cursor_hidden = 0;
 		if (key.key == MLX_KEY_ESCAPE)
-		{
-			mlx_close_window(cub->__mlx);
-			mlx_terminate(cub->__mlx);
 			exit(0);
-		}
 		if (key.key == MLX_KEY_SPACE)
 			open_door(cub);
 		if (key.key == MLX_KEY_R)

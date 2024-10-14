@@ -1,7 +1,7 @@
-NO textures/simonkraft/respawn_anchor_side0.xpm
-EA textures/simonkraft/respawn_anchor_side2.xpm
-SO textures/simonkraft/respawn_anchor_side4.xpm
-WE textures/simonkraft/respawn_anchor_side3.xpm
+WE wall_texture/fire.png
+NO wall_texture/water.png
+SO wall_texture/earth.png
+EA wall_texture/air.png
 
 C 35,19,73
 F 15,6,40
@@ -19,4 +19,3 @@ F 15,6,40
 111110000011111
 111111000111111
 111111111111111
-

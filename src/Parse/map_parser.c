@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:17:48 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 10:49:12 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/14 22:45:23 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	parse_door(t_parser *parser, int i)
 	ft_error("Error\nInvalid Door");
 }
 
-static void	check_map_character(t_parser *tmp, int i, int *flag, int *door_flag)
+static void	check_map_character(t_parser *tmp, int i, int *flag)
 {
 	if (tmp->line[i] == '0')
 		check_point_side(tmp, i);
@@ -65,8 +65,6 @@ static void	check_map_character(t_parser *tmp, int i, int *flag, int *door_flag)
 		parse_door(tmp, i);
 	if (player_character(tmp->line[i]))
 		(*flag)++;
-	if (tmp->line[i] == 'D')
-		(*door_flag)++;
 }
 
 static void	check_player_space(t_parser *parser)
@@ -74,22 +72,19 @@ static void	check_player_space(t_parser *parser)
 	t_parser	*tmp;
 	int			i;
 	int			flag;
-	int			door_flag;
 
-	1 && (tmp = parser, flag = 0, door_flag = 0);
+	1 && (tmp = parser, flag = 0);
 	while (tmp)
 	{
 		i = 0;
 		if (tmp->line[0] == '\n')
 			ft_error("Error\nInvalid map");
 		while (tmp->line[++i])
-			check_map_character(tmp, i, &flag, &door_flag);
+			check_map_character(tmp, i, &flag);
 		tmp = tmp->next;
 	}
 	if (flag != 1)
 		ft_error("Error\nPlayer not found or muti player exist");
-	if (door_flag == 0)
-		ft_error("Error\nDoor not found");
 }
 
 void	parse_map(t_parser *parser, t_cub3d *cub3d)

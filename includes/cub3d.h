@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:13:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 21:42:16 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/14 22:39:19 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void			get_door_info(t_cub3d *cub, t_door **door);
 void			load_sprit_image(t_cub3d *cub);
 int				get_texture_height(t_cub3d *cub, int x);
 int				get_texture_width(t_cub3d *cub, int x);
-void	draw_sprite(void *p);
-void	load_sprit_texture(t_cub3d *cub);
+void			load_sprit_texture(t_cub3d *cub);
+void			move_player(t_cub3d *cub);
+void			ft_clear_image(mlx_image_t *img);
 
 #endif

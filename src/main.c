@@ -3,62 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 22:07:01 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/14 22:38:41 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-void ft_clear_image(mlx_image_t *img)
-{
-    uint32_t        i;
-    uint32_t        j;
-    unsigned int    clear;
-    
-    i = 0;
-    clear = 255 << 24 | 255 << 16 | 255 << 8 | 0;
-    while (i < img->height)
-    {
-        j = 0;
-        while (j < img->width)
-        {
-            mlx_put_pixel(img, j, i, clear);
-            j++;
-        }
-        i++;
-    }
-}
-
-void	move_player(t_cub3d *cub)
-{
-	t_vect	next_pos;
-	double	next_angle;
-
-	next_pos.x = cub->player->pos.x + SPEED * \
-	cos(cub->player->angle) * cub->player->walk_direction;
-	next_pos.y = cub->player->pos.y + SPEED * \
-	sin(cub->player->angle) * cub->player->walk_direction;
-	next_angle = cub->player->angle + \
-	ROTATION_SPEED * cub->player->turn_direction;
-	cub->player->angle = next_angle;
-	if (!wall(cub, next_pos.x + 5, next_pos.y) && \
-	!wall(cub, next_pos.x - 5, next_pos.y))
-		cub->player->pos = next_pos;
-	if (cub->player->arrow != 0)
-	{
-		next_pos.x = cub->player->pos.x + SPEED * \
-		cos(cub->player->angle + M_PI / 2) * cub->player->arrow;
-		next_pos.y = cub->player->pos.y + SPEED * \
-		sin(cub->player->angle + M_PI / 2) * cub->player->arrow;
-		if (!wall(cub, next_pos.x + 5, next_pos.y) && \
-		!wall(cub, next_pos.x - 5, next_pos.y))
-			cub->player->pos = next_pos;
-	}
-}
-
 
 void	run_animation(t_cub3d *cub)
 {
@@ -111,13 +63,6 @@ void	init_data(t_cub3d *cub3d)
 	load_sprit_texture(cub3d);
 	cub3d->doors = door;
 	mlx_image_to_window(cub3d->__mlx, cub3d->__img, 0, 0);
-	mlx_key_hook(cub3d->__mlx, key_handler, cub3d);
-	mlx_cursor_hook(cub3d->__mlx, mouse_handler, cub3d);
-}
-
-void	f(void)
-{
-	system("leaks cub3d");
 }
 
 int	main(int argc, char **argv)
@@ -128,7 +73,6 @@ int	main(int argc, char **argv)
 	t_cub3d			*cub3d;
 	t_player		player;
 
-	atexit(f);
 	if (argc != 2)
 		ft_error("Error\nInvalid number of arguments");
 	check_file_extension(argv[1]);
@@ -142,10 +86,9 @@ int	main(int argc, char **argv)
 	cub3d->map->map_info = map_info;
 	cub3d->player = &player;
 	init_data(cub3d);
-	cub3d->tp = mlx_texture_to_image(cub3d->__mlx, cub3d->sprit_text[0]);
-		mlx_image_to_window(cub3d->__mlx, cub3d->tp, 0, 0);
+	mlx_key_hook(cub3d->__mlx, key_handler, cub3d);
+	mlx_cursor_hook(cub3d->__mlx, mouse_handler, cub3d);
 	mlx_loop_hook(cub3d->__mlx, fram, cub3d);
 	mlx_loop(cub3d->__mlx);
-	o_malloc(0, 1);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:29:14 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 20:29:45 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/24 17:41:15 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,41 @@ void	get_delta_time(double *last_time, t_cub3d *cub)
 	current_time = get_current_time();
 	cub->delta_time = current_time - *last_time;
 	*last_time = current_time;
+}
+
+static long	no_overflow(int sign, unsigned long long n, int count)
+{
+	if ((n > INT_MAX || count > 10) && sign == -1)
+		ft_error("invalid color\n");
+	if ((n > INT_MAX || count > 10) && sign == 1)
+		ft_error("invalid color\n");
+	return (n * sign);
+}
+
+long	ft_atoi(const char *str)
+{
+	int		i;
+	int		count;
+	int		sign;
+	long	n;
+
+	i = 0;
+	count = 0;
+	sign = 1;
+	n = 0;
+	if (str[i] == '-' || str[i] == '+')
+		if (str[i++] == '-')
+			sign *= -1;
+	if (str[i] == '\0' || str[i] < '0' || str[i] > '9')
+		(write(2, "Error\n", 6), exit(1));
+	while (str[i] == '0')
+		i++;
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			(write(2, "Error\n", 6), exit(1));
+		n = (n * 10) + (str[i++] - '0');
+		count++;
+	}
+	return (no_overflow(sign, n, count));
 }

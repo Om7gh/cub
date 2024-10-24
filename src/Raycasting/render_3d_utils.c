@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:13:46 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/24 15:39:28 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/24 17:26:00 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ void	check_texture_angle(t_cub3d *cub, int x, mlx_image_t **current_texture)
 {
 	if (cub->rays[x].hit_ver && cub->rays[x].rayangle <= 1.5 * M_PI \
 		&& cub->rays[x].rayangle >= 0.5 * M_PI)
-		*current_texture = cub->texture_img_ea;
+		*current_texture = cub->texture_img_we;
 	else if (cub->rays[x].hit_ver && !(cub->rays[x].rayangle <= 1.5 \
 		* M_PI && cub->rays[x].rayangle >= 0.5 * M_PI))
-		*current_texture = cub->texture_img_we;
+		*current_texture = cub->texture_img_ea;
 	else if (!cub->rays[x].hit_ver && (cub->rays[x].rayangle >= 0 \
 		&& cub->rays[x].rayangle <= M_PI))
 		*current_texture = cub->texture_img_so;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 21:27:06 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 21:28:44 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/24 17:33:16 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	get_texture_height(t_cub3d *cub, int x)
 			height = cub->texture_img_so->height;
 		else if (cub->rays[x].hit_ver && cub->rays[x].rayangle <= 1.5 * M_PI \
 		&& cub->rays[x].rayangle >= 0.5 * M_PI)
-			height = cub->texture_img_ea->height;
-		else
 			height = cub->texture_img_we->height;
+		else
+			height = cub->texture_img_ea->height;
 	}
 	return (height);
 }
@@ -51,9 +51,9 @@ int	get_texture_width(t_cub3d *cub, int x)
 			width = cub->texture_img_so->width;
 		else if (cub->rays[x].hit_ver && cub->rays[x].rayangle <= 1.5 * M_PI \
 		&& cub->rays[x].rayangle >= 0.5 * M_PI)
-			width = cub->texture_img_ea->width;
-		else
 			width = cub->texture_img_we->width;
+		else
+			width = cub->texture_img_ea->width;
 	}
 	return (width);
 }

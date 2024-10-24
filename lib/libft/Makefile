@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+         #
+#    By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/14 00:47:15 by omghazi           #+#    #+#              #
-#    Updated: 2024/10/14 23:16:08 by omghazi          ###   ########.fr        #
+#    Updated: 2024/10/24 17:43:15 by hbettal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ SRC = ft_memset.c		\
 		ft_strncmp.c	\
 		ft_strlcpy.c	\
 		ft_strlcat.c	\
-		ft_atoi.c		\
 		ft_memcmp.c		\
 		ft_strnstr.c	\
 		ft_strdup.c		\

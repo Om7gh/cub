@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:13:22 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/21 14:17:11 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/24 12:42:41 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,24 @@ void	move_player(t_cub3d *cub)
 	t_vect	next_pos;
 	double	next_angle;
 
-	next_pos.x = cub->player->pos.x + SPEED * cos(cub->player->angle) * cub->player->walk_direction;
-	next_pos.y = cub->player->pos.y + SPEED * sin(cub->player->angle) * cub->player->walk_direction;
-	next_angle = cub->player->angle + ROTATION_SPEED * cub->player->turn_direction;
+	next_pos.x = cub->player->pos.x + SPEED * \
+	cos(cub->player->angle) * cub->player->walk_direction;
+	next_pos.y = cub->player->pos.y + SPEED * \
+	sin(cub->player->angle) * cub->player->walk_direction;
+	next_angle = cub->player->angle + ROTATION_SPEED * \
+	cub->player->turn_direction;
 	cub->player->angle = next_angle;
-	if (!wall(cub, next_pos.x + 5, next_pos.y) && !wall(cub, next_pos.x - 5, next_pos.y))
+	if (!wall(cub, next_pos.x + 5, next_pos.y) && \
+	!wall(cub, next_pos.x - 5, next_pos.y))
 		cub->player->pos = next_pos;
 	if (cub->player->arrow != 0)
 	{
-		next_pos.x = cub->player->pos.x + SPEED * cos(cub->player->angle + M_PI / 2) * cub->player->arrow;
-		next_pos.y = cub->player->pos.y + SPEED * sin(cub->player->angle + M_PI / 2) * cub->player->arrow;
-		if (!wall(cub, next_pos.x + 5, next_pos.y) && !wall(cub, next_pos.x - 5, next_pos.y))
+		next_pos.x = cub->player->pos.x + SPEED * \
+		cos(cub->player->angle + M_PI / 2) * cub->player->arrow;
+		next_pos.y = cub->player->pos.y + SPEED * \
+		sin(cub->player->angle + M_PI / 2) * cub->player->arrow;
+		if (!wall(cub, next_pos.x + 5, next_pos.y) && \
+		!wall(cub, next_pos.x - 5, next_pos.y))
 			cub->player->pos = next_pos;
 	}
 }

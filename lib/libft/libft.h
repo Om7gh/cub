@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 04:08:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 23:21:08 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/24 13:33:37 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_collector
 	void				*addr;
 }	t_collector;
 
-int			ft_atoi(const char *str);
+long		ft_atoi(const char *str);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);
@@ -55,7 +55,6 @@ int			ft_tolower(int c);
 int			ft_strncmp(const char *s1, const char *s2, int n);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_lstsize(t_list *lst);
-int			num_sign(const char **s);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
 char		*ft_strnstr(const char *haystack, const char *needle, size_t len);

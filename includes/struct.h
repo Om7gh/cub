@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/23 20:10:29 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/24 13:08:46 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 # define SCREEN_WIDTH	1080
 # define SCREEN_HEIGHT	608
-# define T_L	60
+# define T_L	120
 # define ORANGE	0xFFA500FF
 # define BLACK	0x000000FF
 # define WHITE	0xFFFFFFFF
 # define RED	0xFF0000FF
-# define SPEED 5
-# define ROTATION_SPEED 0.05
+# define SPEED 6
+# define ROTATION_SPEED 0.07
 
 /***********  STRUCT TYPEDEF  **********/
 typedef struct s_map_info		t_map_info;

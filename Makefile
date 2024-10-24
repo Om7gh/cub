@@ -6,7 +6,7 @@
 #    By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 22:06:46 by hbettal           #+#    #+#              #
-#    Updated: 2024/10/14 22:33:16 by omghazi          ###   ########.fr        #
+#    Updated: 2024/10/21 09:27:03 by omghazi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ LIBFT_DIR		= lib/libft/
 LIBFT			= $(LIBFT_DIR)libft.a
 CFLAGS			= -I$(INCS_DIR) -I$(LIBFT_DIR) 
 CFLAGS			+= -Wall -Werror -Wextra -g #-fsanitize=address
-NAME			= cub3d
+NAME			= cub3D
 RM			= rm -rf
 ERASE			= \033[2K\r
 BLUE			= \033[34m

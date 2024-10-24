@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:18:37 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 17:27:19 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/18 14:32:12 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	first_line_process(t_parser *parser)
 				o_malloc(0, 1);
 				ft_error("\nError\nInvalid map data");
 			}
-			(o_malloc(0, 1), ft_error("Error\nMap is not closed"));
+			(o_malloc(0, 1), ft_error("Error1\nMap is not closed"));
 		}
 		i++;
 	}
@@ -66,7 +66,7 @@ void	last_line_process(t_parser *parser)
 				o_malloc(0, 1);
 				ft_error("\nError\nInvalid map data");
 			}
-			(o_malloc(0, 1), ft_error("Error\nMap is not closed"));
+			(o_malloc(0, 1), ft_error("Error2\nMap is not closed"));
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:18:31 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 20:28:20 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/18 14:29:11 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	fill_row(t_parser *tmp, t_cub3d *cub, int i, int *j)
 {
 	if (tmp->line[*j] == '1')
+		cub->map->map[i][*j] = 1;
+	else if (tmp->line[*j] == ' ')
 		cub->map->map[i][*j] = 1;
 	else if (tmp->line[*j] == 'D')
 		cub->map->map[i][*j] = 3;

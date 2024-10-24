@@ -3,7 +3,7 @@ NO wall_texture/water.png
 SO wall_texture/earth.png
 EA wall_texture/air.png
 
-F 0,169,20
+F 0,169,1
 C 153,204,255
 
 111111111111111111111

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MLX42.h                                            :+:      :+:    :+:   */
+/*   .MLX42.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 02:29:06 by W2Wizard          #+#    #+#             */
-/*   Updated: 2024/10/04 12:57:46 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/23 15:08:51 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,7 +262,7 @@ typedef enum keys
  * @param bytes_per_pixel The amount of bytes in a pixel, always 4.
  */
 
-typedef struct mlx_texture
+typedef struct mlx_texture 
 {
 	uint32_t	width;
 	uint32_t	height;

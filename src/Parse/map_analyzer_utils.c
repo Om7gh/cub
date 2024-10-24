@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:09:03 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 23:08:42 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/21 10:11:35 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ char	*add_texture_path(char *line, int *checker)
 	return (texture);
 }
 
+void	check_color_process(char *splited_line)
+{
+	int	i;
+
+	i = 0;
+	while (ft_isdigit(splited_line[i]) || splited_line[i] == ' ')
+		i++;
+	if (splited_line[i] != '\0')
+		ft_error("Error\nInvalid color");
+}
+
 int	color_process(char *line, uint32_t *color)
 {
 	char	**tab;
@@ -40,7 +51,11 @@ int	color_process(char *line, uint32_t *color)
 	while (tab[i])
 	{
 		j = 0;
+		tab[i] = ft_strtrim(tab[i], "\n");
 		tab[i] = ft_strtrim(tab[i], " ");
+		if (ft_strlen(tab[i]) == 0 || tab[i][0] == '\0')
+			ft_error("Error\nInvalid Color");
+		check_color_process(tab[i]);
 		color[i] = ft_atoi(tab[i]);
 		if (color[i] < 0 || color[i] > 255)
 			return (0);

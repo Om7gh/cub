@@ -6,11 +6,25 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:08:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/13 20:01:44 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/21 10:03:14 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>      
+#include <cub3d.h>
+
+int	check_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\n')
+		i++;
+	if (line[i] == '\0')
+		return (0);
+	else
+		ft_error("Invalid map Data");
+	return (1);
+}
 
 void	check_map_data(char *line, int *checker, t_map_info *map_info)
 {
@@ -34,6 +48,10 @@ void	check_map_data(char *line, int *checker, t_map_info *map_info)
 			ft_error("Error\nInvalid color");
 		(*checker)++;
 	}
+	else if (!check_line(line))
+		return ;
+	else
+		ft_error("Invalid map data");
 }
 
 int	check_extra_info(char *line)

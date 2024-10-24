@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:17:48 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/14 22:45:23 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/21 10:14:37 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ static void	is_map_closed(t_parser *tmp)
 {
 	int	i;
 
-	while (tmp->next)
+	while (tmp && tmp->next)
 	{
 		i = 1;
 		while (tmp->line[i])
 		{
 			if ((tmp->line[0] != '1' || tmp->line[0] != ' ') \
-				&& tmp->line[tmp->max - 1] != '1')
-				(o_malloc(0, 1), ft_error("Error\nMap is not closed"));
+				&& (tmp->line[tmp->max - 1] != '1' \
+					&& tmp->line[tmp->max - 1] != ' '))
+				ft_error("Error\nMap is not closed");
 			if (tmp->line[i] == '0')
 				check_point_side(tmp, i);
 			if (tmp->line[i] != '0' && !player_character(tmp->line[i]) \

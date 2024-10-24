@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:13:46 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/21 10:14:05 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/24 15:29:16 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	apply_shadow(uint32_t *color, double distance, double max_distance)
 	r *= intensity;
 	g *= intensity;
 	b *= intensity;
-	*color = (r << 24) | (g << 16) | (b << 8) | 150;
+	*color = (r << 24) | (g << 16) | (b << 8) | 0xff;
 }
 
 uint32_t	get_texture_pixel(mlx_image_t *texture, int x, int y)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:13:22 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/24 12:42:41 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/24 15:37:26 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 
 void	ft_error(char *str)
 {
+	int	i;
+
+	i = 3;
+	while (i <= 10200)
+	{
+		if (close(i) == -1)
+			break ;
+		i++;
+	}
 	ft_putendl_fd(str, 2);
 	o_malloc(0, 1);
 	exit(1);

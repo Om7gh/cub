@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:29:14 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/24 17:41:15 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/27 18:00:14 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ long	ft_atoi(const char *str)
 		if (str[i++] == '-')
 			sign *= -1;
 	if (str[i] == '\0' || str[i] < '0' || str[i] > '9')
-		(write(2, "Error\n", 6), exit(1));
+		ft_error("Error");
 	while (str[i] == '0')
 		i++;
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
-			(write(2, "Error\n", 6), exit(1));
+			ft_error("Error");
 		n = (n * 10) + (str[i++] - '0');
 		count++;
 	}

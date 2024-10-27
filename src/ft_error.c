@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:13:22 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/24 17:40:56 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/27 18:12:12 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+void	close_files( void )
+{
+	int	i;
+
+	i = 3;
+	while (i <= 10200)
+	{
+		if (close(i) == -1)
+			return ;
+		i++;
+	}
+}
 
 void	ft_error(char *str)
 {

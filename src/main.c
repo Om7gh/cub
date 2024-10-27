@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/24 17:45:41 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/10/26 16:52:38 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,8 @@ void	init_data(t_cub3d *cub3d)
 	mlx_image_to_window(cub3d->__mlx, cub3d->__img, 0, 0);
 }
 
-void	f(void)
-{
-	system("leaks cub3D");
-	system("lsof -c cub3D");
-}
-
 int	main(int argc, char **argv)
 {
-	atexit(f);
 	t_parser		*parser;
 	t_map_info		*map_info;
 	t_map_render	*map;

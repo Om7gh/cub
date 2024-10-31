@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 23:26:42 by kael-ala          #+#    #+#             */
-/*   Updated: 2024/10/14 23:13:38 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/31 16:24:54 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void	*o_malloc(size_t size, int flag)
 		if (!addr)
 		{
 			collect_address(&garbage);
-			return (NULL);
+			exit (0);
 		}
 		new = new_addr(addr);
 		if (!new)
 		{
 			collect_address(&garbage);
-			return (NULL);
+			exit (0);
 		}
 		append_address(&garbage, new);
 		return (addr);

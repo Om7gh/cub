@@ -6,39 +6,40 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:17:48 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/21 10:14:37 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/31 16:22:14 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static void	is_map_closed(t_parser *tmp)
+static t_parser	*is_map_closed(t_parser *tmp)
 {
 	int	i;
 
-	while (tmp && tmp->next)
+	while (tmp && (tmp)->next)
 	{
 		i = 1;
-		while (tmp->line[i])
+		while ((tmp)->line[i])
 		{
-			if ((tmp->line[0] != '1' || tmp->line[0] != ' ') \
-				&& (tmp->line[tmp->max - 1] != '1' \
-					&& tmp->line[tmp->max - 1] != ' '))
+			if (((tmp)->line[0] != '1' || (tmp)->line[0] != ' ') \
+				&& ((tmp)->line[(tmp)->max - 1] != '1' \
+					&& (tmp)->line[(tmp)->max - 1] != ' '))
 				ft_error("Error\nMap is not closed");
-			if (tmp->line[i] == '0')
-				check_point_side(tmp, i);
-			if (tmp->line[i] != '0' && !player_character(tmp->line[i]) \
-				&& !wall_character(tmp->line[i]) && \
-				tmp->line[i] != 'D')
+			if ((tmp)->line[i] == '0')
+				check_point_side((tmp), i);
+			if ((tmp)->line[i] != '0' && !player_character((tmp)->line[i]) \
+				&& !wall_character((tmp)->line[i]) && \
+				(tmp)->line[i] != 'D')
 			{
 				ft_putstr_fd("invalid character in map `", 2);
-				ft_putchar_fd(tmp->line[i], 2);
+				ft_putchar_fd((tmp)->line[i], 2);
 				ft_error("\nError\nInvalid map data");
 			}
 			i++;
 		}
-		tmp = tmp->next;
+		(tmp) = (tmp)->next;
 	}
+	return (tmp);
 }
 
 void	parse_door(t_parser *parser, int i)
@@ -94,7 +95,7 @@ void	parse_map(t_parser *parser, t_cub3d *cub3d)
 
 	first_line_process(parser);
 	tmp = parser;
-	is_map_closed(tmp->next);
+	tmp = is_map_closed(tmp->next);
 	last_line_process(tmp);
 	check_player_space(parser);
 	cub3d->max_width = get_max_width(parser);

@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:18:37 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/18 14:32:12 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/10/31 16:23:19 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	first_line_process(t_parser *parser)
 	if (!parser || !parser->line)
 		ft_error("Error\nMap is empty");
 	tmp = parser;
-	while (tmp->line[i] && tmp->line[i] != '\n')
+	while (tmp && tmp->line[i] && tmp->line[i] != '\n')
 	{
 		if (!wall_character(tmp->line[i]))
 		{
@@ -55,7 +55,7 @@ void	last_line_process(t_parser *parser)
 
 	i = 0;
 	tmp = parser;
-	while (tmp->line[i] && tmp->line[i] != '\n')
+	while (tmp && tmp->line[i] && tmp->line[i] != '\n')
 	{
 		if (!wall_character(tmp->line[i]))
 		{

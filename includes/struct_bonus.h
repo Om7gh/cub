@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:04:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 18:04:57 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 21:04:26 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ struct	s_vect
 struct	s_player
 {
 	t_vect	pos;
-	int		prev_x;
 	double	angle;
 	int		arrow;
 	int		walk_direction;
@@ -137,7 +136,6 @@ struct s_cub
 	t_door			*doors;
 	double			delta_time;
 	int				hit_content_h;
-	int				hit_enemie;
 	int				hit_content_v;
 	int				max_width;
 	int				max_height;
@@ -155,7 +153,6 @@ struct s_cub
 	int				texture_x;
 	int				texture_y;
 	double			distance;
-	double			scale;
 	bool			animation_flage;
 	int				fram;
 } ;

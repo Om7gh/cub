@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:35:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/11/01 18:04:17 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 21:03:41 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d_bonus.h>
-
-void	get_minimap_scale(t_cub3d *cub)
-{
-	double	scale;
-
-	if (cub->screen_height > cub->screen_width)
-		scale = (float)200 / (float)(cub->screen_height);
-	else
-		scale = (float)200 / (float)(cub->screen_width);
-	cub->scale = scale;
-}
 
 mlx_texture_t	*my_mlx_load_png( const char *path, t_cub3d *cub)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:02:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 18:15:20 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 21:03:49 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ size_t			get_current_time(void);
 void			open_door_animation(t_cub3d *cub);
 void			close_door_animation(t_cub3d *cub);
 void			open_door(t_cub3d *cub);
-void			get_minimap_scale(t_cub3d *cub);
-// void			draw_rays(t_cub3d *cub);
 long			ft_atoi(const char *str);
 
 /* FUNCTIONS */

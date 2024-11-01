@@ -6,11 +6,11 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:29:14 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 15:46:52 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:04:21 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
 
 void	my_mlx_put_pixel(double x, double y, int color, t_cub3d *cub)
 {

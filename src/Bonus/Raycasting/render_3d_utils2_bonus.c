@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_3d_utils2.c                                 :+:      :+:    :+:   */
+/*   render_3d_utils2_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 21:27:06 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/24 17:33:16 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:04:10 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
 
 int	get_texture_height(t_cub3d *cub, int x)
 {

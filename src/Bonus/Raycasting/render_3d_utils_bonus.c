@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:13:46 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 17:22:28 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:04:06 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
 
 int	get_color(t_map_info *map, char c)
 {

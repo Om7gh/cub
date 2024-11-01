@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   struct_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 18:12:39 by omghazi          ###   ########.fr       */
+/*   Created: 2024/11/01 18:04:40 by omghazi           #+#    #+#             */
+/*   Updated: 2024/11/01 18:04:57 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#ifndef STRUCT_BONUS_H
+# define STRUCT_BONUS_H
 
 # define SCREEN_WIDTH	1080
 # define SCREEN_HEIGHT	608
@@ -31,6 +31,10 @@ typedef struct s_vect			t_vect;
 typedef struct s_player			t_player;
 typedef struct s_cub			t_cub3d;
 typedef struct s_ray			t_ray;
+typedef struct s_door			t_door;
+typedef struct s_enemie			t_enemie;
+typedef struct s_sprite			t_sprite;
+typedef struct s_sprite_render	t_sprite_render;
 
 /***********  STRUCT PARSING  **********/
 struct s_parser
@@ -73,11 +77,25 @@ struct	s_vect
 struct	s_player
 {
 	t_vect	pos;
+	int		prev_x;
 	double	angle;
 	int		arrow;
 	int		walk_direction;
 	int		turn_direction;	
 	char	player_character;
+} ;
+
+struct s_door
+{
+	int		x;
+	int		y;
+	size_t	timer;
+	bool	is_open;
+	bool	is_opening;
+	bool	is_closing;
+	bool	is_facingx;
+	double	progress;
+	t_door	*next;
 } ;
 
 /***********  PROJECT GOLABL STRUCT  **********/
@@ -99,19 +117,27 @@ struct s_cub
 	mlx_texture_t	*texture_ea;
 	mlx_texture_t	*texture_we;
 	mlx_texture_t	*intro;
+	mlx_texture_t	*door_texture;
 	mlx_image_t		*texture_img_no;
 	mlx_image_t		*texture_img_so;
 	mlx_image_t		*texture_img_ea;
 	mlx_image_t		*texture_img_we;
 	mlx_image_t		*intro_img;
+	mlx_image_t		*door_img;
 	uint32_t		*pixels;
+	mlx_texture_t	*sprit_text[180];
+	mlx_image_t		*sprite[180];
+	mlx_image_t		*tp;
 	t_parser		*parser;
 	t_map_render	*map;
 	t_player		*player;
 	t_vect			*h_ray;
 	t_vect			*v_ray;
 	t_ray			*rays;
+	t_door			*doors;
+	double			delta_time;
 	int				hit_content_h;
+	int				hit_enemie;
 	int				hit_content_v;
 	int				max_width;
 	int				max_height;
@@ -125,9 +151,13 @@ struct s_cub
 	double			step;
 	uint32_t		color;
 	double			fov;
+	bool			cursor_hidden;
 	int				texture_x;
 	int				texture_y;
 	double			distance;
+	double			scale;
+	bool			animation_flage;
+	int				fram;
 } ;
 
 #endif

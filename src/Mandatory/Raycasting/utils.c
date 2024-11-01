@@ -6,22 +6,11 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:35:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/31 22:20:35 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:13:55 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-void	get_minimap_scale(t_cub3d *cub)
-{
-	double	scale;
-
-	if (cub->screen_height > cub->screen_width)
-		scale = (float)200 / (float)(cub->screen_height);
-	else
-		scale = (float)200 / (float)(cub->screen_width);
-	cub->scale = scale;
-}
 
 mlx_texture_t	*my_mlx_load_png( const char *path, t_cub3d *cub)
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+         #
+#    By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 22:06:46 by hbettal           #+#    #+#              #
-#    Updated: 2024/11/01 17:13:51 by hbettal          ###   ########.fr        #
+#    Updated: 2024/11/01 18:07:51 by omghazi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,11 +42,12 @@ OBJSB_DIR		= obj/bonus/
 OBJS 			= $(addprefix $(OBJS_DIR), $(SRCS_MANADTORY:.c=.o))
 OBJSB 			= $(addprefix $(OBJSB_DIR), $(SRCS_BONUS:.c=.o))
 INCS_DIR		= includes/
-INCS			= $(INCS_DIR)cub3d.h $(INCS_DIR)struct.h $(INCS_DIR).MLX42.h
+INCS_MANDATORY		= $(INCS_DIR)cub3d.h $(INCS_DIR)struct.h $(INCS_DIR).MLX42.h
+INCS_BONUS		= $(INCS_DIR)cub3d_bonus.h $(INCS_DIR)struct_bonus.h $(INCS_DIR).MLX42.h
 LIBFT_DIR		= lib/libft/
 LIBFT			= $(LIBFT_DIR)libft.a
 CFLAGS			= -I$(INCS_DIR) -I$(LIBFT_DIR) 
-CFLAGS			+= -Wall -Werror -Wextra -g
+CFLAGS			+= -Wall -Werror -Wextra -O3
 NAME			= cub3D
 NAME_BONUS		= cub3D_bonus
 RM			= rm -rf
@@ -83,12 +84,12 @@ $(NAME_BONUS) : $(OBJSB) $(LIBFT)
 	printf "$(ERASE)$(GREEN)$@ made\n$(END)"
 	$(PRINT_BANNER)
 
-$(OBJS_DIR)%.o : %.c $(INCS)
+$(OBJS_DIR)%.o : %.c $(INCS_MANDATORY)
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@	
 	printf "$(ERASE)$(BLUE) > Compilation :$(END) $<"
 
-$(OBJSB_DIR)%.o : %.c $(INCS)
+$(OBJSB_DIR)%.o : %.c $(INCS_BONUS)
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@	
 	printf "$(ERASE)$(BLUE) > Compilation :$(END) $<"
@@ -101,6 +102,7 @@ clean :
 	$(RM) $(OBJS_DIR)
 	printf "$(YELLOW)$(OBJSB_DIR) removed$(END)\n"
 	$(RM) $(OBJSB_DIR)
+	$(RM) obj
 
 fclean : clean
 	printf "$(YELLOW)$(NAME) removed$(END)\n"

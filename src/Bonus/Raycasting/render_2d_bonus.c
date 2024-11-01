@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_2d_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 16:31:15 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:03:58 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
 
 t_vect	first_horizontal_touch(t_cub3d *cub, double angle, t_vect *step)
 {

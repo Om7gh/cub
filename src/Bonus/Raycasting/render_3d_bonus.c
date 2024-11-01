@@ -6,11 +6,11 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/11/01 15:37:51 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:04:02 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
 
 void	calcule_close_ray(t_cub3d *cub, t_vect vcheck, t_vect hcheck, int x)
 {

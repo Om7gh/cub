@@ -6,11 +6,11 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 15:47:29 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:03:54 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
 
 int	wall(t_cub3d *cub, double x, double y)
 {
@@ -97,9 +97,10 @@ void	mouse_handler(double xpos, double ypos, void *param)
 	(void)ypos;
 	cub = (t_cub3d *)param;
 	mlx_set_cursor_mode(cub->__mlx, MLX_MOUSE_HIDDEN);
-	if (cub->cursor_hidden && cub->player->prev_x > xpos)
-		cub->player->angle -= fabs(cub->player->prev_x - xpos) * 0.004;
-	else if (cub->cursor_hidden && cub->player->prev_x < xpos)
-		cub->player->angle += fabs(cub->player->prev_x - xpos) * 0.004;
-	cub->player->prev_x = xpos;
+	if (cub->cursor_hidden == 1)
+		mlx_set_mouse_pos(cub->__mlx, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	if (cub->cursor_hidden && SCREEN_WIDTH / 2 > xpos)
+		cub->player->angle -= fabs(SCREEN_WIDTH / 2 - xpos) * 0.004;
+	else if (cub->cursor_hidden && SCREEN_WIDTH / 2 < xpos)
+		cub->player->angle += fabs(SCREEN_WIDTH / 2 - xpos) * 0.004;
 }

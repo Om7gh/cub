@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 15:04:43 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:12:50 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void	init_texture(t_cub3d *cub)
 
 void	init_data(t_cub3d *cub3d)
 {
-	t_door			*door;
-
-	door = NULL;
 	init_settings(cub3d);
 	init_texture(cub3d);
 	init_wall_texture(cub3d);

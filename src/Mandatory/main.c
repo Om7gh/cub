@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:12:56 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/31 22:30:58 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 15:04:43 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,21 @@ void	fram(void *params)
 	render_3d(cub);
 }
 
+void	init_texture(t_cub3d *cub)
+{
+	mlx_texture_t	*intro;
+
+	intro = my_mlx_load_png("intro.png", cub);
+	cub->intro_img = my_mlx_texture_to_img(cub, intro);
+}
+
 void	init_data(t_cub3d *cub3d)
 {
 	t_door			*door;
 
 	door = NULL;
 	init_settings(cub3d);
+	init_texture(cub3d);
 	init_wall_texture(cub3d);
 	mlx_image_to_window(cub3d->__mlx, cub3d->__img, 0, 0);
 }

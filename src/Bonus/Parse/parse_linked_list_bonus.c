@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_linked_list.c                                :+:      :+:    :+:   */
+/*   parse_linked_list_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:06:04 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/09 10:07:30 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:47:03 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
 
 t_parser	*new_parser_node(char *line, int min, int max)
 {

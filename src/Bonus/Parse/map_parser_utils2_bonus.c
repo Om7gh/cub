@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser_utils2.c                                :+:      :+:    :+:   */
+/*   map_parser_utils2_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:18:31 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/18 14:29:11 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:47:00 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
 
 void	fill_row(t_parser *tmp, t_cub3d *cub, int i, int *j)
 {

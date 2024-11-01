@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_analyzer_utils.c                               :+:      :+:    :+:   */
+/*   map_analyzer_utils_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:09:03 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/21 10:11:35 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:46:46 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
 
 void	insert_node(int *flag, t_parser *node, t_parser **parser, char *line)
 {

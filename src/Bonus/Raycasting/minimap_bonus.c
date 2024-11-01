@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:31:14 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 17:07:30 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:47:11 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3d_bonus.h>
 
 void	put_pixel_map(int x, int y, int color, t_cub3d *cub)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_event_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 10:15:02 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 18:03:54 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:56:34 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	key_handler(mlx_key_data_t key, void *param)
 	cub = (t_cub3d *)param;
 	if (key.action != MLX_RELEASE)
 	{
-		if (key.key == 320)
+		if (key.key == MLX_KEY_KP_0 || key.key == MLX_KEY_0)
 			cub->cursor_hidden = 1;
-		if (key.key == 321)
+		if (key.key == MLX_KEY_KP_1 || key.key == MLX_KEY_1)
 			cub->cursor_hidden = 0;
 		if (key.key == MLX_KEY_ESCAPE)
 		{

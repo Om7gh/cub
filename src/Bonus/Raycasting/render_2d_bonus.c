@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_2d_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 20:56:34 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 18:03:58 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 19:01:19 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,28 +98,4 @@ void	find_vertical_intersx(t_cub3d *cub, double angle, t_vect *check)
 	}
 	check->x = next_touch.x;
 	check->y = next_touch.y;
-}
-
-void	mini_map(t_cub3d *cub)
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < cub->screen_height * cub->scale)
-	{
-		x = -1;
-		while (++x < cub->screen_width * cub->scale)
-		{
-			if (cub->map->map[(int)(y / cub->scale / T_L)] \
-			[(int)(x / cub->scale / T_L)] == 1)
-				my_mlx_put_pixel(x, y, WHITE, cub);
-			else if (cub->map->map[(int)(y / cub->scale / T_L)] \
-			[(int)(x / cub->scale / T_L)] == 3)
-				my_mlx_put_pixel(x, y, ORANGE, cub);
-			else
-				my_mlx_put_pixel(x, y, BLACK, cub);
-		}
-	}
-	// draw_rays(cub);
 }

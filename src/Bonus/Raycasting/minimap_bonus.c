@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:31:14 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 18:47:11 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 19:03:04 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,27 @@ void	draw_player(t_cub3d *cub)
 	}
 }
 
+void	mini_map_background(t_cub3d *cub)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y <= 150)
+	{
+		x = -1;
+		while (++x <= 150)
+			put_pixel_map(x, y, 0x000000FF, cub);
+	}
+}
+
 void	render_minimap(t_cub3d *cub)
 {
 	int	x;
 	int	y;
 
 	y = -1;
+	mini_map_background(cub);
 	while (++y < cub->screen_height / 4)
 	{
 		x = -1;

@@ -6,7 +6,7 @@
 #    By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 22:06:46 by hbettal           #+#    #+#              #
-#    Updated: 2024/11/01 15:41:18 by omghazi          ###   ########.fr        #
+#    Updated: 2024/11/01 15:51:01 by omghazi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,6 +107,7 @@ fclean : clean
 	printf "$(YELLOW)$(LIBFT) removed$(END)\n"
 	make fclean -C $(LIBFT_DIR)
 	$(RM) $(NAME)
+	$(RM) $(NAME_BONUS)
 
 re : fclean all
 

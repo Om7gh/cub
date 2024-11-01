@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:13:42 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/27 18:12:17 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 15:36:55 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ void			load_sprit_texture(t_cub3d *cub);
 void			move_player(t_cub3d *cub);
 void			ft_clear_image(mlx_image_t *img);
 void			close_files( void );
+void			render_minimap(t_cub3d *cube);
 
 #endif

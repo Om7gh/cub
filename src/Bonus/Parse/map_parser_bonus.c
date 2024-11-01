@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   map_parser_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:17:48 by omghazi           #+#    #+#             */
-/*   Updated: 2024/10/31 16:29:50 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 15:41:27 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static t_parser	*is_map_closed(t_parser *tmp)
 		i = 0;
 		while ((tmp)->line[++i])
 		{
-			printf("%d ", i);
 			if (((tmp)->line[0] != '1' || (tmp)->line[0] != ' ') \
 				&& ((tmp)->line[(tmp)->max - 1] != '1' \
 					&& (tmp)->line[(tmp)->max - 1] != ' '))
@@ -37,7 +36,6 @@ static t_parser	*is_map_closed(t_parser *tmp)
 				ft_error("\nError\nInvalid map data");
 			}
 		}
-		puts("");
 		(tmp) = (tmp)->next;
 	}
 	return (tmp);

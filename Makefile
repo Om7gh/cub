@@ -6,7 +6,7 @@
 #    By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 22:06:46 by hbettal           #+#    #+#              #
-#    Updated: 2024/10/31 22:25:19 by omghazi          ###   ########.fr        #
+#    Updated: 2024/11/01 15:41:18 by omghazi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ SRCS_BONUS		= $(SRCSB_DIR)main_bonus.c $(SRCSB_DIR)ft_error_bonus.c \
 			$(RAYCASTING_BONUS_DIR)init_mlx_bonus.c $(RAYCASTING_BONUS_DIR)mlx_event_bonus.c \
 			$(RAYCASTING_BONUS_DIR)render_2d_bonus.c $(RAYCASTING_BONUS_DIR)render_3d_bonus.c \
 			$(RAYCASTING_BONUS_DIR)render_3d_utils_bonus.c $(RAYCASTING_BONUS_DIR)utils_bonus.c \
-			$(RAYCASTING_BONUS_DIR)utils2_bonus.c $(RAYCASTING_BONUS_DIR)render_3d_utils2_bonus.c
+			$(RAYCASTING_BONUS_DIR)utils2_bonus.c $(RAYCASTING_BONUS_DIR)render_3d_utils2_bonus.c\
+			$(RAYCASTING_BONUS_DIR)minimap_bonus.c
 OBJS_DIR		= obj/mandatory/
 OBJSB_DIR		= obj/bonus/
 OBJS 			= $(addprefix $(OBJS_DIR), $(SRCS_MANADTORY:.c=.o))
@@ -45,7 +46,7 @@ INCS			= $(INCS_DIR)cub3d.h $(INCS_DIR)struct.h $(INCS_DIR).MLX42.h
 LIBFT_DIR		= lib/libft/
 LIBFT			= $(LIBFT_DIR)libft.a
 CFLAGS			= -I$(INCS_DIR) -I$(LIBFT_DIR) 
-CFLAGS			+= -Wall -Werror -Wextra -g
+CFLAGS			+= -Wall -Werror -Wextra -g -fsanitize=address
 NAME			= cub3D
 NAME_BONUS		= cub3D_bonus
 RM			= rm -rf

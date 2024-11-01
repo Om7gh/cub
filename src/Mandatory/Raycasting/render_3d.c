@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:50:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/10/31 22:19:14 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 15:29:30 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,4 @@ void	render_3d(t_cub3d *cub)
 		draw_wall(x, cub);
 		rays += cub->fov / SCREEN_WIDTH;
 	}
-	mini_map(cub);
 }

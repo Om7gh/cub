@@ -3,31 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:31:14 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 15:47:41 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 17:07:30 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-// void	draw_rays(t_cub3d *cub)
-// {
-// 	int		x;
-// 	t_vect	from;
-// 	t_vect	to;
+void	put_pixel_map(int x, int y, int color, t_cub3d *cub)
+{
+	if (x >= 150 || x < 0 || y >= 150 || y < 0)
+		return ;
+	mlx_put_pixel(cub->__img, x, y, color);
+}
 
-// 	x = -1;
-// 	while (++x < SCREEN_WIDTH)
-// 	{
-// 		from.x = cub->player->pos.x * cub->scale;
-// 		from.y = cub->player->pos.y * cub->scale;
-// 		to.x = cub->rays[x].wall_hit.x * cub->scale;
-// 		to.y = cub->rays[x].wall_hit.y * cub->scale;
-// 		bresenhams(from, to, cub, RED);
-// 	}
-// }
+void	draw_player(t_cub3d *cub)
+{
+	int		x;
+	int		y;
+
+	y = -1;
+	while (++y < 6)
+	{
+		x = -1;
+		while (++x < 6)
+			put_pixel_map(71 + x, 71 + y, RED, cub);
+	}
+}
 
 void	render_minimap(t_cub3d *cub)
 {
@@ -35,20 +39,20 @@ void	render_minimap(t_cub3d *cub)
 	int	y;
 
 	y = -1;
-	while (++y < cub->screen_height * cub->scale)
+	while (++y < cub->screen_height / 4)
 	{
 		x = -1;
-		while (++x < cub->screen_width * cub->scale)
+		while (++x < cub->screen_width / 4)
 		{
-			if (cub->map->map[(int)(y / cub->scale / T_L)] \
-			[(int)(x / cub->scale / T_L)] == 1)
-				my_mlx_put_pixel(x, y, WHITE, cub);
-			else if (cub->map->map[(int)(y / cub->scale / T_L)] \
-			[(int)(x / cub->scale / T_L)] == 3)
-				my_mlx_put_pixel(x, y, ORANGE, cub);
+			if (cub->map->map[(int)(y * 4 / T_L)] \
+			[(int)(x * 4 / T_L)] == 1)
+				put_pixel_map(x - cub->player->pos.x / 4 + 75, y - cub->player->pos.y / 4 + 75, WHITE, cub);
+			else if (cub->map->map[(int)(y * 4 / T_L)] \
+			[(int)(x * 4 / T_L)] == 3)
+				put_pixel_map(x - cub->player->pos.x / 4 + 75, y - cub->player->pos.y / 4 + 75, ORANGE, cub);
 			else
-				my_mlx_put_pixel(x, y, BLACK, cub);
+				put_pixel_map(x - cub->player->pos.x / 4 + 75, y - cub->player->pos.y / 4 + 75, BLACK, cub);
 		}
 	}
-	// draw_rays(cub);
+	draw_player(cub);
 }

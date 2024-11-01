@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+         #
+#    By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 22:06:46 by hbettal           #+#    #+#              #
-#    Updated: 2024/11/01 15:51:01 by omghazi          ###   ########.fr        #
+#    Updated: 2024/11/01 17:13:51 by hbettal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ INCS			= $(INCS_DIR)cub3d.h $(INCS_DIR)struct.h $(INCS_DIR).MLX42.h
 LIBFT_DIR		= lib/libft/
 LIBFT			= $(LIBFT_DIR)libft.a
 CFLAGS			= -I$(INCS_DIR) -I$(LIBFT_DIR) 
-CFLAGS			+= -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS			+= -Wall -Werror -Wextra -g
 NAME			= cub3D
 NAME_BONUS		= cub3D_bonus
 RM			= rm -rf

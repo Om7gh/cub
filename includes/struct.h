@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:29:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 18:12:39 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 21:39:05 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 # define SCREEN_WIDTH	1080
 # define SCREEN_HEIGHT	608
-# define T_L	120
-# define ORANGE	0xFFA500FF
-# define BLACK	0x000000FF
-# define WHITE	0xFFFFFFFF
-# define RED	0xFF0000FF
-# define SPEED 6
+# define T_L		100
+# define ORANGE		0xFFA500FF
+# define BLACK		0x000000FF
+# define WHITE		0xFFFFFFFF
+# define RED		0xFF0000FF
+# define CRIMSON	0xdc143cff
+# define SPEED 		6
 # define ROTATION_SPEED 0.07
 
 /***********  STRUCT TYPEDEF  **********/

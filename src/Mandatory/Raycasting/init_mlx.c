@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 18:13:14 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/11/01 21:08:27 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,12 @@ void	init_player(t_player *player)
 		player->angle = 90 * (M_PI / 180);
 	else if (player->player_character == 'W')
 		player->angle = 180 * (M_PI / 180);
-	else if (player->player_character == 'E')
+	else
 		player->angle = 0;
 	player->walk_direction = 0;
 	player->turn_direction = 0;
 	player->arrow = 0;
+	player->angle += 0.002;
 }
 
 void	init_settings(t_cub3d *cub)

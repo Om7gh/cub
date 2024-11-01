@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:05:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 21:03:44 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/11/01 21:31:06 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	set_player_pos(t_cub3d *cub)
 		{
 			if (player_character(tmp->line[x]))
 			{
+				printf("%d\n", x);
 				cub->player->pos.x = (double)x * T_L + (T_L / 2);
 				cub->player->pos.y = (double)y * T_L + (T_L / 2);
 				cub->player->player_character = tmp->line[x];
@@ -97,12 +98,11 @@ void	init_player(t_player *player)
 		player->angle = 90 * (M_PI / 180);
 	else if (player->player_character == 'W')
 		player->angle = 180 * (M_PI / 180);
-	else	
+	else
 		player->angle = 0;
 	player->walk_direction = 0;
 	player->turn_direction = 0;
 	player->arrow = 0;
-	player->angle += 0.002;
 }
 
 void	init_settings(t_cub3d *cub)

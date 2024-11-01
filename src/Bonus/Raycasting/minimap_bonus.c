@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:31:14 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 19:03:04 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/11/01 21:47:57 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_player(t_cub3d *cub)
 	{
 		x = -1;
 		while (++x < 6)
-			put_pixel_map(71 + x, 71 + y, RED, cub);
+			put_pixel_map(71 + x, 71 + y, ORANGE, cub);
 	}
 }
 
@@ -38,13 +38,17 @@ void	mini_map_background(t_cub3d *cub)
 	int	x;
 	int	y;
 
-	y = -1;
+	y = 0;
 	while (++y <= 150)
 	{
 		x = -1;
 		while (++x <= 150)
-			put_pixel_map(x, y, 0x000000FF, cub);
+			put_pixel_map(x, y, 0, cub);
+		my_mlx_put_pixel(x, y, WHITE, cub);
 	}
+	x = -1;
+	while (++x <= 150)
+		my_mlx_put_pixel(x, y, WHITE, cub);
 }
 
 void	render_minimap(t_cub3d *cub)
@@ -61,12 +65,15 @@ void	render_minimap(t_cub3d *cub)
 		{
 			if (cub->map->map[(int)(y * 4 / T_L)] \
 			[(int)(x * 4 / T_L)] == 1)
-				put_pixel_map(x - cub->player->pos.x / 4 + 75, y - cub->player->pos.y / 4 + 75, WHITE, cub);
+				put_pixel_map(x - cub->player->pos.x / 4 + 75, \
+					y - cub->player->pos.y / 4 + 75, CRIMSON, cub);
 			else if (cub->map->map[(int)(y * 4 / T_L)] \
 			[(int)(x * 4 / T_L)] == 3)
-				put_pixel_map(x - cub->player->pos.x / 4 + 75, y - cub->player->pos.y / 4 + 75, ORANGE, cub);
+				put_pixel_map(x - cub->player->pos.x / 4 + 75, \
+					y - cub->player->pos.y / 4 + 75, ORANGE, cub);
 			else
-				put_pixel_map(x - cub->player->pos.x / 4 + 75, y - cub->player->pos.y / 4 + 75, BLACK, cub);
+				put_pixel_map(x - cub->player->pos.x / 4 + 75, \
+					y - cub->player->pos.y / 4 + 75, BLACK, cub);
 		}
 	}
 	draw_player(cub);

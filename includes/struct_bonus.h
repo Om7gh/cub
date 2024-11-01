@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:04:40 by omghazi           #+#    #+#             */
-/*   Updated: 2024/11/01 21:04:26 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/11/01 21:39:14 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 # define SCREEN_WIDTH	1080
 # define SCREEN_HEIGHT	608
-# define T_L	120
+# define T_L	100
 # define ORANGE	0xFFA500FF
 # define BLACK	0x000000FF
 # define WHITE	0xFFFFFFFF
+# define CRIMSON	0xdc143cff
 # define RED	0xFF0000FF
 # define SPEED 6
 # define ROTATION_SPEED 0.07
